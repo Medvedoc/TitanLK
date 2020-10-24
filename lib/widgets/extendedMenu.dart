@@ -6,19 +6,34 @@ import 'package:flutter_image/bloc/mainBloc.dart';
 class ExtendedMenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var _iconSize = 35.0;
+    var _iconSize = 25.0;
     var _color = Theme.of(context).textTheme.button.color;
     return Column(children: <Widget>[
       GridView.count(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
-        crossAxisCount: 4,
+        crossAxisCount: 5,
         children: <Widget>[
           _getButton(
               context,
               Icon(Icons.monitor, size: _iconSize, color: _color),
-              "Настройки",
-              MainState.settings),
+              "М1",
+              MainState.m1),
+          _getButton(
+              context,
+              Icon(Icons.monitor, size: _iconSize, color: _color),
+              "М2",
+              MainState.m2),
+          _getButton(
+              context,
+              Icon(Icons.monitor, size: _iconSize, color: _color),
+              "М3",
+              MainState.m3),
+          _getButton(
+              context,
+              Icon(Icons.monitor, size: _iconSize, color: _color),
+              "М3-1",
+              MainState.m3_1),
          /* _getButton(
               context,
               Icon(

@@ -137,7 +137,7 @@ class TitanButtonStyle {
   double heightCounter = 0.95; //Высота inline шрифта счетчика
   double heightText = 1.20; //Высота inline шрифта названия кнопки
   double fontSize14 = 14.0;
-  double fontSize18 = 18.0;
+  double fontSize18 = 16.0;
   String fontFamily = "Roboto";
   FontWeight fontWeight400 = FontWeight.w500;
   FontStyle fontStyleNormal = FontStyle.normal;

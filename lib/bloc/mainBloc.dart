@@ -12,7 +12,10 @@ class MainPageEvent extends MainEvent {
 class MainState {
   int subState = 0;
   static const int objects = 0;
-  static const int settings = 1;
+  static const int m1 = 1;
+  static const int m2 = 2;
+  static const int m3 = 3;
+  static const int m3_1 = 4;
   //static const int participants = 1;
   //static const int myWFRS = 2;
   //static const int payment = 3;
@@ -21,8 +24,14 @@ class MainState {
     switch (subState) {
       case objects:
         return 'Объекты';
-      case settings:
+      case m1:
         return 'Настройки';
+      case m2:
+        return 'Настройки';
+      case m3:
+        return 'Настройки';
+      case m3_1:
+        return 'Настройка уведомлений';
       //case participants:
       //  return 'wfrsParticipants';
       //case myWFRS:

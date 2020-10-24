@@ -70,8 +70,10 @@ class _TitanButtonState extends State<TitanButton> {
             width: cardSizewidth,
             //padding: widget.style.edgeInsets[14],
             child: AnimatedContainer(
-              height: widget.style.heightUp +
-                  (widget.style.heightUp - widget.style.heightDown),
+              height: widget.style
+                  .heightUp /*+
+                  (widget.style.heightUp - widget.style.heightDown)*/
+              ,
               duration: Duration(milliseconds: 100),
               alignment: Alignment.center,
               child: GestureDetector(
@@ -156,26 +158,27 @@ class _TitanButtonState extends State<TitanButton> {
                                           ? WidgetSpan(
                                               alignment:
                                                   PlaceholderAlignment.middle,
-                                              child: IconShadowWidget(
-                                                Icon(
-                                                  widget.icon,
-                                                  color:
-                                                      widget.style.colors[14],
-                                                  size: widget.style.sizeIcon,
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 5.0),
+                                                child: IconShadowWidget(
+                                                  Icon(
+                                                    widget.icon,
+                                                    color:
+                                                        widget.style.colors[14],
+                                                    size: widget.style.sizeIcon,
+                                                  ),
+                                                  shadowColor:
+                                                      widget.style.colors[15],
+                                                  showShadow:
+                                                      widget.style.showShadow,
                                                 ),
-                                                shadowColor:
-                                                    widget.style.colors[15],
-                                                showShadow:
-                                                    widget.style.showShadow,
                                               ),
                                             )
                                           : WidgetSpan(child: SizedBox()),
                                       TextSpan(
                                         text: (widget.headButton != null
-                                            ? " " +
-                                                widget.headButton
-                                                    .toUpperCase() +
-                                                " "
+                                            ? widget.headButton.toUpperCase()
                                             : ""),
                                         style: TextStyle(
                                           height: widget.style.heightText,

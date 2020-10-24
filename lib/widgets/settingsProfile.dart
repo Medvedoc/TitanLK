@@ -11,12 +11,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:list_tile_switch/list_tile_switch.dart';
 
-class SettingsWidget extends StatefulWidget {
+class TitanSettingsProfile extends StatefulWidget {
   @override
-  _SettingsWidgetState createState() => _SettingsWidgetState();
+  _TitanSettingsProfileState createState() => _TitanSettingsProfileState();
 }
 
-class _SettingsWidgetState extends State<SettingsWidget> {
+class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
   String _phone;
   String _family;
   String _name;

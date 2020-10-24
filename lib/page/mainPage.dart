@@ -5,7 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_image/bloc/mainBloc.dart';
 import 'package:flutter_image/page/floating_navbar.dart';
 import 'package:flutter_image/widgets/extendedMenu.dart';
-import 'package:flutter_image/widgets/settings.dart';
+import 'package:flutter_image/widgets/settingsFull.dart';
+import 'package:flutter_image/widgets/settingsNotifications.dart';
+import 'package:flutter_image/widgets/settingsObjectNoGroup.dart';
+import 'package:flutter_image/widgets/settingsProfile.dart';
 
 class MainPage extends StatelessWidget {
   @override
@@ -178,8 +181,14 @@ class MainPage extends StatelessWidget {
         //return NewsWidget();
         //return SettingsWidget();
         return ExtendedMenuWidget();
-      case MainState.settings:
-        return SettingsWidget();
+      case MainState.m1:
+        return TitanSettingsFull();
+      case MainState.m2:
+        return TitanSettingsProfile();
+      case MainState.m3:
+        return TitanSettingsNotifications();
+      case MainState.m3_1:
+        return TitanSettingsObjectNoGroup();
       /*case MainState.myWFRS:
         return MyWfrsloggedin();
       case MainState.payment:

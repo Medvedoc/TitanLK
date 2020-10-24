@@ -6,15 +6,18 @@ import 'package:flutter/rendering.dart';
 
 // Enum for deciding which type of switch to be displayed.
 enum SwitchType { material, cupertino }
-Widget widget(Color activeColor, Color inactiveColor,Color circleactiveColor, Color circleinactiveColor,
-    _SwitchToggleCallback onChanged, bool value) {
-  return _Switch(
-    value: value,
-    onChanged: onChanged,
-    activeColor: activeColor,
-    inactiveColor: inactiveColor,
-    circleactiveColor: circleactiveColor,
-    circleinactiveColor: circleinactiveColor,
+Widget widget(Color activeColor, Color inactiveColor, Color circleactiveColor,
+    Color circleinactiveColor, _SwitchToggleCallback onChanged, bool value) {
+  return Container(
+    color: Colors.red,
+    child: _Switch(
+      value: value,
+      onChanged: onChanged,
+      activeColor: activeColor,
+      inactiveColor: inactiveColor,
+      circleactiveColor: circleactiveColor,
+      circleinactiveColor: circleinactiveColor,
+    ),
   );
 }
 
@@ -93,17 +96,18 @@ class ListTileSwitch extends StatelessWidget {
         enabled: enabled,
         onTap: () => onChanged(!value),
         onLongPress: onLongPress,
-        leading: leading,
+        //leading: leading,
         //title: title,
-        subtitle: subtitle,
+        //subtitle: subtitle,
         trailing: Builder(
           builder: (_) => Transform.scale(
-            alignment: Alignment.center,
+            alignment: Alignment.centerRight,
             scale: switchType == SwitchType.material ? 1.0 : switchScale,
             child: widget(
                 switchActiveColor,
-                switchInactiveColor,circleActiveColor,
-    circleInactiveColor ??
+                switchInactiveColor,
+                circleActiveColor,
+                circleInactiveColor ??
                     Theme.of(context).unselectedWidgetColor.withOpacity(0.1),
                 onChanged,
                 value),
@@ -150,6 +154,7 @@ class _Switch extends StatelessWidget {
         height: 35,
         width: 70,
         child: Stack(
+          alignment: Alignment.centerRight,
           children: [
             AnimatedContainer(
               height: 35,
