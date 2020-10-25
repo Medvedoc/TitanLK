@@ -1,15 +1,14 @@
 import 'dart:io';
 import 'package:flutter_image/control/TitanButton.dart';
-import 'package:flutter_image/control/TitanSwitch.dart';
 import 'package:flutter_image/theme/themeStyle.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_cropper/image_cropper.dart'
     show AndroidUiSettings, CropAspectRatio, ImageCompressFormat, ImageCropper;
 import 'package:image_picker/image_picker.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:list_tile_switch/list_tile_switch.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 class TitanSettingsProfile extends StatefulWidget {
   @override
@@ -17,6 +16,25 @@ class TitanSettingsProfile extends StatefulWidget {
 }
 
 class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  PhoneCountryData _countryData;
+  TextEditingController _phoneController = TextEditingController();
+
+  /// this callback is called in PhoneInputFormatter when
+  /// a country is detected by a phone code
+  void _onCountrySelected(PhoneCountryData countryData) {
+    setState(() {
+      _countryData = countryData;
+    });
+  }
+
+  final _phoneText = TextEditingController();
+  final _familyText = TextEditingController();
+  final _nameText = TextEditingController();
+  final _companyText = TextEditingController();
+  final _positionText = TextEditingController();
+  final _emailText = TextEditingController();
+
   String _phone;
   String _family;
   String _name;
@@ -34,6 +52,7 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
   bool isSwitched = false;
   bool isSwitched2 = false;
   bool isSwitched3 = false;
+  bool _validate = false;
 
   @override
   void dispose() {
@@ -44,6 +63,14 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
     _companyFocus.dispose();
     _positionFocus.dispose();
     _emailFocus.dispose();
+    _phoneText.dispose();
+    _familyText.dispose();
+    _nameText.dispose();
+    _companyText.dispose();
+    _positionText.dispose();
+    _emailText.dispose();
+
+    _phoneController?.dispose();
   }
 
   @override
@@ -70,10 +97,130 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
   File _selectedFile;
   bool _inProcess = false;
 
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
+    var titanButtonStandart = TitanButtonStyle();
+    titanButtonStandart.colors[14] = Colors.black;
+    titanButtonStandart.colors[15] = Colors.black;
+    titanButtonStandart.textShadowx = 0;
+    titanButtonStandart.textShadowy = 0;
+    titanButtonStandart.intensity = 0;
+    titanButtonStandart.showShadow = false;
 
+    var titanButtonStandart2 = TitanButtonStyle();
+    //titanButtonStandart2.colors[14] = Colors.black;
+    titanButtonStandart2.colors[14] = Colors.black54;
+    titanButtonStandart2.colors[15] = Colors.black45;
+    titanButtonStandart2.textShadowx = -9;
+    titanButtonStandart2.textShadowy = -9;
+    titanButtonStandart2.intensity = 2;
+    titanButtonStandart2.showShadow = true;
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 10.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  'Настройка профиля'.toUpperCase(),
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: Color.fromRGBO(0, 0, 0, 1),
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w600,
+                    height: 0.90,
+                  ),
+                ),
+                SizedBox(height: 40.0),
+                _buildPhone(),
+                SizedBox(height: 40.0),
+                _buildFamily(),
+                SizedBox(height: 40.0),
+                _buildName(),
+                SizedBox(height: 40.0),
+                _buildCompany(),
+                SizedBox(height: 40.0),
+                _buildPosition(),
+                SizedBox(height: 40.0),
+                _buildEmail(),
+                SizedBox(height: 30.0),
+                _pushToogle(),
+                _pinToogle(),
+                SizedBox(height: 30.0),
+                TitanButton(
+                  pressTap: () => pressSave(),
+                  headButton: "Сохранить",
+                  style: titanButtonStandart2,
+                ),
+                SizedBox(height: 50.0),
+                Text(
+                  'Фотография'.toUpperCase(),
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: Color.fromRGBO(0, 0, 0, 1),
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w600,
+                    height: 0.90,
+                  ),
+                ),
+                SizedBox(height: 15.0),
+                getImageWidget(),
+                SizedBox(height: 10.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: TitanButton(
+                        pressTap: () => getImage(ImageSource.camera),
+                        icon: Icons.camera_alt_outlined,
+                        headButton: "Фото",
+                        style: titanButtonStandart2,
+                      ),
+                    ),
+                    SizedBox(width: 15.0),
+                    Expanded(
+                      flex: 1,
+                      child: TitanButton(
+                        pressTap: () => getImage(ImageSource.gallery),
+                        icon: Icons.image_outlined,
+                        headButton: "Галерея",
+                        style: titanButtonStandart2,
+                      ),
+                    ),
+                  ],
+                ),
+                (_inProcess)
+                    ? Container(
+                        color: Colors.white,
+                        height: MediaQuery.of(context).size.height * 0.95,
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      )
+                    : Center(),
+                SizedBox(height: 15.0),
+              ],
+            ),
+          ),
+        ),
+        _logToogle(),
+        SizedBox(height: 15.0),
+      ],
+    );
+  }
+
+  //Поле ввода номера телефона
   Widget _buildPhone() {
     return TextFormField(
+      keyboardType: TextInputType.number,
       focusNode: _phoneFocus,
       style: TextStyle(
         fontSize: 18.0,
@@ -81,33 +228,67 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
         fontWeight: FontWeight.w500,
         color: Color.fromRGBO(33, 32, 30, 1),
       ),
+      controller: _phoneText,
       decoration: InputDecoration(
-        labelText: "Номер телефона",
-        labelStyle: TextStyle(
-          height: _phoneFocus.hasFocus ? 1 : 3,
+        isDense: true,
+        hintText: _phoneFocus.hasFocus ? null : 'Номер телефона',
+        hintStyle: TextStyle(
+          fontSize: 18.0,
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w500,
           color: Color.fromRGBO(110, 110, 110, 1),
         ),
+        labelText:
+            _validate ? (_phoneFocus.hasFocus ? 'Номер телефона' : null) : null,
+        labelStyle: TextStyle(
+          color: Colors.red,
+          fontSize: _phoneFocus.hasFocus ? 18.0 : 13.0,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.w500,
+        ),
         contentPadding: EdgeInsets.only(bottom: 5.0),
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
+            width: 1.0,
             color: Color.fromRGBO(0, 0, 0, 1),
           ),
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
+            width: 1.0,
+            color: Color.fromRGBO(0, 0, 0, 1),
+          ),
+        ),
+        errorBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 1.0,
+            color: Color.fromRGBO(0, 0, 0, 1),
+          ),
+        ),
+        focusedErrorBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 1.0,
             color: Color.fromRGBO(0, 0, 0, 1),
           ),
         ),
       ),
-      keyboardType: TextInputType.phone,
-      validator: (String value) {
+      inputFormatters: [
+        PhoneInputFormatter(onCountrySelected: _onCountrySelected)
+      ],
+      validator: (value) {
         if (value.isEmpty) {
-          return 'Номер телефона введен с ошибкой';
+          return 'Номер телефона не введен';
         }
-
+        /*if (!RegExp(r"(^(?:[+0]9)?[0-9]{10,20}$)").hasMatch(value)) {
+          return 'Неправильно введен номер телефона';
+        }*/
+        if (!isPhoneValid(value)) {
+                        return 'Неправильно введен номер телефона';
+                      }
         return null;
+      },
+      onTap: () {
+        _phoneText.text = "";
       },
       onSaved: (String value) {
         _phone = value;
@@ -115,8 +296,10 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
     );
   }
 
+  //Поле ввода Фамилия
   Widget _buildFamily() {
     return TextFormField(
+      keyboardType: TextInputType.name,
       focusNode: _familyFocus,
       style: TextStyle(
         fontSize: 18.0,
@@ -124,33 +307,62 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
         fontWeight: FontWeight.w500,
         color: Color.fromRGBO(33, 32, 30, 1),
       ),
+      controller: _familyText,
       decoration: InputDecoration(
-        labelText: "Фамилия",
-        labelStyle: TextStyle(
-          height: _familyFocus.hasFocus ? 1 : 3,
+        isDense: true,
+        hintText: _familyFocus.hasFocus ? null : 'Фамилия',
+        hintStyle: TextStyle(
+          fontSize: 18.0,
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w500,
           color: Color.fromRGBO(110, 110, 110, 1),
         ),
+        labelText:
+            _validate ? (_familyFocus.hasFocus ? 'Фамилия' : null) : null,
+        labelStyle: TextStyle(
+          color: Colors.red,
+          fontSize: _familyFocus.hasFocus ? 18.0 : 13.0,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.w500,
+        ),
         contentPadding: EdgeInsets.only(bottom: 5.0),
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
+            width: 1.0,
             color: Color.fromRGBO(0, 0, 0, 1),
           ),
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
+            width: 1.0,
+            color: Color.fromRGBO(0, 0, 0, 1),
+          ),
+        ),
+        errorBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 1.0,
+            color: Color.fromRGBO(0, 0, 0, 1),
+          ),
+        ),
+        focusedErrorBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 1.0,
             color: Color.fromRGBO(0, 0, 0, 1),
           ),
         ),
       ),
-      //maxLength: 30,
-      validator: (String value) {
+      validator: (value) {
         if (value.isEmpty) {
-          return 'Фамилия введена с ошибкой';
+          return 'Фамилия не введена';
         }
-
+        if (!RegExp(r"(^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$)")
+            .hasMatch(value)) {
+          return 'Неправильно введена фамилия';
+        }
         return null;
+      },
+      onTap: () {
+        _familyText.text = "";
       },
       onSaved: (String value) {
         _family = value;
@@ -158,8 +370,10 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
     );
   }
 
+  //Поле ввода имени
   Widget _buildName() {
     return TextFormField(
+      keyboardType: TextInputType.name,
       focusNode: _nameFocus,
       style: TextStyle(
         fontSize: 18.0,
@@ -167,33 +381,61 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
         fontWeight: FontWeight.w500,
         color: Color.fromRGBO(33, 32, 30, 1),
       ),
+      controller: _nameText,
       decoration: InputDecoration(
-        labelText: "Имя",
-        labelStyle: TextStyle(
-          height: _nameFocus.hasFocus ? 1 : 3,
+        isDense: true,
+        hintText: _nameFocus.hasFocus ? null : 'Имя',
+        hintStyle: TextStyle(
+          fontSize: 18.0,
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w500,
           color: Color.fromRGBO(110, 110, 110, 1),
         ),
+        labelText: _validate ? (_nameFocus.hasFocus ? 'Имя' : null) : null,
+        labelStyle: TextStyle(
+          color: Colors.red,
+          fontSize: _nameFocus.hasFocus ? 18.0 : 13.0,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.w500,
+        ),
         contentPadding: EdgeInsets.only(bottom: 5.0),
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
+            width: 1.0,
             color: Color.fromRGBO(0, 0, 0, 1),
           ),
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
+            width: 1.0,
+            color: Color.fromRGBO(0, 0, 0, 1),
+          ),
+        ),
+        errorBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 1.0,
+            color: Color.fromRGBO(0, 0, 0, 1),
+          ),
+        ),
+        focusedErrorBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 1.0,
             color: Color.fromRGBO(0, 0, 0, 1),
           ),
         ),
       ),
-      //maxLength: 30,
-      validator: (String value) {
+      validator: (value) {
         if (value.isEmpty) {
-          return 'Имя введено с ошибкой';
+          return 'Имя не введено';
         }
-
+        if (!RegExp(r"(^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$)")
+            .hasMatch(value)) {
+          return 'Неправильно введено имя';
+        }
         return null;
+      },
+      onTap: () {
+        _nameText.text = "";
       },
       onSaved: (String value) {
         _name = value;
@@ -201,8 +443,10 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
     );
   }
 
+  //Поле ввода имени
   Widget _buildCompany() {
     return TextFormField(
+      keyboardType: TextInputType.name,
       focusNode: _companyFocus,
       style: TextStyle(
         fontSize: 18.0,
@@ -210,33 +454,63 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
         fontWeight: FontWeight.w500,
         color: Color.fromRGBO(33, 32, 30, 1),
       ),
+      controller: _companyText,
       decoration: InputDecoration(
-        labelText: "Наименование организации",
-        labelStyle: TextStyle(
-          height: _companyFocus.hasFocus ? 1 : 3,
+        isDense: true,
+        hintText: _companyFocus.hasFocus ? null : 'Наименование организации',
+        hintStyle: TextStyle(
+          fontSize: 18.0,
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w500,
           color: Color.fromRGBO(110, 110, 110, 1),
         ),
+        labelText: _validate
+            ? (_companyFocus.hasFocus ? 'Наименование организации' : null)
+            : null,
+        labelStyle: TextStyle(
+          color: Colors.red,
+          fontSize: _companyFocus.hasFocus ? 18.0 : 13.0,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.w500,
+        ),
         contentPadding: EdgeInsets.only(bottom: 5.0),
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
+            width: 1.0,
             color: Color.fromRGBO(0, 0, 0, 1),
           ),
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
+            width: 1.0,
+            color: Color.fromRGBO(0, 0, 0, 1),
+          ),
+        ),
+        errorBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 1.0,
+            color: Color.fromRGBO(0, 0, 0, 1),
+          ),
+        ),
+        focusedErrorBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 1.0,
             color: Color.fromRGBO(0, 0, 0, 1),
           ),
         ),
       ),
-      //maxLength: 30,
-      validator: (String value) {
+      validator: (value) {
         if (value.isEmpty) {
-          return 'Наименование организации с ошибкой';
+          return 'Наименование организации не введено';
         }
-
+        if (!RegExp(r"(^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$)")
+            .hasMatch(value)) {
+          return 'Неправильно введено наименование организации';
+        }
         return null;
+      },
+      onTap: () {
+        _companyText.text = "";
       },
       onSaved: (String value) {
         _company = value;
@@ -244,8 +518,10 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
     );
   }
 
+  //Поле ввода должности
   Widget _buildPosition() {
     return TextFormField(
+      keyboardType: TextInputType.name,
       focusNode: _positionFocus,
       style: TextStyle(
         fontSize: 18.0,
@@ -253,33 +529,62 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
         fontWeight: FontWeight.w500,
         color: Color.fromRGBO(33, 32, 30, 1),
       ),
+      controller: _positionText,
       decoration: InputDecoration(
-        labelText: "Должность",
-        labelStyle: TextStyle(
-          height: _positionFocus.hasFocus ? 1 : 3,
+        isDense: true,
+        hintText: _positionFocus.hasFocus ? null : 'Должность',
+        hintStyle: TextStyle(
+          fontSize: 18.0,
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w500,
           color: Color.fromRGBO(110, 110, 110, 1),
         ),
+        labelText:
+            _validate ? (_positionFocus.hasFocus ? 'Должность' : null) : null,
+        labelStyle: TextStyle(
+          color: Colors.red,
+          fontSize: _positionFocus.hasFocus ? 18.0 : 13.0,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.w500,
+        ),
         contentPadding: EdgeInsets.only(bottom: 5.0),
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
+            width: 1.0,
             color: Color.fromRGBO(0, 0, 0, 1),
           ),
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
+            width: 1.0,
+            color: Color.fromRGBO(0, 0, 0, 1),
+          ),
+        ),
+        errorBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 1.0,
+            color: Color.fromRGBO(0, 0, 0, 1),
+          ),
+        ),
+        focusedErrorBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 1.0,
             color: Color.fromRGBO(0, 0, 0, 1),
           ),
         ),
       ),
-      //maxLength: 30,
-      validator: (String value) {
+      validator: (value) {
         if (value.isEmpty) {
-          return 'Должность введена с ошибкой';
+          return 'Должность не введена';
         }
-
+        if (!RegExp(r"(^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$)")
+            .hasMatch(value)) {
+          return 'Неправильно введена должность';
+        }
         return null;
+      },
+      onTap: () {
+        _positionText.text = "";
       },
       onSaved: (String value) {
         _position = value;
@@ -287,8 +592,10 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
     );
   }
 
+  //Поле ввода почты
   Widget _buildEmail() {
     return TextFormField(
+      keyboardType: TextInputType.emailAddress,
       focusNode: _emailFocus,
       style: TextStyle(
         fontSize: 18.0,
@@ -296,79 +603,68 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
         fontWeight: FontWeight.w500,
         color: Color.fromRGBO(33, 32, 30, 1),
       ),
+      controller: _emailText,
       decoration: InputDecoration(
-        labelText: "Email",
-        labelStyle: TextStyle(
-          height: _emailFocus.hasFocus ? 1 : 3,
+        isDense: true,
+        hintText: _emailFocus.hasFocus ? null : 'E-mail',
+        hintStyle: TextStyle(
+          fontSize: 18.0,
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w500,
           color: Color.fromRGBO(110, 110, 110, 1),
         ),
+        labelText: _validate ? (_emailFocus.hasFocus ? 'E-mail' : null) : null,
+        labelStyle: TextStyle(
+          color: Colors.red,
+          fontSize: _emailFocus.hasFocus ? 18.0 : 13.0,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.w500,
+        ),
         contentPadding: EdgeInsets.only(bottom: 5.0),
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
+            width: 1.0,
             color: Color.fromRGBO(0, 0, 0, 1),
           ),
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
+            width: 1.0,
+            color: Color.fromRGBO(0, 0, 0, 1),
+          ),
+        ),
+        errorBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 1.0,
+            color: Color.fromRGBO(0, 0, 0, 1),
+          ),
+        ),
+        focusedErrorBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 1.0,
             color: Color.fromRGBO(0, 0, 0, 1),
           ),
         ),
       ),
-      validator: (String value) {
+      validator: (value) {
         if (value.isEmpty) {
-          return 'Email введен с ошибкой';
+          return 'Email не введен';
         }
-
         if (!RegExp(
                 r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
             .hasMatch(value)) {
-          return 'Email введен с ошибкой';
+          return 'Неправильно введен Email';
         }
-
         return null;
+      },
+      onTap: () {
+        _emailText.text = "";
       },
       onSaved: (String value) {
         _email = value;
       },
     );
   }
-
-  /*Widget _buildPassword() {
-    return TextFormField(
-      decoration: InputDecoration(labelText: 'Password'),
-      keyboardType: TextInputType.visiblePassword,
-      validator: (String value) {
-        if (value.isEmpty) {
-          return 'Password is Required';
-        }
-
-        return null;
-      },
-      onSaved: (String value) {
-        _password = value;
-      },
-    );
-  }
-
-  Widget _builURL() {
-    return TextFormField(
-      decoration: InputDecoration(labelText: 'Url'),
-      keyboardType: TextInputType.url,
-      validator: (String value) {
-        if (value.isEmpty) {
-          return 'URL is Required';
-        }
-
-        return null;
-      },
-      onSaved: (String value) {
-        _url = value;
-      },
-    );
-  }
-*/
 
   Widget getImageWidget() {
     if (_selectedFile != null) {
@@ -454,312 +750,287 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    var titanButtonStandart = TitanButtonStyle();
-    titanButtonStandart.colors[14] = Colors.black;
-    titanButtonStandart.colors[15] = Colors.black;
-    titanButtonStandart.textShadowx = 0;
-    titanButtonStandart.textShadowy = 0;
-    titanButtonStandart.intensity = 0;
-    titanButtonStandart.showShadow = false;
-
-    var titanButtonStandart2 = TitanButtonStyle();
-    //titanButtonStandart2.colors[14] = Colors.black;
-    titanButtonStandart2.colors[14] = Colors.black54;
-    titanButtonStandart2.colors[15] = Colors.black45;
-    titanButtonStandart2.textShadowx = -9;
-    titanButtonStandart2.textShadowy = -9;
-    titanButtonStandart2.intensity = 2;
-    titanButtonStandart2.showShadow = true;
-
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 10.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'Настройка профиля'.toUpperCase(),
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    color: Color.fromRGBO(0, 0, 0, 1),
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w600,
-                    height: 0.90,
-                  ),
-                ),
-                SizedBox(height: 15.0),
-                _buildPhone(),
-                SizedBox(height: 15.0),
-                _buildFamily(),
-                SizedBox(height: 15.0),
-                _buildName(),
-                SizedBox(height: 15.0),
-                _buildCompany(),
-                SizedBox(height: 15.0),
-                _buildPosition(),
-                SizedBox(height: 15.0),
-                _buildEmail(),
-                SizedBox(height: 30.0),
-                Container(
-                  padding: EdgeInsets.only(left: 10.0),
-                  decoration: new BoxDecoration(
-                    color: Colors.white,
-                    border: new Border(
-                      left: BorderSide(
-                        color: Color.fromRGBO(0, 0, 0, 1),
-                        width: 1.0,
-                      ),
-                      right: BorderSide(
-                        color: Color.fromRGBO(0, 0, 0, 1),
-                        width: 1.0,
-                      ),
-                      top: BorderSide(
-                        color: Color.fromRGBO(0, 0, 0, 1),
-                        width: 1.0,
-                      ),
-                    ),
-                  ),
-                  child: Stack(
-                    alignment: AlignmentDirectional.centerStart,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Text(
-                            'Показывать Пуш-уведомления',
-                            style: TextStyle(
-                              fontSize: 13.0,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 10.0),
-                            padding: const EdgeInsets.all(7.0),
-                            decoration: new BoxDecoration(
-                              border: new Border.all(
-                                  color: Color.fromRGBO(101, 91, 0, 0.5),
-                                  width: 2.0,
-                                  style: BorderStyle.solid),
-                              shape: BoxShape.circle,
-                              color: Color.fromRGBO(254, 229, 0, 1),
-                            ),
-                            child: Icon(
-                              FontAwesomeIcons.question,
-                              color: Color.fromRGBO(101, 91, 0, 0.5),
-                              size: 20.0,
-                            ),
-                          ),
-                        ],
-                      ),
-                      ListTileSwitch(
-                        contentPadding: EdgeInsets.only(left: 10.0),
-                        value: isSwitched,
-                        onChanged: (value) {
-                          setState(() {
-                            isSwitched = value;
-                            print(isSwitched);
-                          });
-                        },
-                        switchActiveColor: Colors.black,
-                        switchInactiveColor: Color.fromRGBO(101, 91, 0, 0.2),
-                        circleActiveColor: Colors.white,
-                        circleInactiveColor: Colors.white,
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(left: 10.0),
-                  decoration: new BoxDecoration(
-                    color: Colors.white,
-                    border: new Border(
-                      left: BorderSide(
-                        color: Color.fromRGBO(0, 0, 0, 1),
-                        width: 1.0,
-                      ),
-                      right: BorderSide(
-                        color: Color.fromRGBO(0, 0, 0, 1),
-                        width: 1.0,
-                      ),
-                      top: BorderSide(
-                        color: Color.fromRGBO(0, 0, 0, 1),
-                        width: 1.0,
-                      ),
-                      bottom: BorderSide(
-                        color: Color.fromRGBO(0, 0, 0, 1),
-                        width: 1.0,
-                      ),
-                    ),
-                  ),
-                  child: Stack(
-                    alignment: AlignmentDirectional.centerStart,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Text(
-                            'Запрашивать Пин-код',
-                            style: TextStyle(
-                              fontSize: 13.0,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                      ListTileSwitch(
-                        contentPadding: EdgeInsets.only(left: 10.0),
-                        value: isSwitched2,
-                        onChanged: (value) {
-                          setState(() {
-                            isSwitched2 = value;
-                            print(isSwitched2);
-                          });
-                        },
-                        switchActiveColor: Colors.black,
-                        switchInactiveColor: Color.fromRGBO(101, 91, 0, 0.2),
-                        circleActiveColor: Colors.white,
-                        circleInactiveColor: Colors.white,
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 15),
-                TitanButton(
-                  pressTap: () => pressSave(),
-                  headButton: "Сохранить",
-                  style: titanButtonStandart2,
-                ),
-              ],
-            ),
-          ),
-        ),
-        SizedBox(height: 50.0),
-        Text(
-          'Фотография'.toUpperCase(),
-          style: TextStyle(
-            fontSize: 18.0,
+  Widget _pushToogle() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+      decoration: new BoxDecoration(
+        color: Colors.white,
+        border: new Border(
+          left: BorderSide(
             color: Color.fromRGBO(0, 0, 0, 1),
-            fontFamily: 'Roboto',
-            fontWeight: FontWeight.w600,
-            height: 0.90,
+            width: 1.0,
+          ),
+          right: BorderSide(
+            color: Color.fromRGBO(0, 0, 0, 1),
+            width: 1.0,
+          ),
+          top: BorderSide(
+            color: Color.fromRGBO(0, 0, 0, 1),
+            width: 1.0,
           ),
         ),
-        SizedBox(height: 15.0),
-        getImageWidget(),
-        SizedBox(height: 10.0),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: TitanButton(
-                pressTap: () => getImage(ImageSource.camera),
-                icon: Icons.camera_alt_outlined,
-                headButton: "Фото",
-                style: titanButtonStandart2,
-              ),
-            ),
-            SizedBox(width: 15.0),
-            Expanded(
-              flex: 1,
-              child: TitanButton(
-                pressTap: () => getImage(ImageSource.gallery),
-                icon: Icons.image_outlined,
-                headButton: "Галерея",
-                style: titanButtonStandart2,
-              ),
-            ),
-          ],
-        ),
-        (_inProcess)
-            ? Container(
-                color: Colors.white,
-                height: MediaQuery.of(context).size.height * 0.95,
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              )
-            : Center(),
-        SizedBox(height: 30.0),
-        Container(
-          padding: EdgeInsets.only(left: 10.0),
-          decoration: new BoxDecoration(
-            color: Colors.white,
-            border: new Border(
-              left: BorderSide(
-                color: Color.fromRGBO(0, 0, 0, 1),
-                width: 1.0,
-              ),
-              right: BorderSide(
-                color: Color.fromRGBO(0, 0, 0, 1),
-                width: 1.0,
-              ),
-              top: BorderSide(
-                color: Color.fromRGBO(0, 0, 0, 1),
-                width: 1.0,
-              ),
-              bottom: BorderSide(
-                color: Color.fromRGBO(0, 0, 0, 1),
-                width: 1.0,
-              ),
-            ),
-          ),
-          child: Stack(
-            alignment: AlignmentDirectional.centerStart,
+      ),
+      child: Stack(
+        alignment: AlignmentDirectional.centerStart,
+        children: <Widget>[
+          Row(
             children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Text(
-                    'Логирование (интерфейс ошибок)',
-                    style: TextStyle(
-                      fontSize: 13.0,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 10.0),
-                    padding: const EdgeInsets.all(7.0),
-                    decoration: new BoxDecoration(
-                      border: new Border.all(
-                          color: Color.fromRGBO(101, 91, 0, 0.5),
-                          width: 2.0,
-                          style: BorderStyle.solid),
-                      shape: BoxShape.circle,
-                      color: Color.fromRGBO(254, 229, 0, 1),
-                    ),
-                    child: Icon(
-                      FontAwesomeIcons.question,
-                      color: Color.fromRGBO(101, 91, 0, 0.5),
-                      size: 20.0,
-                    ),
-                  ),
-                ],
+              Text(
+                'Показывать Пуш-уведомления',
+                style: TextStyle(
+                  fontSize: 13.0,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
-              ListTileSwitch(
-                contentPadding: EdgeInsets.only(left: 10.0),
-                value: isSwitched3,
-                onChanged: (value) {
-                  setState(() {
-                    isSwitched3 = value;
-                    print(isSwitched3);
-                  });
+              GestureDetector(
+                child: Container(
+                  margin: EdgeInsets.only(left: 10.0),
+                  padding: const EdgeInsets.all(5.0),
+                  decoration: new BoxDecoration(
+                    border: new Border.all(
+                        color: Color.fromRGBO(101, 91, 0, 0.5),
+                        width: 2.0,
+                        style: BorderStyle.solid),
+                    shape: BoxShape.circle,
+                    color: Color.fromRGBO(254, 229, 0, 1),
+                  ),
+                  child: Icon(
+                    FontAwesomeIcons.question,
+                    color: Color.fromRGBO(101, 91, 0, 0.5),
+                    size: 20.0,
+                  ),
+                ),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return Dialog(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        elevation: 8,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10.0, vertical: 16.0),
+                          width: double.infinity,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text(
+                                      "TextTextTextTextTextTextTextTextTextTextTextTextText")),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
                 },
-                switchActiveColor: Colors.black,
-                switchInactiveColor: Color.fromRGBO(101, 91, 0, 0.2),
-                circleActiveColor: Colors.white,
-                circleInactiveColor: Colors.white,
               ),
             ],
           ),
+          Container(
+            alignment: Alignment.centerRight,
+            child: FlutterSwitch(
+              value: isSwitched,
+              onToggle: (val) {
+                setState(() {
+                  isSwitched = val;
+                  print(isSwitched);
+                });
+              },
+              activeColor: Colors.black,
+              inactiveColor: Colors.grey,
+              toggleColor: Colors.white,
+              width: 40.0,
+              height: 20.0,
+              toggleSize: 18.0,
+              valueFontSize: 16.0,
+              borderRadius: 20.0,
+              padding: 2.0,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _pinToogle() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
+      decoration: new BoxDecoration(
+        color: Colors.white,
+        border: new Border(
+          left: BorderSide(
+            color: Color.fromRGBO(0, 0, 0, 1),
+            width: 1.0,
+          ),
+          right: BorderSide(
+            color: Color.fromRGBO(0, 0, 0, 1),
+            width: 1.0,
+          ),
+          top: BorderSide(
+            color: Color.fromRGBO(0, 0, 0, 1),
+            width: 1.0,
+          ),
+          bottom: BorderSide(
+            color: Color.fromRGBO(0, 0, 0, 1),
+            width: 1.0,
+          ),
         ),
-        SizedBox(height: 15.0),
-      ],
+      ),
+      child: Stack(
+        alignment: AlignmentDirectional.centerStart,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Text(
+                'Запрашивать Пин-код',
+                style: TextStyle(
+                  fontSize: 13.0,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ],
+          ),
+          Container(
+            alignment: Alignment.centerRight,
+            child: FlutterSwitch(
+              value: isSwitched2,
+              onToggle: (val) {
+                setState(() {
+                  isSwitched2 = val;
+                  print(isSwitched2);
+                });
+              },
+              activeColor: Colors.black,
+              inactiveColor: Colors.grey,
+              toggleColor: Colors.white,
+              width: 40.0,
+              height: 20.0,
+              toggleSize: 18.0,
+              valueFontSize: 16.0,
+              borderRadius: 20.0,
+              padding: 2.0,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _logToogle() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+      decoration: new BoxDecoration(
+        color: Colors.white,
+        border: new Border(
+          left: BorderSide(
+            color: Color.fromRGBO(0, 0, 0, 1),
+            width: 1.0,
+          ),
+          right: BorderSide(
+            color: Color.fromRGBO(0, 0, 0, 1),
+            width: 1.0,
+          ),
+          top: BorderSide(
+            color: Color.fromRGBO(0, 0, 0, 1),
+            width: 1.0,
+          ),
+          bottom: BorderSide(
+            color: Color.fromRGBO(0, 0, 0, 1),
+            width: 1.0,
+          ),
+        ),
+      ),
+      child: Stack(
+        alignment: AlignmentDirectional.centerStart,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Text(
+                'Логирование (интерфейс ошибок)',
+                style: TextStyle(
+                  fontSize: 13.0,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              GestureDetector(
+                child: Container(
+                  margin: EdgeInsets.only(left: 10.0),
+                  padding: const EdgeInsets.all(5.0),
+                  decoration: new BoxDecoration(
+                    border: new Border.all(
+                        color: Color.fromRGBO(101, 91, 0, 0.5),
+                        width: 2.0,
+                        style: BorderStyle.solid),
+                    shape: BoxShape.circle,
+                    color: Color.fromRGBO(254, 229, 0, 1),
+                  ),
+                  child: Icon(
+                    FontAwesomeIcons.question,
+                    color: Color.fromRGBO(101, 91, 0, 0.5),
+                    size: 20.0,
+                  ),
+                ),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return Dialog(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        elevation: 8,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10.0, vertical: 16.0),
+                          width: double.infinity,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text(
+                                      "TextTextTextTextTextTextTextTextTextTextTextTextText")),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
+          Container(
+            alignment: Alignment.centerRight,
+            child: FlutterSwitch(
+              value: isSwitched3,
+              onToggle: (val) {
+                setState(() {
+                  isSwitched3 = val;
+                  print(isSwitched3);
+                });
+              },
+              activeColor: Colors.black,
+              inactiveColor: Colors.grey,
+              toggleColor: Colors.white,
+              width: 40.0,
+              height: 20.0,
+              toggleSize: 18.0,
+              valueFontSize: 16.0,
+              borderRadius: 20.0,
+              padding: 2.0,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -768,6 +1039,15 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
   }
 
   void pressSave() {
+    setState(() {
+      _phoneText.text.isEmpty ? _validate = true : _validate = false;
+      _familyText.text.isEmpty ? _validate = true : _validate = false;
+      _nameText.text.isEmpty ? _validate = true : _validate = false;
+      _companyText.text.isEmpty ? _validate = true : _validate = false;
+      _positionText.text.isEmpty ? _validate = true : _validate = false;
+      _emailText.text.isEmpty ? _validate = true : _validate = false;
+    });
+
     if (!_formKey.currentState.validate()) {
       return;
     }
