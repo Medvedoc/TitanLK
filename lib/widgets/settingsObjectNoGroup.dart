@@ -1,3 +1,4 @@
+import 'package:flutter_image/control/TitanToogle.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,14 @@ class TitanSettingsObjectNoGroup extends StatefulWidget {
 
 class _TitanSettingsObjectNoGroupState
     extends State<TitanSettingsObjectNoGroup> {
+  double abc = 10.0;
+
+  callback(heightBlock) {
+    setState(() {
+      abc = heightBlock;
+    });
+  }
+
   String toTime = '13:45';
   String fromTime = '16:45';
   String toTimeHour;
@@ -45,12 +54,14 @@ class _TitanSettingsObjectNoGroupState
 
   @override
   Widget build(BuildContext context) {
+    print("Основной блок $abc");
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text("Размер блока полученный $abc"),
             Text(
               'ОБЪЕКТЫ БЕЗ ГРУППЫ'.toUpperCase(),
               style: TextStyle(
@@ -60,6 +71,14 @@ class _TitanSettingsObjectNoGroupState
                 fontWeight: FontWeight.w600,
                 height: 0.90,
               ),
+            ),
+            TitanToogle(
+              textDialog: '111',
+              textHeading: '222',
+              isSwitched: true,
+              border: [1, 1, 1, 1],
+              abc: abc,
+              callback: callback,
             ),
             SizedBox(height: 30.0),
             Container(
@@ -482,8 +501,6 @@ class _TitanSettingsObjectNoGroupState
           print(value.toString());
           print(picker..getSelectedValues());
           setState(() {
-            
-
             fromTimeHour = (value[0] < 10) ? "0${value[0]}" : "${value[0]}";
             fromTimeMinute = (value[1] < 10) ? "0${value[1]}" : "${value[1]}";
             fromTime = '$fromTimeHour:$fromTimeMinute';
@@ -491,5 +508,4 @@ class _TitanSettingsObjectNoGroupState
           });
         }).showDialog(context);
   }
-
 }
