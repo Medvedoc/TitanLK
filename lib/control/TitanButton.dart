@@ -18,6 +18,8 @@ class TitanButton extends StatefulWidget {
   final String headButton;
   final bool variable;
   final TitanButtonStyle style;
+  final double width;
+  final double height;
 
   TitanButton({
     this.arrowDropbox,
@@ -31,6 +33,9 @@ class TitanButton extends StatefulWidget {
     this.style,
     this.listparams,
     this.variable,
+    this.height,
+    this.width,
+    
   });
 
   @override
@@ -60,15 +65,18 @@ class _TitanButtonState extends State<TitanButton> {
       child: FlutterShine(
         //Задаем тень и обводку тексту названия кнопки
         config: Config(shadowColor: widget.style.colors[4]),
-        light: Light(intensity: widget.style.intensity, position: Point(_textshadowx, _textshadowy)),
+        light: Light(
+            intensity: widget.style.intensity,
+            position: Point(_textshadowx, _textshadowy)),
         builder: (BuildContext context, ShineShadow shineShadow) {
           return Container(
             alignment: Alignment.center,
             key: _cardKey,
-            width: cardSizewidth,
+            width: widget.width!=null?widget.width:cardSizewidth,
             //padding: widget.style.edgeInsets[14],
             child: AnimatedContainer(
-              height: widget.style.heightUp /*+
+              height: widget.style.heightUp 
+              /*+
                   (widget.style.heightUp - widget.style.heightDown)*/
               ,
               duration: Duration(milliseconds: 100),
@@ -129,61 +137,88 @@ class _TitanButtonState extends State<TitanButton> {
                         fit: StackFit.expand,
                         children: <Widget>[
                           Container(
-                            alignment: Alignment.center,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                //Добавляем иконку и надпись текста кнопки
-                                RichText(
-                                  textAlign: TextAlign.center,
-                                  text: TextSpan(
-                                    style: TextStyle(
-                                      height: widget.style.heightText,
-                                      color: widget.style.colors[14],
-                                      fontFamily: widget.style.fontFamily,
-                                      fontSize: widget.style.fontSize18,
-                                      fontWeight: widget.style.fontWeight400,
-                                      fontStyle: widget.style.fontStyleNormal,
-                                      letterSpacing: _click ? widget.style.letterSpacingDown : widget.style.letterSpacingUp,
-                                      shadows: shineShadow?.shadows,
-                                    ),
-                                    children: [
-                                      widget.icon.runtimeType != Null
-                                          ? WidgetSpan(
-                                              alignment: PlaceholderAlignment.middle,
-                                              child: Padding(
-                                                padding: EdgeInsets.only(right: 5.0),
-                                                child: IconShadowWidget(
-                                                  Icon(
-                                                    widget.icon,
-                                                    color: widget.style.colors[14],
-                                                    size: widget.style.sizeIcon,
-                                                  ),
-                                                  shadowColor: widget.style.colors[15],
-                                                  showShadow: widget.style.showShadow,
-                                                ),
-                                              ),
-                                            )
-                                          : WidgetSpan(child: SizedBox()),
-                                      TextSpan(
-                                        text: (widget.headButton != null ? widget.headButton.toUpperCase() : ""),
+                              alignment: Alignment.center,
+                              padding: EdgeInsets.symmetric(horizontal:5.0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  //Добавляем иконку и надпись текста кнопки
+                                  Flexible(
+                                    fit: FlexFit.loose,
+                                    child: RichText(
+                  overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.center,
+                                      text: TextSpan(
                                         style: TextStyle(
                                           height: widget.style.heightText,
                                           color: widget.style.colors[14],
                                           fontFamily: widget.style.fontFamily,
                                           fontSize: widget.style.fontSize18,
-                                          fontWeight: widget.style.fontWeight400,
-                                          fontStyle: widget.style.fontStyleNormal,
-                                          letterSpacing: _click ? widget.style.letterSpacingDown : widget.style.letterSpacingUp,
+                                          fontWeight:
+                                              widget.style.fontWeight400,
+                                          fontStyle:
+                                              widget.style.fontStyleNormal,
+                                          letterSpacing: _click
+                                              ? widget.style.letterSpacingDown
+                                              : widget.style.letterSpacingUp,
                                           shadows: shineShadow?.shadows,
                                         ),
+                                        children: [
+                                          widget.icon.runtimeType != Null
+                                              ? WidgetSpan(
+                                                  alignment:
+                                                      PlaceholderAlignment
+                                                          .middle,
+                                                  child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                        right: 5.0),
+                                                    child: IconShadowWidget(
+                                                      Icon(
+                                                        widget.icon,
+                                                        color: widget
+                                                            .style.colors[14],
+                                                        size: widget
+                                                            .style.sizeIcon,
+                                                      ),
+                                                      shadowColor: widget
+                                                          .style.colors[15],
+                                                      showShadow: widget
+                                                          .style.showShadow,
+                                                    ),
+                                                  ),
+                                                )
+                                              : WidgetSpan(child: SizedBox()),
+                                          TextSpan(
+                                            text: (widget.headButton != null
+                                                ? widget.headButton
+                                                    .toUpperCase()
+                                                : ""),
+                                            style: TextStyle(
+                                              height: widget.style.heightText,
+                                              color: widget.style.colors[14],
+                                              fontFamily:
+                                                  widget.style.fontFamily,
+                                              fontSize: widget.style.fontSize18,
+                                              fontWeight:
+                                                  widget.style.fontWeight400,
+                                              fontStyle:
+                                                  widget.style.fontStyleNormal,
+                                              letterSpacing: _click
+                                                  ? widget
+                                                      .style.letterSpacingDown
+                                                  : widget
+                                                      .style.letterSpacingUp,
+                                              shadows: shineShadow?.shadows,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
+                                ],
+                              ),
+                            
                           ),
                           Container(
                             alignment: Alignment.centerRight,
@@ -194,7 +229,9 @@ class _TitanButtonState extends State<TitanButton> {
                                 //Добавляем стрелку для Dropbox
                                 widget.arrowDropbox == true
                                     ? Container(
-                                        padding: _click ? widget.style.edgeInsets[6] : widget.style.edgeInsets[7],
+                                        padding: _click
+                                            ? widget.style.edgeInsets[6]
+                                            : widget.style.edgeInsets[7],
                                         child: IconShadowWidget(
                                           Icon(
                                             _arrow,
@@ -208,13 +245,27 @@ class _TitanButtonState extends State<TitanButton> {
                                 //Добавляем счетчик
                                 widget.count != null
                                     ? AnimatedOpacity(
-                                        opacity: (widget.count != null ? widget.count : 0) > 0 ? 1.0 : 0.0,
+                                        opacity: (widget.count != null
+                                                    ? widget.count
+                                                    : 0) >
+                                                0
+                                            ? 1.0
+                                            : 0.0,
                                         duration: widget.style.duration[4],
                                         child: Container(
-                                          margin: _click ? widget.style.edgeInsets[4] : widget.style.edgeInsets[5],
-                                          padding: (widget.count != null ? widget.count : 0) >= 10
-                                              ? (_click ? widget.style.edgeInsets[6] : widget.style.edgeInsets[7])
-                                              : (_click ? widget.style.edgeInsets[8] : widget.style.edgeInsets[9]),
+                                          margin: _click
+                                              ? widget.style.edgeInsets[4]
+                                              : widget.style.edgeInsets[5],
+                                          padding: (widget.count != null
+                                                      ? widget.count
+                                                      : 0) >=
+                                                  10
+                                              ? (_click
+                                                  ? widget.style.edgeInsets[6]
+                                                  : widget.style.edgeInsets[7])
+                                              : (_click
+                                                  ? widget.style.edgeInsets[8]
+                                                  : widget.style.edgeInsets[9]),
                                           decoration: BoxDecoration(
                                             gradient: LinearGradient(
                                               begin: Alignment.topCenter,
@@ -224,24 +275,31 @@ class _TitanButtonState extends State<TitanButton> {
                                                 widget.style.colors[11],
                                                 widget.style.colors[12],
                                               ],
-                                              stops: widget.style.stopGradient[1],
+                                              stops:
+                                                  widget.style.stopGradient[1],
                                             ),
-                                            borderRadius: widget.style.radiusBorder[3],
+                                            borderRadius:
+                                                widget.style.radiusBorder[3],
                                             border: Border.all(
                                               color: widget.style.colors[13],
-                                              width: widget.style.borderWidthCount,
+                                              width:
+                                                  widget.style.borderWidthCount,
                                             ),
                                           ),
                                           child: Text(
                                             widget.count.toString(),
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              height: widget.style.heightCounter,
+                                              height:
+                                                  widget.style.heightCounter,
                                               color: widget.style.colors[5],
-                                              fontFamily: widget.style.fontFamily,
+                                              fontFamily:
+                                                  widget.style.fontFamily,
                                               fontSize: widget.style.fontSize14,
-                                              fontWeight: widget.style.fontWeight400,
-                                              fontStyle: widget.style.fontStyleNormal,
+                                              fontWeight:
+                                                  widget.style.fontWeight400,
+                                              fontStyle:
+                                                  widget.style.fontStyleNormal,
                                               shadows: shineShadow?.shadows,
                                             ),
                                           ),
@@ -276,7 +334,9 @@ class _TitanButtonState extends State<TitanButton> {
         _begin = Alignment.topCenter;
         _end = Alignment.bottomCenter;
         _stops = widget.style.stopGradient[0];
-        _colors = widget.gradient == true ? widget.style.gradientButton[2] : widget.style.gradientButton[0];
+        _colors = widget.gradient == true
+            ? widget.style.gradientButton[2]
+            : widget.style.gradientButton[0];
         _heightButton = widget.style.heightUp;
         _margin = widget.style.edgeInsets[1];
         _padding = widget.style.edgeInsets[3];
@@ -289,7 +349,9 @@ class _TitanButtonState extends State<TitanButton> {
           _begin = Alignment.topCenter;
           _end = Alignment.bottomCenter;
           _stops = widget.style.stopGradient[0];
-          _colors = widget.gradient == true ? widget.style.gradientButton[2] : widget.style.gradientButton[0];
+          _colors = widget.gradient == true
+              ? widget.style.gradientButton[2]
+              : widget.style.gradientButton[0];
           _heightButton = widget.style.heightUp;
           _margin = widget.style.edgeInsets[1];
           _padding = widget.style.edgeInsets[3];
@@ -308,7 +370,9 @@ class _TitanButtonState extends State<TitanButton> {
       _click = true;
       _begin = Alignment.bottomCenter;
       _end = Alignment.topCenter;
-      _colors = widget.gradient == true ? widget.style.gradientButton[3] : widget.style.gradientButton[1];
+      _colors = widget.gradient == true
+          ? widget.style.gradientButton[3]
+          : widget.style.gradientButton[1];
       _stops = widget.style.stopGradient[0];
       _heightButton = widget.style.heightUp;
       _margin = widget.style.edgeInsets[0];
@@ -328,7 +392,9 @@ class _TitanButtonState extends State<TitanButton> {
         _click = false;
         _begin = Alignment.bottomCenter;
         _end = Alignment.topCenter;
-        _colors = widget.gradient == true ? widget.style.gradientButton[3] : widget.style.gradientButton[1];
+        _colors = widget.gradient == true
+            ? widget.style.gradientButton[3]
+            : widget.style.gradientButton[1];
         _stops = widget.style.stopGradient[0];
         _heightButton = widget.style.heightUp;
         _margin = widget.style.edgeInsets[0];
@@ -341,7 +407,9 @@ class _TitanButtonState extends State<TitanButton> {
         _begin = Alignment.topCenter;
         _end = Alignment.bottomCenter;
         _stops = widget.style.stopGradient[0];
-        _colors = widget.gradient == true ? widget.style.gradientButton[2] : widget.style.gradientButton[0];
+        _colors = widget.gradient == true
+            ? widget.style.gradientButton[2]
+            : widget.style.gradientButton[0];
         _heightButton = widget.style.heightUp;
         _margin = widget.style.edgeInsets[1];
         _padding = widget.style.edgeInsets[3];
@@ -362,8 +430,12 @@ class _TitanButtonState extends State<TitanButton> {
     _begin = Alignment.topCenter;
     _end = Alignment.bottomCenter;
     _stops = widget.style.stopGradient[0];
-    _shadow = widget.gradient == true ? widget.style.colors[17] : widget.style.colors[6];
-    _colors = widget.gradient == true ? widget.style.gradientButton[2] : widget.style.gradientButton[0];
+    _shadow = widget.gradient == true
+        ? widget.style.colors[17]
+        : widget.style.colors[6];
+    _colors = widget.gradient == true
+        ? widget.style.gradientButton[2]
+        : widget.style.gradientButton[0];
     _heightButton = widget.style.heightUp;
     _margin = widget.style.edgeInsets[1];
     _padding = widget.style.edgeInsets[3];

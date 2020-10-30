@@ -1,4 +1,6 @@
+import 'package:flutter_image/control/TitanContainer.dart';
 import 'package:flutter_image/control/TitanToogle.dart';
+import 'package:flutter_image/control/TitanToogleCombo.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +15,7 @@ class TitanSettingsObjectNoGroup extends StatefulWidget {
 
 class _TitanSettingsObjectNoGroupState
     extends State<TitanSettingsObjectNoGroup> {
-  double abc = 10.0;
+  double abc = 0.0;
 
   callback(heightBlock) {
     setState(() {
@@ -42,15 +44,17 @@ class _TitanSettingsObjectNoGroupState
       0.0; //Начльное значение отступа раскрывающегося контейнера в Dropbox
   int _counter = 0; //Переключатель срабатывания Dropbox
   bool isSwitched = false;
-  List<bool> _sumPadding = [false, false, false];
+  bool isSwitched2;
+  List<bool> _sumPadding = [false, false, false, false, false, false];
   //bool isSwitched1 = false;
   //bool isSwitched2 = false;
   //bool isSwitched3 = false;
 
-  List value;
+  //List value;
 
-  final double listSpec = 4.0;
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  //final double listSpec = 4.0;
+  //final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -72,16 +76,23 @@ class _TitanSettingsObjectNoGroupState
                 height: 0.90,
               ),
             ),
+            SizedBox(height: 30.0),
+            TitanToogleCombo(
+              //textDialog: '1111',
+              //textHeading: '2222',
+              //isSwitched: true,
+              //border: [1, 1, 1, 1],
+              //callback: callback,
+            ),
             TitanToogle(
               textDialog: '111',
               textHeading: '222',
               isSwitched: true,
               border: [1, 1, 1, 1],
-              abc: abc,
+              //abc: abc,
               callback: callback,
             ),
-            SizedBox(height: 30.0),
-            Container(
+            /*Container(
               padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
               decoration: new BoxDecoration(
                 color: Colors.white,
@@ -176,7 +187,7 @@ class _TitanSettingsObjectNoGroupState
                           isSwitched = val;
                           print(isSwitched);
                           if (_counter == 0) {
-                            _height = _visible ? 0.0 : 200.0;
+                            _height = _visible ? 0.0 : 400.0;
                             _visible = !_visible;
                             _paddingVertical = 0;
                             _counter += 1;
@@ -201,8 +212,9 @@ class _TitanSettingsObjectNoGroupState
                   ),
                 ],
               ),
-            ),
-            InkWell(
+            ),*/
+            //TitanContainer(),
+            /*InkWell(
               child: AnimatedOpacity(
                 opacity: _visible ? 1.0 : 0.0,
                 //duration: widget.style.duration[0],
@@ -314,7 +326,36 @@ class _TitanSettingsObjectNoGroupState
                   ),
                 ),
               ),
-            ),
+            ),*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             SizedBox(height: 30.0),
             Container(
               padding: EdgeInsets.only(left: 10.0),
