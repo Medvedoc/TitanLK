@@ -50,7 +50,8 @@ class WelcomeWidget extends StatelessWidget {
                   children: <Widget>[
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 5.0),
-                      child: Text("333",
+                      child: Text(
+                        "333",
                         //S.of(context).wfrsWelcomeHeading,
                         //style: MyStyleBase.textHeading,
                         textAlign: TextAlign.center,
@@ -58,7 +59,8 @@ class WelcomeWidget extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 10.0),
-                      child: Text("444",
+                      child: Text(
+                        "444",
                         //S.of(context).wfrsWelcomeDescription,
                         //style: MyStyleBase.textDescription,
                         textAlign: TextAlign.center,
@@ -80,8 +82,7 @@ class WelcomeWidget extends StatelessWidget {
                             //style: MyStyleBase.textField,
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 15.0, vertical: 10.0),
+                              contentPadding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
                               prefixIcon: Icon(
                                 Icons.smartphone,
                                 //size: MyStyleBase.sizedIcon,
@@ -106,21 +107,21 @@ class WelcomeWidget extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0),
                             side: BorderSide(
-                             // color: MyStyleBase.colorFilter[1],
-                            ),
+                                // color: MyStyleBase.colorFilter[1],
+                                ),
                           ),
                           onPressed: () {},
                           child: Text("222"
-                           // S.of(context).wfrsWelcomeSend,
-                           // style: MyStyleBase.textButton1,
-                          ),
+                              // S.of(context).wfrsWelcomeSend,
+                              // style: MyStyleBase.textButton1,
+                              ),
                         ),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 5.0),
                       child: Container(
-                       // height: MyStyleBase.sizedButton,
+                        // height: MyStyleBase.sizedButton,
                         width: double.infinity,
                         child: RaisedButton(
                           elevation: 0.0,
@@ -128,14 +129,14 @@ class WelcomeWidget extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0),
                             side: BorderSide(
-                            //  color: MyStyleBase.colorFilter[0],
-                            ),
+                                //  color: MyStyleBase.colorFilter[0],
+                                ),
                           ),
                           onPressed: () {},
                           child: Text("111"
-                           // S.of(context).wfrsWelcomeRegister,
-                           // style: MyStyleBase.textButton2,
-                          ),
+                              // S.of(context).wfrsWelcomeRegister,
+                              // style: MyStyleBase.textButton2,
+                              ),
                         ),
                       ),
                     ),

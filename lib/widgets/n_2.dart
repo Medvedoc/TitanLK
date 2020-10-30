@@ -10,9 +10,10 @@ class _N2State extends State<N2> {
   bool isSwitched = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: ListView(
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.9,
+      height: MediaQuery.of(context).size.height * 0.5,
+      child: ListView(
         children: <Widget>[
           SizedBox(
             height: 124,
@@ -21,7 +22,9 @@ class _N2State extends State<N2> {
             color: isSwitched ? Colors.yellow : Colors.white,
             child: Row(
               children: [
-                SizedBox(width: 25),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.01,
+                ),
                 Text(
                   'Получать уведомления',
                   style: TextStyle(
@@ -29,7 +32,9 @@ class _N2State extends State<N2> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(width: 10),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.01,
+                ),
                 IconButton(
                   disabledColor: Colors.black,
                   iconSize: 30,
@@ -58,7 +63,9 @@ class _N2State extends State<N2> {
                     );
                   },
                 ),
-                SizedBox(width: 94),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.11,
+                ),
                 Switch(
                   value: isSwitched,
                   onChanged: (value) {

@@ -14,27 +14,12 @@ class ExtendedMenuWidget extends StatelessWidget {
         physics: NeverScrollableScrollPhysics(),
         crossAxisCount: 5,
         children: <Widget>[
-          _getButton(
-              context,
-              Icon(Icons.monitor, size: _iconSize, color: _color),
-              "М1",
-              MainState.m1),
-          _getButton(
-              context,
-              Icon(Icons.monitor, size: _iconSize, color: _color),
-              "М2",
-              MainState.m2),
-          _getButton(
-              context,
-              Icon(Icons.monitor, size: _iconSize, color: _color),
-              "М3",
-              MainState.m3),
-          _getButton(
-              context,
-              Icon(Icons.monitor, size: _iconSize, color: _color),
-              "М3-1",
-              MainState.m3_1),
-         /* _getButton(
+          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "М1", MainState.m1),
+          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "М2", MainState.m2),
+          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "М3", MainState.m3),
+          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "М3-1", MainState.m3_1),
+          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "М3-1", MainState.n_2),
+          /* _getButton(
               context,
               Icon(
                 Icons.calendar_view_day,
