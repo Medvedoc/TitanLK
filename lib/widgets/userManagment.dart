@@ -1,0 +1,89 @@
+import 'package:flutter_image/control/TitanButton.dart';
+import 'package:flutter_image/theme/themeStyle.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class UserManagment extends StatefulWidget {
+  @override
+  _UserManagmentState createState() => _UserManagmentState();
+}
+
+class _UserManagmentState extends State<UserManagment> {
+  @override
+  Widget build(BuildContext context) {
+    var titanButtonStandart = TitanButtonStyle();
+    titanButtonStandart.colors[14] = Colors.black;
+    titanButtonStandart.colors[15] = Colors.black;
+    titanButtonStandart.textShadowx = 0;
+    titanButtonStandart.textShadowy = 0;
+    titanButtonStandart.intensity = 0;
+    titanButtonStandart.showShadow = false;
+
+    var titanButtonStandart2 = TitanButtonStyle();
+    //titanButtonStandart2.colors[14] = Colors.black;
+    titanButtonStandart2.colors[14] = Colors.black54;
+    titanButtonStandart2.colors[15] = Colors.black45;
+    titanButtonStandart2.textShadowx = -9;
+    titanButtonStandart2.textShadowy = -9;
+    titanButtonStandart2.intensity = 2;
+    titanButtonStandart2.showShadow = true;
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'управление пользователями'.toUpperCase(),
+          style: TextStyle(
+            fontSize: 18.0,
+            color: Color.fromRGBO(0, 0, 0, 1),
+            fontFamily: 'Roboto',
+            fontWeight: FontWeight.w600,
+            height: 0.90,
+          ),
+        ),
+        SizedBox(height: 15.0),
+        TitanButton(
+          //pressTap: () => pressSave(),
+          headButton: "СОЗДАТЬ ПОЛЬЗОВАТЕЛЯ",
+          style: titanButtonStandart2,
+        ),
+        SizedBox(height: 10.0),
+        TitanButton(
+          //pressTap: () => pressSave(),
+          headButton: "СПИСОК ПОЛЬЗОВАТЕЛЕЙ",
+          style: titanButtonStandart2,
+        ),
+        SizedBox(height: 10.0),
+        TitanButton(
+          //pressTap: () => pressSave(),
+          headButton: "ВСЕ ОБЪЕКТЫ",
+          style: titanButtonStandart2,
+        ),
+        SizedBox(height: 10.0),
+        TitanButton(
+          //pressTap: () => pressSave(),
+          headButton: "ДОГОВОР",
+          style: titanButtonStandart2,
+        ),
+        SizedBox(height: 10.0),
+        TitanButton(
+          //pressTap: () => pressSave(),
+          headButton: "ГРУППА ОБЪЕКТОВ/ДОГОВОРОВ",
+          style: titanButtonStandart2,
+        ),
+        SizedBox(height: 10.0),
+        TitanButton(
+          //pressTap: () => pressSave(),
+          headButton: "ОБЪЕКТ",
+          style: titanButtonStandart2,
+        ),
+        SizedBox(height: 10.0),
+        TitanButton(
+          //pressTap: () => pressSave(),
+          headButton: "ТИП ПОЛЬЗОВАТЕЛЯ",
+          style: titanButtonStandart2,
+        ),
+      ],
+    );
+  }
+}

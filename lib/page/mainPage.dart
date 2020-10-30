@@ -10,6 +10,7 @@ import 'package:flutter_image/widgets/settingsFull.dart';
 import 'package:flutter_image/widgets/settingsNotifications.dart';
 import 'package:flutter_image/widgets/settingsObjectNoGroup.dart';
 import 'package:flutter_image/widgets/settingsProfile.dart';
+import 'package:flutter_image/widgets/userManagment.dart';
 
 class MainPage extends StatelessWidget {
   @override
@@ -183,6 +184,8 @@ class MainPage extends StatelessWidget {
         return TitanSettingsObjectNoGroup();
       case MainState.n_2:
         return N2();
+      case MainState.user_managment:
+        return UserManagment();
       /*case MainState.myWFRS:
         return MyWfrsloggedin();
       case MainState.payment:

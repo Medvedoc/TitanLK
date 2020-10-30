@@ -17,6 +17,8 @@ class MainState {
   static const int m3 = 3;
   static const int m3_1 = 4;
   static const int n_2 = 5;
+  static const int user_managment = 6;
+
   //static const int participants = 1;
   //static const int myWFRS = 2;
   //static const int payment = 3;
@@ -34,6 +36,8 @@ class MainState {
       case m3_1:
         return 'Настройка уведомлений';
       case n_2:
+        return 'Настройка уведомлений';
+      case user_managment:
         return 'Настройка уведомлений';
       //case participants:
       //  return 'wfrsParticipants';
