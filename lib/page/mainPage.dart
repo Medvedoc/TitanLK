@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_image/bloc/mainBloc.dart';
 import 'package:flutter_image/page/floating_navbar.dart';
 import 'package:flutter_image/widgets/extendedMenu.dart';
+import 'package:flutter_image/widgets/m11.dart';
 import 'package:flutter_image/widgets/n_2.dart';
 import 'package:flutter_image/widgets/settingsFull.dart';
 import 'package:flutter_image/widgets/settingsNotifications.dart';
@@ -186,6 +187,8 @@ class MainPage extends StatelessWidget {
         return N2();
       case MainState.user_managment:
         return UserManagment();
+        case MainState.m11:
+        return M11();
       /*case MainState.myWFRS:
         return MyWfrsloggedin();
       case MainState.payment:
