@@ -1,4 +1,5 @@
 import 'package:flutter_image/control/TitanButton.dart';
+import 'package:flutter_image/control/TitanControlStyle.dart';
 import 'package:flutter_image/theme/themeStyle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -47,25 +48,29 @@ class _TitanSettingsNotificationsState
         TitanButton(
           //pressTap: () => pressSave(),
           headButton: "ОБЪЕКТЫ БЕЗ ГРУППЫ",
-          style: titanButtonStandart2,
+          controlStyle: TitanControlStyle(),
+          type: 'yellow',
         ),
         SizedBox(height: 10.0),
         TitanButton(
           //pressTap: () => pressSave(),
           headButton: "ГРУППЫ ОБЪЕКТОВ/ДОГОВОРОВ",
-          style: titanButtonStandart2,
+          controlStyle: TitanControlStyle(),
+          type: 'yellow',
         ),
         SizedBox(height: 10.0),
         TitanButton(
           //pressTap: () => pressSave(),
           headButton: "ДОГОВОР",
-          style: titanButtonStandart2,
+          controlStyle: TitanControlStyle(),
+          type: 'yellow',
         ),
         SizedBox(height: 10.0),
         TitanButton(
           //pressTap: () => pressSave(),
           headButton: "ОБЪЕКТ",
-          style: titanButtonStandart2,
+          controlStyle: TitanControlStyle(),
+          type: 'yellow',
         ),
       ],
     );

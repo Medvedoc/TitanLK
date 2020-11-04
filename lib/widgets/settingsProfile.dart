@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter_image/control/TitanButton.dart';
+import 'package:flutter_image/control/TitanControlStyle.dart';
 import 'package:flutter_image/theme/themeStyle.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -155,7 +156,7 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
                 TitanButton(
                   pressTap: () => pressSave(),
                   headButton: "Сохранить",
-                  style: titanButtonStandart2,
+                  controlStyle: TitanControlStyle(),
                 ),
                 SizedBox(height: 50.0),
                 Text(
@@ -182,7 +183,8 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
                         pressTap: () => getImage(ImageSource.camera),
                         icon: Icons.camera_alt_outlined,
                         headButton: "Фото",
-                        style: titanButtonStandart2,
+                        controlStyle: TitanControlStyle(),
+                        type: 'yellow',
                       ),
                     ),
                     SizedBox(width: 15.0),
@@ -192,7 +194,8 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
                         pressTap: () => getImage(ImageSource.gallery),
                         icon: Icons.image_outlined,
                         headButton: "Галерея",
-                        style: titanButtonStandart2,
+                        controlStyle: TitanControlStyle(),
+                        type: 'yellow',
                       ),
                     ),
                   ],
@@ -283,8 +286,8 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
           return 'Неправильно введен номер телефона';
         }*/
         if (!isPhoneValid(value)) {
-                        return 'Неправильно введен номер телефона';
-                      }
+          return 'Неправильно введен номер телефона';
+        }
         return null;
       },
       onTap: () {

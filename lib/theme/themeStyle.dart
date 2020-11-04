@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_image/control/TitanControlStyle.dart';
+
+
+
 
 class CompanyColors {
-  CompanyColors._(); // this basically makes it so you can instantiate this class
+  CompanyColors._(); 
 
   static const _bluePrimaryValue = 0xFFFFFFFF;
 
@@ -121,8 +125,17 @@ class MyStyleBase {
     Color.fromRGBO(147, 147, 147, 0.0)
   ];
 }*/
-
 class TitanButtonStyle {
+
+
+
+
+
+
+
+
+
+
   double textShadowx = -12.0; //смещение тени текста кнопки по оси х
   double textShadowy = -12.0; //смещение тени текста кнопки по оси y
   IconData icon; //Иконка кнопки
@@ -146,9 +159,7 @@ class TitanButtonStyle {
   //Отступы
   List<EdgeInsets> edgeInsets = [
     EdgeInsets.only(
-        top: 14.0,
-        left: 2,
-        right: 2), //Отступ счетчика сверху и по-бокам при onTapDown [0]
+        top: 6.0,), //Отступ счетчика сверху и по-бокам при onTapDown [0]
     EdgeInsets.only(top: 0.0), //Отступ счетчика сверху [1]
     EdgeInsets.only(bottom: 0.0), //Отступ счетчика снизу при onTapDown [2]
     EdgeInsets.only(bottom: 6.0), //Отступ счетчика снизу [3]
@@ -266,4 +277,46 @@ class TitanButtonStyle {
     Duration(
         milliseconds: 300), //[4] задержка анимации AnimatedContainer счетчика
   ];
+
+
+
+  
+  //TitanButtonStyle._();
+  static const _coloringPrimaryValue = 0xFFFFFFFF;
+
+  static const MaterialColor coloring = const MaterialColor(
+    _coloringPrimaryValue,
+    const <int, Color>{
+      0:Color.fromRGBO(118,106,2,1), //Цвет 1 градиента кнопки [0]
+      1:Color.fromRGBO(110,110,110,1), //Цвет 1 градиента кнопки [1]
+      2:Color.fromRGBO(143,0,0,1), //Цвет 1 градиента кнопки [2]
+      /*00:Color.fromRGBO(118,106,2,1), //Цвет 1 градиента кнопки [0]
+      00:Color.fromRGBO(118,106,2,1), //Цвет 1 градиента кнопки [0]
+      237,213,5,1
+      253,228,0,1
+254,229,0,1
+237,212,3,1
+
+
+   
+    [
+      //Градиент неактивной обычной кнопки
+      Color.fromRGBO(253, 228, 0, 1),
+      Color.fromRGBO(254, 229, 0, 1),
+      Color.fromRGBO(237, 213, 5, 1),
+      Color.fromRGBO(237, 212, 3, 1),
+    ],
+    [
+      //Градиент активной обычной кнопки
+      Color.fromRGBO(237, 212, 3, 1),
+      Color.fromRGBO(237, 213, 5, 1),
+      Color.fromRGBO(238, 212, 3, 1),
+      Color.fromRGBO(238, 213, 5, 1),
+    ],*/
+
+
+
+    },
+  );
+
 }

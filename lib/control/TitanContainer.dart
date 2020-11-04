@@ -20,6 +20,8 @@ class _TitanContainerState extends State<TitanContainer> {
     WidgetsBinding.instance.addPostFrameCallback((_) => getSizeAndPosition2());
     print('1111 ${widget.visible}');
     print('Анимированный контейнер $cardSizeheight2');
+
+    
     return InkWell(child: AnimatedOpacity(
         opacity: widget.visible ? 1.0 : 0.0,
         //duration: widget.style.duration[0],

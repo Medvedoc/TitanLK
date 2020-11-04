@@ -1,5 +1,5 @@
 import 'package:flutter_image/control/TitanButton.dart';
-import 'package:flutter_image/theme/themeStyle.dart';
+import 'package:flutter_image/control/TitanControlStyle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,57 +11,54 @@ class TitanSettingsFull extends StatefulWidget {
 class _TitanSettingsFullState extends State<TitanSettingsFull> {
   @override
   Widget build(BuildContext context) {
-    var titanButtonStandart = TitanButtonStyle();
-    titanButtonStandart.colors[14] = Colors.black;
-    titanButtonStandart.colors[15] = Colors.black;
-    titanButtonStandart.textShadowx = 0;
-    titanButtonStandart.textShadowy = 0;
-    titanButtonStandart.intensity = 0;
-    titanButtonStandart.showShadow = false;
-
-    var titanButtonStandart2 = TitanButtonStyle();
-    //titanButtonStandart2.colors[14] = Colors.black;
-    titanButtonStandart2.colors[14] = Colors.black54;
-    titanButtonStandart2.colors[15] = Colors.black45;
-    titanButtonStandart2.textShadowx = -9;
-    titanButtonStandart2.textShadowy = -9;
-    titanButtonStandart2.intensity = 2;
-    titanButtonStandart2.showShadow = true;
+    /*var styles = TitanControlStyle();
+    styles.buttonColorGradient = [
+      Color.fromRGBO(153, 228, 0, 1),
+      Color.fromRGBO(137, 212, 3, 1),
+    ];
+    styles.buttonColorBody = Color.fromRGBO(153, 228, 0, 1);*/
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TitanButton(
-          //pressTap: () => pressSave(),
           headButton: "НАСТРОЙКА ПРОФИЛЯ",
-          style: titanButtonStandart2,
-          width: 250.0,
-          height: 100.0,
+          //pressTap: () => pressSave(),
+          controlStyle: TitanControlStyle(),
         ),
         SizedBox(height: 10.0),
         TitanButton(
-          //pressTap: () => pressSave(),
           headButton: "НАСТРОЙКА УВЕДОМЛЕНИЙ",
-          style: titanButtonStandart2,
+          //pressTap: () => pressSave(),
+          controlStyle: TitanControlStyle(),
         ),
         SizedBox(height: 10.0),
         TitanButton(
-          //pressTap: () => pressSave(),
           headButton: "УПРАВЛЕНИЕ ПОЛЬЗОВАТЕЛЯМИ",
-          style: titanButtonStandart2,
+          //pressTap: () => pressSave(),
+          controlStyle: TitanControlStyle(),
         ),
         SizedBox(height: 10.0),
         TitanButton(
-          //pressTap: () => pressSave(),
           headButton: "ТЕХНИЧЕСКАЯ ПОДДЕРЖКА",
-          style: titanButtonStandart2,
+          //pressTap: () => pressSave(),
+          controlStyle: TitanControlStyle(),
         ),
         SizedBox(height: 10.0),
         TitanButton(
-          //pressTap: () => pressSave(),
           headButton: "КОНТАКТЫ",
-          style: titanButtonStandart2,
+          //pressTap: () => pressSave(),
+          controlStyle: TitanControlStyle(),
         ),
+        //SizedBox(height: 10.0),
+        /*TitanButton(
+          width: 48,
+          height: 50,
+          icon: Icons.chat_outlined,
+          borderRadius: 50.0,
+          controlStyle: TitanControlStyle(),
+          type: 'yellow',
+        ),*/
       ],
     );
   }
