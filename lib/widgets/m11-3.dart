@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_image/control/TitanButton.dart';
+import 'package:flutter_image/control/TitanControlStyle.dart';
 import 'package:flutter_image/theme/themeStyle.dart';
 
 class M11_3 extends StatefulWidget {
@@ -131,7 +132,7 @@ class _M11_3State extends State<M11_3> {
               ),
               TitanButton(
                 headButton: "OK",
-                style: titanButtonStandart,
+                controlStyle: TitanControlStyle(),
                 width: MediaQuery.of(context).size.width * 0.9,
               ),
               SizedBox(
@@ -139,7 +140,7 @@ class _M11_3State extends State<M11_3> {
               ),
               TitanButton(
                 headButton: "УДАЛИТЬ ТЕКУЩИЙ ПРОФИЛЬ",
-                style: titanButtonStandart,
+                controlStyle: TitanControlStyle(),
                 width: MediaQuery.of(context).size.width * 0.9,
               ),
             ],

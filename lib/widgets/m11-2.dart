@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_image/control/TitanButton.dart';
+import 'package:flutter_image/control/TitanControlStyle.dart';
 import 'package:flutter_image/theme/themeStyle.dart';
 
 class M11_2 extends StatefulWidget {
@@ -44,7 +45,7 @@ class _M11_2State extends State<M11_2> {
               TitanButton(
                 //pressTap: () => pressSave(),
                 icon: Icons.call,
-                style: titanButtonStandart,
+          controlStyle: TitanControlStyle(),
                 width: 80.0,
                 height: 100.0,
               ),
@@ -79,7 +80,7 @@ class _M11_2State extends State<M11_2> {
           ),
           TitanButton(
             headButton: "ОБЪЕКТЫ ПОЛЬЗОВАТЕЛЯ",
-            style: titanButtonStandart,
+          controlStyle: TitanControlStyle(),
             width: MediaQuery.of(context).size.width * 0.9,
           ),
           SizedBox(
@@ -87,7 +88,7 @@ class _M11_2State extends State<M11_2> {
           ),
           TitanButton(
             headButton: "ОБЪЕКТЫ АДМИНИСТИРОВАНИЯ",
-            style: titanButtonStandart,
+          controlStyle: TitanControlStyle(),
             width: MediaQuery.of(context).size.width * 0.9,
           ),
           SizedBox(
@@ -95,7 +96,7 @@ class _M11_2State extends State<M11_2> {
           ),
           TitanButton(
             headButton: "РЕДАКТИРОВАТЬ ПРОФИЛЬ",
-            style: titanButtonStandart,
+          controlStyle: TitanControlStyle(),
             width: MediaQuery.of(context).size.width * 0.9,
           ),
         ],

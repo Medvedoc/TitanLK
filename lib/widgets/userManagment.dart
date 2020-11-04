@@ -1,4 +1,5 @@
 import 'package:flutter_image/control/TitanButton.dart';
+import 'package:flutter_image/control/TitanControlStyle.dart';
 import 'package:flutter_image/theme/themeStyle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -45,43 +46,43 @@ class _UserManagmentState extends State<UserManagment> {
         TitanButton(
           //pressTap: () => pressSave(),
           headButton: "СОЗДАТЬ ПОЛЬЗОВАТЕЛЯ",
-          style: titanButtonStandart2,
+          controlStyle: TitanControlStyle(),
         ),
         SizedBox(height: 10.0),
         TitanButton(
           //pressTap: () => pressSave(),
           headButton: "СПИСОК ПОЛЬЗОВАТЕЛЕЙ",
-          style: titanButtonStandart2,
+          controlStyle: TitanControlStyle(),
         ),
         SizedBox(height: 10.0),
         TitanButton(
           //pressTap: () => pressSave(),
           headButton: "ВСЕ ОБЪЕКТЫ",
-          style: titanButtonStandart2,
+          controlStyle: TitanControlStyle(),
         ),
         SizedBox(height: 10.0),
         TitanButton(
           //pressTap: () => pressSave(),
           headButton: "ДОГОВОР",
-          style: titanButtonStandart2,
+          controlStyle: TitanControlStyle(),
         ),
         SizedBox(height: 10.0),
         TitanButton(
           //pressTap: () => pressSave(),
           headButton: "ГРУППА ОБЪЕКТОВ/ДОГОВОРОВ",
-          style: titanButtonStandart2,
+          controlStyle: TitanControlStyle(),
         ),
         SizedBox(height: 10.0),
         TitanButton(
           //pressTap: () => pressSave(),
           headButton: "ОБЪЕКТ",
-          style: titanButtonStandart2,
+          controlStyle: TitanControlStyle(),
         ),
         SizedBox(height: 10.0),
         TitanButton(
           //pressTap: () => pressSave(),
           headButton: "ТИП ПОЛЬЗОВАТЕЛЯ",
-          style: titanButtonStandart2,
+          controlStyle: TitanControlStyle(),
         ),
       ],
     );
