@@ -5,10 +5,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_image/bloc/mainBloc.dart';
 import 'package:flutter_image/page/floating_navbar.dart';
 import 'package:flutter_image/widgets/extendedMenu.dart';
+import 'package:flutter_image/widgets/m11-2.dart';
+import 'package:flutter_image/widgets/m11-3.dart';
+import 'package:flutter_image/widgets/m11.dart';
+import 'package:flutter_image/widgets/n_2.dart';
 import 'package:flutter_image/widgets/settingsFull.dart';
 import 'package:flutter_image/widgets/settingsNotifications.dart';
 import 'package:flutter_image/widgets/settingsObjectNoGroup.dart';
 import 'package:flutter_image/widgets/settingsProfile.dart';
+import 'package:flutter_image/widgets/userManagment.dart';
 
 class MainPage extends StatelessWidget {
   @override
@@ -55,10 +60,7 @@ class MainPage extends StatelessWidget {
                               maxWidth: 45,
                             ),
                             decoration: BoxDecoration(
-                              border: new Border.all(
-                                  color: Color.fromRGBO(0, 0, 0, 0.3),
-                                  width: 1.0,
-                                  style: BorderStyle.solid),
+                              border: new Border.all(color: Color.fromRGBO(0, 0, 0, 0.3), width: 1.0, style: BorderStyle.solid),
                               color: Color.fromRGBO(254, 229, 0, 1),
                               shape: BoxShape.circle,
                             ),
@@ -102,17 +104,11 @@ class MainPage extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: new BorderRadius.all(Radius.circular(20.0)),
                       boxShadow: [
-                        new BoxShadow(
-                            color: Color.fromRGBO(0, 0, 0, 0.15),
-                            offset: new Offset(0.0, 4.0),
-                            blurRadius: 4.0,
-                            spreadRadius: 2.0)
+                        new BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.15), offset: new Offset(0.0, 4.0), blurRadius: 4.0, spreadRadius: 2.0)
                       ],
                     ),
-                    margin:
-                        EdgeInsets.symmetric(horizontal: 15.0, vertical: 18.0),
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 10.0, vertical: 16.0),
+                    margin: EdgeInsets.symmetric(horizontal: 15.0, vertical: 18.0),
+                    padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 16.0),
                     child: _selectBody(context, state),
                     width: double.infinity,
                   ),
@@ -189,6 +185,16 @@ class MainPage extends StatelessWidget {
         return TitanSettingsNotifications();
       case MainState.m3_1:
         return TitanSettingsObjectNoGroup();
+      case MainState.n_2:
+        return N2();
+      case MainState.user_managment:
+        return UserManagment();
+      case MainState.m11:
+        return M11();
+      case MainState.m11_2:
+        return M11_2();
+           case MainState.m11_3:
+        return M11_3();
       /*case MainState.myWFRS:
         return MyWfrsloggedin();
       case MainState.payment:
@@ -217,8 +223,7 @@ class MainPage extends StatelessWidget {
       onTap: (value) {
         switch (value) {
           case 0:
-            BlocProvider.of<MainBloc>(context)
-                .add(MainPageEvent(MainState.objects));
+            BlocProvider.of<MainBloc>(context).add(MainPageEvent(MainState.objects));
             break;
           /*case 1:
             BlocProvider.of<MainBloc>(context)
@@ -241,12 +246,11 @@ class MainPage extends StatelessWidget {
     );
   }
 
-  FloatingNavbarItem _getNavButton(
-      BuildContext context, String icon, String text) {
+  FloatingNavbarItem _getNavButton(BuildContext context, String icon, String text) {
     return FloatingNavbarItem(icon: icon, title: text);
   }
 
   getCurrentButton(int state) {
-    return state > 4 ? 4 : state;
+    return state > 5 ? 5 : state;
   }
 }

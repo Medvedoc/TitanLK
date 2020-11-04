@@ -113,17 +113,14 @@ ItemBuilder _defaultItemBuilder({
             AnimatedContainer(
               duration: Duration(milliseconds: 300),
               decoration: BoxDecoration(
-                color: currentIndex == items.indexOf(item)
-                    ? selectedBackgroundColor
-                    : backgroundColor,
+                color: currentIndex == items.indexOf(item) ? selectedBackgroundColor : backgroundColor,
               ),
               child: InkWell(
                 onTap: () {
                   onTap(items.indexOf(item));
                 },
                 child: Container(
-                  width: MediaQuery.of(context).size.width *
-                      (100 / (items.length * 100)),
+                  width: MediaQuery.of(context).size.width * (100 / (items.length * 100)),
                   padding: EdgeInsets.symmetric(vertical: 13.0),
                   //height: 64.0,
                   child: Column(
@@ -133,9 +130,7 @@ ItemBuilder _defaultItemBuilder({
                     children: <Widget>[
                       Image.asset(
                         item.icon,
-                        color: currentIndex == items.indexOf(item)
-                            ? selectedItemColor
-                            : unselectedItemColor,
+                        color: currentIndex == items.indexOf(item) ? selectedItemColor : unselectedItemColor,
                         height: iconSize,
                         alignment: Alignment.bottomCenter,
                       ),
@@ -143,9 +138,7 @@ ItemBuilder _defaultItemBuilder({
                       Text(
                         '${item.title}',
                         style: TextStyle(
-                            color: currentIndex == items.indexOf(item)
-                                ? selectedItemColor
-                                : unselectedItemColor,
+                            color: currentIndex == items.indexOf(item) ? selectedItemColor : unselectedItemColor,
                             fontSize: 12,
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.w600,
