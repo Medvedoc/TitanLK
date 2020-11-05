@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_image/control/TitanContainer.dart';
+import 'package:flutter_image/control/!!!TitanContainer.dart';
 import 'package:flutter_image/control/TitanToogle.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

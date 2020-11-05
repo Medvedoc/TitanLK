@@ -13,6 +13,7 @@ class TitanToogle extends StatefulWidget {
   final List<num> border;
   final List<Widget> children;
   bool isSwitched;
+  Function() onToggle;
 
   TitanToogle({
     this.textDialog,
@@ -22,12 +23,21 @@ class TitanToogle extends StatefulWidget {
     this.children,
     this.abc,
     this.callback,
+    this.onToggle,
   });
   @override
   _TitanToogleState createState() => _TitanToogleState();
 }
 
 class _TitanToogleState extends State<TitanToogle> {
+  double abc = 0.0;
+
+  callback(heightBlock) {
+    setState(() {
+      abc = heightBlock;
+    });
+  }
+
   bool isSwitched;
 
   final GlobalKey _cardKey = GlobalKey();
@@ -36,14 +46,6 @@ class _TitanToogleState extends State<TitanToogle> {
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
-      FlatButton(
-        onPressed: () {
-          widget.callback(cardSizeheight);
-          //print(widget.callback(cardSizeheight));
-        },
-        child: new Text(widget.abc.toString()),
-        color: Colors.red,
-      ),
       Container(
         key: _cardKey,
         padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
@@ -81,11 +83,10 @@ class _TitanToogleState extends State<TitanToogle> {
           children: <Widget>[
             Row(
               children: <Widget>[
-                Text('Внутренний блок $cardSizeheight'),
                 Text(
-                  widget.textHeading,
+                          widget.textHeading != null ? widget.textHeading : '',
                   style: TextStyle(
-                    fontSize: 13.0,
+                    fontSize: 14.0,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -147,14 +148,17 @@ class _TitanToogleState extends State<TitanToogle> {
               child: FlutterSwitch(
                 value: widget.isSwitched,
                 onToggle: (val) {
+                  if (widget.onToggle != null) {
+                    widget.onToggle();
+                  }
                   setState(() {
                     widget.isSwitched = val;
                     print(widget.isSwitched);
                   });
                 },
-                activeColor: Colors.black,
-                inactiveColor: Colors.grey,
-                toggleColor: Colors.white,
+                activeColor: Color.fromRGBO(0, 0, 0, 1),
+                inactiveColor: Color.fromRGBO(101, 91, 0, 0.4),
+                toggleColor: Color.fromRGBO(255, 255, 255, 1),
                 width: 40.0,
                 height: 20.0,
                 toggleSize: 18.0,
@@ -166,6 +170,7 @@ class _TitanToogleState extends State<TitanToogle> {
           ],
         ),
       ),
+      widget.children != null ? Column(children: widget.children) : SizedBox(),
     ]);
   }
 

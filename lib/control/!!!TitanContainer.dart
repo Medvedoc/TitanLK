@@ -18,8 +18,8 @@ class _TitanContainerState extends State<TitanContainer> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) => getSizeAndPosition2());
-    print('1111 ${widget.visible}');
-    print('Анимированный контейнер $cardSizeheight2');
+    //print('1111 ${widget.visible}');
+    //print('Анимированный контейнер $cardSizeheight2');
 
     
     return InkWell(child: AnimatedOpacity(
