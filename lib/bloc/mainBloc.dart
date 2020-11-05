@@ -12,15 +12,19 @@ class MainPageEvent extends MainEvent {
 class MainState {
   int subState = 0;
   static const int objects = 0;
-  static const int m1 = 1;
-  static const int m2 = 2;
-  static const int m3 = 3;
-  static const int m3_1 = 4;
-  static const int n_2 = 5;
-  static const int user_managment = 6;
-  static const int m11 = 7;
-  static const int m11_2 = 8;
-  static const int m11_3 = 9;
+  static const int stubPage1 = 1;
+  static const int stubPage2 = 2;
+  static const int stubPage3 = 3;
+  static const int stubPage4 = 4;
+  static const int m1 = 5;
+  static const int m2 = 6;
+  static const int m3 = 7;
+  static const int m3_1 = 8;
+  static const int n_2 = 9;
+  static const int user_managment = 10;
+  static const int m11 = 11;
+  static const int m11_2 = 12;
+  static const int m11_3 = 13;
 
   //static const int participants = 1;
   //static const int myWFRS = 2;
@@ -30,6 +34,14 @@ class MainState {
     switch (subState) {
       case objects:
         return 'Объекты';
+      case stubPage1:
+        return 'Страницы не существует';
+      case stubPage2:
+        return 'Страницы не существует';
+      case stubPage3:
+        return 'Страницы не существует';
+      case stubPage4:
+        return 'Страницы не существует';
       case m1:
         return 'Настройки';
       case m2:
@@ -54,6 +66,7 @@ class MainState {
       //  return 'WFRS';
       //case payment:
       //  return 'Payment';
+
     }
     return "";
   }

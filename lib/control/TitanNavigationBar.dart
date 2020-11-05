@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-typedef Widget ItemBuilder(BuildContext context, FloatingNavbarItem items);
+typedef Widget ItemBuilder(BuildContext context, TitanNavigationBarItem items);
 
-class FloatingNavbar extends StatefulWidget {
-  final List<FloatingNavbarItem> items;
+class TitanNavigationBar extends StatefulWidget {
+  final List<TitanNavigationBarItem> items;
   final int currentIndex;
   final void Function(int val) onTap;
   final Color selectedBackgroundColor;
@@ -18,7 +18,7 @@ class FloatingNavbar extends StatefulWidget {
   final EdgeInsetsGeometry padding;
   final double width;
 
-  FloatingNavbar({
+  TitanNavigationBar({
     Key key,
     @required this.items,
     @required this.currentIndex,
@@ -53,11 +53,11 @@ class FloatingNavbar extends StatefulWidget {
         super(key: key);
 
   @override
-  _FloatingNavbarState createState() => _FloatingNavbarState();
+  _TitanNavigationBarState createState() => _TitanNavigationBarState();
 }
 
-class _FloatingNavbarState extends State<FloatingNavbar> {
-  List<FloatingNavbarItem> get items => widget.items;
+class _TitanNavigationBarState extends State<TitanNavigationBar> {
+  List<TitanNavigationBarItem> get items => widget.items;
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +95,7 @@ class _FloatingNavbarState extends State<FloatingNavbar> {
 
 ItemBuilder _defaultItemBuilder({
   Function(int val) onTap,
-  List<FloatingNavbarItem> items,
+  List<TitanNavigationBarItem> items,
   int currentIndex,
   Color selectedBackgroundColor,
   Color selectedItemColor,
@@ -105,7 +105,7 @@ ItemBuilder _defaultItemBuilder({
   double iconSize,
   double fontHeight,
 }) {
-  return (BuildContext context, FloatingNavbarItem item) => Expanded(
+  return (BuildContext context, TitanNavigationBarItem item) => Expanded(
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -154,12 +154,12 @@ ItemBuilder _defaultItemBuilder({
       );
 }
 
-class FloatingNavbarItem {
+class TitanNavigationBarItem {
   final String title;
   final String icon;
   final Widget customWidget;
 
-  FloatingNavbarItem({
+  TitanNavigationBarItem({
     @required this.icon,
     @required this.title,
     this.customWidget = const SizedBox(),

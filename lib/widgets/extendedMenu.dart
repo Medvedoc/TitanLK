@@ -14,84 +14,54 @@ class ExtendedMenuWidget extends StatelessWidget {
         physics: NeverScrollableScrollPhysics(),
         crossAxisCount: 5,
         children: <Widget>[
-          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "М1", MainState.m1),
-          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "М2", MainState.m2),
-          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "М3", MainState.m3),
-          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "М3-1", MainState.m3_1),
-          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "N2", MainState.n_2),
-          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "user_manag", MainState.user_managment),
-          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "m11", MainState.m11),
-          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "m11_2", MainState.m11_2),
-          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "m11_3", MainState.m11_3),
-          /* _getButton(
-              context,
-              Icon(
-                Icons.calendar_view_day,
-                size: _iconSize,
-                color: _color,
-              ),
-              "Календарь",
-              MainState.objects),
-          _getButton(context, Icon(Icons.score, size: _iconSize, color: _color),
-              "Рейтинг команд", MainState.objects),
           _getButton(
               context,
-              Icon(Icons.people, size: _iconSize, color: _color),
-              "Члены WFRS",
-              MainState.objects),
+              Icon(Icons.monitor, size: _iconSize, color: _color),
+              "М1",
+              MainState.m1),
           _getButton(
               context,
-              Icon(Icons.person, size: _iconSize, color: _color),
-              "Мой WFRS",
-              MainState.objects),
+              Icon(Icons.monitor, size: _iconSize, color: _color),
+              "М2",
+              MainState.m2),
           _getButton(
               context,
-              Icon(Icons.payment, size: _iconSize, color: _color),
-              "Оплата",
-              MainState.objects),
+              Icon(Icons.monitor, size: _iconSize, color: _color),
+              "М3",
+              MainState.m3),
           _getButton(
               context,
-              Icon(Icons.payment, size: _iconSize, color: _color),
-              "Регистрация",
-              MainState.welcomeWidget),*/
+              Icon(Icons.monitor, size: _iconSize, color: _color),
+              "М3-1",
+              MainState.m3_1),
+          _getButton(
+              context,
+              Icon(Icons.monitor, size: _iconSize, color: _color),
+              "N2",
+              MainState.n_2),
+          _getButton(
+              context,
+              Icon(Icons.monitor, size: _iconSize, color: _color),
+              "user_manag",
+              MainState.user_managment),
+          _getButton(
+              context,
+              Icon(Icons.monitor, size: _iconSize, color: _color),
+              "m11",
+              MainState.m11),
+          _getButton(
+              context,
+              Icon(Icons.monitor, size: _iconSize, color: _color),
+              "m11_2",
+              MainState.m11_2),
+          _getButton(
+              context,
+              Icon(Icons.monitor, size: _iconSize, color: _color),
+              "m11_3",
+              MainState.m11_3),
         ],
       )
     ]);
-
-    /*
-    GridView.count(
-      primary: false,
-      //padding: const EdgeInsets.all(10),
-      crossAxisSpacing: 2,
-      mainAxisSpacing: 1,
-      crossAxisCount: 1,
-      children: <Widget>[
-        _getButton(
-            context,
-            Icon(Icons.new_releases, size: _iconSize, color: _color),
-            "Объекты",
-            MainState.objects),
-        _getButton(
-            context,
-            Icon(
-              Icons.calendar_view_day,
-              size: _iconSize,
-              color: _color,
-            ),
-            "Календарь",
-            MainState.objects),
-        _getButton(context, Icon(Icons.score, size: _iconSize, color: _color),
-            "Рейтинг команд", MainState.objects),
-        _getButton(context, Icon(Icons.people, size: _iconSize, color: _color),
-            "Члены WFRS", MainState.objects),
-        _getButton(context, Icon(Icons.person, size: _iconSize, color: _color),
-            "Мой WFRS", MainState.objects),
-        _getButton(context, Icon(Icons.payment, size: _iconSize, color: _color),
-            "Оплата", MainState.objects),
-        _getButton(context, Icon(Icons.payment, size: _iconSize, color: _color),
-            "Регистрация", MainState.welcomeWidget),
-      ],
-    );*/
   }
 
   Widget _getButton(BuildContext context, Icon icon, String text, int state) {
