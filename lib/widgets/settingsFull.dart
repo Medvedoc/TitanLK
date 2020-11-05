@@ -25,12 +25,14 @@ class _TitanSettingsFullState extends State<TitanSettingsFull> {
           headButton: "НАСТРОЙКА ПРОФИЛЯ",
           //pressTap: () => pressSave(),
           controlStyle: TitanControlStyle(),
+          type:'red'
         ),
         SizedBox(height: 10.0),
         TitanButton(
           headButton: "НАСТРОЙКА УВЕДОМЛЕНИЙ",
           //pressTap: () => pressSave(),
           controlStyle: TitanControlStyle(),
+          type: 'gray'
         ),
         SizedBox(height: 10.0),
         TitanButton(
