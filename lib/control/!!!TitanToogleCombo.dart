@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_image/control/!!!TitanContainer.dart';
-import 'package:flutter_image/control/TitanToogle.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -15,8 +14,7 @@ class _TitanToogleComboState extends State<TitanToogleCombo> {
   Alignment alignment; //Начало раскрывания контенера
   double _height; //Высота раскрывающегося контейнера
   bool _visible = false; //Раскрывающийся контейнер по умолчанию скрыт
-  double _paddingVertical =
-      0.0; //Начльное значение отступа раскрывающегося контейнера в Dropbox
+  double _paddingVertical = 0.0; //Начльное значение отступа раскрывающегося контейнера в Dropbox
   int _counter = 0; //Переключатель срабатывания Dropbox
   bool isSwitched = false;
   bool isSwitched2;
@@ -66,10 +64,7 @@ class _TitanToogleComboState extends State<TitanToogleCombo> {
                       margin: EdgeInsets.only(left: 10.0),
                       padding: const EdgeInsets.all(5.0),
                       decoration: new BoxDecoration(
-                        border: new Border.all(
-                            color: Color.fromRGBO(101, 91, 0, 0.5),
-                            width: 2.0,
-                            style: BorderStyle.solid),
+                        border: new Border.all(color: Color.fromRGBO(101, 91, 0, 0.5), width: 2.0, style: BorderStyle.solid),
                         shape: BoxShape.circle,
                         color: Color.fromRGBO(254, 229, 0, 1),
                       ),
@@ -89,18 +84,14 @@ class _TitanToogleComboState extends State<TitanToogleCombo> {
                             ),
                             elevation: 8,
                             child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 10.0, vertical: 16.0),
+                              padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 16.0),
                               width: double.infinity,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
-                                  Padding(
-                                      padding: EdgeInsets.all(10),
-                                      child: Text(
-                                          "TextTextTextTextTextTextTextTextTextTextTextTextText")),
+                                  Padding(padding: EdgeInsets.all(10), child: Text("TextTextTextTextTextTextTextTextTextTextTextTextText")),
                                 ],
                               ),
                             ),
@@ -120,16 +111,16 @@ class _TitanToogleComboState extends State<TitanToogleCombo> {
                       isSwitched = val;
                       print(isSwitched);
                       if (_counter == 0) {
-                          _height = _visible ? 0.0 : 200.0;
+                        _height = _visible ? 0.0 : 200.0;
                         _visible = !_visible;
                         _paddingVertical = 0;
                         _counter += 1;
                       } else {
                         _counter -= 1;
                         _visible = !_visible;
-                        
-                         _height = 0.0;
-                      
+
+                        _height = 0.0;
+
                         alignment = Alignment.topCenter;
                       }
                     });

@@ -46,18 +46,12 @@ class TitanControlStyle {
     Color.fromRGBO(222, 222, 222, 1),
   ];
 
-  List<Alignment> buttonAlignmentGradient = [
-    Alignment.topCenter,
-    Alignment.bottomCenter
-  ];
+  List<Alignment> buttonAlignmentGradient = [Alignment.topCenter, Alignment.bottomCenter];
   List<double> buttonPointGradient = [0.0, 0.5, 0.5, 0.0];
   //---------------------------------------------------------------------------------
 
   //Рамка вокруг кнопки--------------------------------------------------------------
-  List<Alignment> borderAlignmentGradient = [
-    Alignment.topCenter,
-    Alignment.bottomCenter
-  ];
+  List<Alignment> borderAlignmentGradient = [Alignment.topCenter, Alignment.bottomCenter];
   List<Color> borderColorGradient = [
     Color.fromRGBO(112, 112, 112, 1),
     Color.fromRGBO(243, 243, 243, 1),
@@ -94,10 +88,7 @@ class TitanControlStyle {
   //---------------------------------------------------------------------------------
 
   //Градиент счетчика----------------------------------------------------------------
-  List<Alignment> counterAlignmentGradient = [
-    Alignment.topCenter,
-    Alignment.bottomCenter
-  ];
+  List<Alignment> counterAlignmentGradient = [Alignment.topCenter, Alignment.bottomCenter];
   List<Color> counterColorGradient = [
     Color.fromRGBO(116, 106, 18, 1),
     Color.fromRGBO(144, 126, 90, 1),

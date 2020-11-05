@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_image/control/TitanCheckbox.dart';
 import 'package:flutter_image/control/TitanCheckbox2.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 import 'package:intl/intl.dart';
@@ -85,8 +84,7 @@ class _TitanPickerState extends State<TitanPicker> {
                   callback: callback,
                   isChecked11: abc != null ? abc : false,
                   onTap: (selected) {
-                    setState(() {
-                    });
+                    setState(() {});
                   },
                 ),
                 SizedBox(width: 10.0),
@@ -132,10 +130,7 @@ class _TitanPickerState extends State<TitanPicker> {
                     width: 70.0,
                     height: 30.0,
                     decoration: new BoxDecoration(
-                      border: new Border.all(
-                          color: Color.fromRGBO(0, 0, 0, abc == true ? 1 : 0.2),
-                          width: 1.0,
-                          style: BorderStyle.solid),
+                      border: new Border.all(color: Color.fromRGBO(0, 0, 0, abc == true ? 1 : 0.2), width: 1.0, style: BorderStyle.solid),
                     ),
                     child: Text('$toTime',
                         style: TextStyle(
@@ -170,10 +165,7 @@ class _TitanPickerState extends State<TitanPicker> {
                     width: 70.0,
                     height: 30.0,
                     decoration: new BoxDecoration(
-                      border: new Border.all(
-                          color: Color.fromRGBO(0, 0, 0, abc == true ? 1 : 0.2),
-                          width: 1.0,
-                          style: BorderStyle.solid),
+                      border: new Border.all(color: Color.fromRGBO(0, 0, 0, abc == true ? 1 : 0.2), width: 1.0, style: BorderStyle.solid),
                     ),
                     child: Text('$fromTime',
                         style: TextStyle(
@@ -356,8 +348,7 @@ class _TitanPickerState extends State<TitanPicker> {
             onConfirm: (Picker picker, List value) {
               setState(() {
                 fromTimeHour = (value[0] < 10) ? "0${value[0]}" : "${value[0]}";
-                fromTimeMinute =
-                    (value[1] < 10) ? "0${value[1]}" : "${value[1]}";
+                fromTimeMinute = (value[1] < 10) ? "0${value[1]}" : "${value[1]}";
                 fromTime = '$fromTimeHour:$fromTimeMinute';
                 //  print(fromTime);
               });

@@ -45,9 +45,9 @@ class _M11_2State extends State<M11_2> {
               TitanButton(
                 //pressTap: () => pressSave(),
                 icon: Icons.call,
-          controlStyle: TitanControlStyle(),
-                width: 80.0,
-                height: 100.0,
+                controlStyle: TitanControlStyle(),
+                width: 75.0,
+                height: 38,
               ),
             ],
           ),
@@ -80,7 +80,7 @@ class _M11_2State extends State<M11_2> {
           ),
           TitanButton(
             headButton: "ОБЪЕКТЫ ПОЛЬЗОВАТЕЛЯ",
-          controlStyle: TitanControlStyle(),
+            controlStyle: TitanControlStyle(),
             width: MediaQuery.of(context).size.width * 0.9,
           ),
           SizedBox(
@@ -88,7 +88,7 @@ class _M11_2State extends State<M11_2> {
           ),
           TitanButton(
             headButton: "ОБЪЕКТЫ АДМИНИСТИРОВАНИЯ",
-          controlStyle: TitanControlStyle(),
+            controlStyle: TitanControlStyle(),
             width: MediaQuery.of(context).size.width * 0.9,
           ),
           SizedBox(
@@ -96,7 +96,7 @@ class _M11_2State extends State<M11_2> {
           ),
           TitanButton(
             headButton: "РЕДАКТИРОВАТЬ ПРОФИЛЬ",
-          controlStyle: TitanControlStyle(),
+            controlStyle: TitanControlStyle(),
             width: MediaQuery.of(context).size.width * 0.9,
           ),
         ],
