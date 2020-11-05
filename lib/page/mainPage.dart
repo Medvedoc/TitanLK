@@ -122,12 +122,6 @@ class MainPage extends StatelessWidget {
         return M11_3();
       case MainState.n_16:
         return N16();
-      /*case MainState.payment:
-        return PaymentWidget();
-      case MainState.settings:
-        return ExtendedMenuWidget();
-      case MainState.welcomeWidget:
-        return WelcomeWidget();*/
       default:
         return ExtendedMenuWidget();
     }
