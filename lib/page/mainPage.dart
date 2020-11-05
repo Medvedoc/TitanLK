@@ -13,6 +13,7 @@ import 'package:flutter_image/widgets/extendedMenu.dart';
 import 'package:flutter_image/widgets/m11-2.dart';
 import 'package:flutter_image/widgets/m11-3.dart';
 import 'package:flutter_image/widgets/m11.dart';
+import 'package:flutter_image/widgets/n_16.dart';
 import 'package:flutter_image/widgets/n_2.dart';
 import 'package:flutter_image/widgets/settingsFull.dart';
 import 'package:flutter_image/widgets/settingsNotifications.dart';
@@ -119,6 +120,8 @@ class MainPage extends StatelessWidget {
         return M11_2();
       case MainState.m11_3:
         return M11_3();
+      case MainState.n_16:
+        return N16();
       /*case MainState.payment:
         return PaymentWidget();
       case MainState.settings:

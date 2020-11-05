@@ -25,6 +25,7 @@ class MainState {
   static const int m11 = 11;
   static const int m11_2 = 12;
   static const int m11_3 = 13;
+  static const int n_16 = 14;
 
   //static const int participants = 1;
   //static const int myWFRS = 2;
@@ -59,6 +60,8 @@ class MainState {
       case m11_2:
         return 'Настройка уведомлений';
       case m11_3:
+        return 'Настройка уведомлений';
+      case n_16:
         return 'Настройка уведомлений';
       //case participants:
       //  return 'wfrsParticipants';
