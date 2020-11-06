@@ -7,18 +7,10 @@ import 'package:flutter/material.dart';
 
 class TitanSettingsObjectNoGroup extends StatefulWidget {
   @override
-  _TitanSettingsObjectNoGroupState createState() =>
-      _TitanSettingsObjectNoGroupState();
+  _TitanSettingsObjectNoGroupState createState() => _TitanSettingsObjectNoGroupState();
 }
 
-class _TitanSettingsObjectNoGroupState
-    extends State<TitanSettingsObjectNoGroup> {
-      
-
-
-
-
-
+class _TitanSettingsObjectNoGroupState extends State<TitanSettingsObjectNoGroup> {
   double abc = 0.0;
 
   callback(heightBlock) {
@@ -46,8 +38,7 @@ class _TitanSettingsObjectNoGroupState
   Alignment alignment; //Начало раскрывания контенера
   double _height = 0.0; //Высота раскрывающегося контейнера
   bool _visible = false; //Раскрывающийся контейнер по умолчанию скрыт
-  double _paddingVertical =
-      0.0; //Начльное значение отступа раскрывающегося контейнера в Dropbox
+  double _paddingVertical = 0.0; //Начльное значение отступа раскрывающегося контейнера в Dropbox
   int _counter = 0; //Переключатель срабатывания Dropbox
   bool isSwitched = false;
   bool isSwitched2 = false;
@@ -166,7 +157,6 @@ class _TitanSettingsObjectNoGroupState
         ),
         SizedBox(height: 10.0),
 
-
         //Text('$abc'),
         // Text('$abc11'),
         TitanToogleAccordion(
@@ -273,7 +263,6 @@ class _TitanSettingsObjectNoGroupState
                 ),
               ],
             ),
-
             TitanToogleAccordion(
               border: [1, 1, 1, 1],
               callback: callback,
@@ -421,28 +410,6 @@ class _TitanSettingsObjectNoGroupState
                 ),
               ],
             ),
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
           ],
         ),
         SizedBox(height: 30.0),

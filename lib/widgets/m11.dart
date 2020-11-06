@@ -67,19 +67,15 @@ class _M11State extends State<M11> {
                                 child: TextField(),
                               ),
                               SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.width * 0.03,
+                                height: MediaQuery.of(context).size.width * 0.03,
                               ),
                               Container(
                                 color: Color.fromRGBO(240, 240, 240, 1),
                                 constraints: BoxConstraints(
                                   minHeight: 50,
-                                  minWidth:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  maxWidth:
-                                      MediaQuery.of(context).size.width * 0.75,
-                                  maxHeight:
-                                      MediaQuery.of(context).size.width * 0.13,
+                                  minWidth: MediaQuery.of(context).size.width * 0.5,
+                                  maxWidth: MediaQuery.of(context).size.width * 0.75,
+                                  maxHeight: MediaQuery.of(context).size.width * 0.13,
                                 ),
                                 child: Row(
                                   children: [
@@ -87,14 +83,8 @@ class _M11State extends State<M11> {
                                       children: [
                                         Padding(
                                             padding: EdgeInsets.only(
-                                              top: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.020,
-                                              left: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.009,
+                                              top: MediaQuery.of(context).size.width * 0.020,
+                                              left: MediaQuery.of(context).size.width * 0.009,
                                             ),
                                             child: Text(
                                               "Иванов Иван",
@@ -104,42 +94,34 @@ class _M11State extends State<M11> {
                                             )),
                                         Padding(
                                             padding: EdgeInsets.only(
-                                              right: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.050,
+                                              right: MediaQuery.of(context).size.width * 0.050,
                                             ),
                                             child: Text("Директор")),
                                       ],
                                     ),
                                     SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.4,
+                                      width: MediaQuery.of(context).size.width * 0.4,
                                     ),
                                     TitanButton(
                                       //pressTap: () => pressSave(),
                                       icon: Icons.chat_outlined,
                                       controlStyle: TitanControlStyle(),
-                                      width: 45.0,
-                                      height: 100.0,
+                                      width: 43,
+                                      height: 43,
                                     ),
                                   ],
                                 ),
                               ),
                               SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.01,
+                                height: MediaQuery.of(context).size.height * 0.01,
                               ),
                               Container(
                                 color: Color.fromRGBO(240, 240, 240, 1),
                                 constraints: BoxConstraints(
                                   minHeight: 50,
-                                  minWidth:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  maxWidth:
-                                      MediaQuery.of(context).size.width * 0.75,
-                                  maxHeight:
-                                      MediaQuery.of(context).size.width * 0.13,
+                                  minWidth: MediaQuery.of(context).size.width * 0.5,
+                                  maxWidth: MediaQuery.of(context).size.width * 0.75,
+                                  maxHeight: MediaQuery.of(context).size.width * 0.13,
                                 ),
                                 child: Row(
                                   children: [
@@ -147,14 +129,8 @@ class _M11State extends State<M11> {
                                       children: [
                                         Padding(
                                             padding: EdgeInsets.only(
-                                              top: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.020,
-                                              left: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.009,
+                                              top: MediaQuery.of(context).size.width * 0.020,
+                                              left: MediaQuery.of(context).size.width * 0.009,
                                             ),
                                             child: Text(
                                               "Иванов Иван",
@@ -164,42 +140,34 @@ class _M11State extends State<M11> {
                                             )),
                                         Padding(
                                             padding: EdgeInsets.only(
-                                              right: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.050,
+                                              right: MediaQuery.of(context).size.width * 0.050,
                                             ),
                                             child: Text("Директор")),
                                       ],
                                     ),
                                     SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.4,
+                                      width: MediaQuery.of(context).size.width * 0.4,
                                     ),
                                     TitanButton(
                                       //pressTap: () => pressSave(),
                                       icon: Icons.chat_outlined,
                                       controlStyle: TitanControlStyle(),
-                                      width: 45.0,
-                                      height: 100.0,
+                                      width: 43,
+                                      height: 43,
                                     ),
                                   ],
                                 ),
                               ),
                               SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.01,
+                                height: MediaQuery.of(context).size.height * 0.01,
                               ),
                               Container(
                                 color: Color.fromRGBO(240, 240, 240, 1),
                                 constraints: BoxConstraints(
                                   minHeight: 50,
-                                  minWidth:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  maxWidth:
-                                      MediaQuery.of(context).size.width * 0.75,
-                                  maxHeight:
-                                      MediaQuery.of(context).size.width * 0.13,
+                                  minWidth: MediaQuery.of(context).size.width * 0.5,
+                                  maxWidth: MediaQuery.of(context).size.width * 0.75,
+                                  maxHeight: MediaQuery.of(context).size.width * 0.13,
                                 ),
                                 child: Row(
                                   children: [
@@ -207,14 +175,8 @@ class _M11State extends State<M11> {
                                       children: [
                                         Padding(
                                             padding: EdgeInsets.only(
-                                              top: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.020,
-                                              left: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.009,
+                                              top: MediaQuery.of(context).size.width * 0.020,
+                                              left: MediaQuery.of(context).size.width * 0.009,
                                             ),
                                             child: Text(
                                               "Иванов Иван",
@@ -224,42 +186,34 @@ class _M11State extends State<M11> {
                                             )),
                                         Padding(
                                             padding: EdgeInsets.only(
-                                              right: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.050,
+                                              right: MediaQuery.of(context).size.width * 0.050,
                                             ),
                                             child: Text("Директор")),
                                       ],
                                     ),
                                     SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.4,
+                                      width: MediaQuery.of(context).size.width * 0.4,
                                     ),
                                     TitanButton(
                                       //pressTap: () => pressSave(),
                                       icon: Icons.chat_outlined,
                                       controlStyle: TitanControlStyle(),
-                                      width: 45.0,
-                                      height: 100.0,
+                                      width: 43,
+                                      height: 43,
                                     ),
                                   ],
                                 ),
                               ),
                               SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.01,
+                                height: MediaQuery.of(context).size.height * 0.01,
                               ),
                               Container(
                                 color: Color.fromRGBO(240, 240, 240, 1),
                                 constraints: BoxConstraints(
                                   minHeight: 50,
-                                  minWidth:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  maxWidth:
-                                      MediaQuery.of(context).size.width * 0.75,
-                                  maxHeight:
-                                      MediaQuery.of(context).size.width * 0.13,
+                                  minWidth: MediaQuery.of(context).size.width * 0.5,
+                                  maxWidth: MediaQuery.of(context).size.width * 0.75,
+                                  maxHeight: MediaQuery.of(context).size.width * 0.13,
                                 ),
                                 child: Row(
                                   children: [
@@ -267,14 +221,8 @@ class _M11State extends State<M11> {
                                       children: [
                                         Padding(
                                             padding: EdgeInsets.only(
-                                              top: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.020,
-                                              left: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.009,
+                                              top: MediaQuery.of(context).size.width * 0.020,
+                                              left: MediaQuery.of(context).size.width * 0.009,
                                             ),
                                             child: Text(
                                               "Иванов Иван",
@@ -284,42 +232,34 @@ class _M11State extends State<M11> {
                                             )),
                                         Padding(
                                             padding: EdgeInsets.only(
-                                              right: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.050,
+                                              right: MediaQuery.of(context).size.width * 0.050,
                                             ),
                                             child: Text("Директор")),
                                       ],
                                     ),
                                     SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.4,
+                                      width: MediaQuery.of(context).size.width * 0.4,
                                     ),
                                     TitanButton(
                                       //pressTap: () => pressSave(),
                                       icon: Icons.chat_outlined,
                                       controlStyle: TitanControlStyle(),
-                                      width: 45.0,
-                                      height: 100.0,
+                                      width: 43,
+                                      height: 43,
                                     ),
                                   ],
                                 ),
                               ),
                               SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.01,
+                                height: MediaQuery.of(context).size.height * 0.01,
                               ),
                               Container(
                                 color: Color.fromRGBO(240, 240, 240, 1),
                                 constraints: BoxConstraints(
                                   minHeight: 50,
-                                  minWidth:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  maxWidth:
-                                      MediaQuery.of(context).size.width * 0.75,
-                                  maxHeight:
-                                      MediaQuery.of(context).size.width * 0.13,
+                                  minWidth: MediaQuery.of(context).size.width * 0.5,
+                                  maxWidth: MediaQuery.of(context).size.width * 0.75,
+                                  maxHeight: MediaQuery.of(context).size.width * 0.13,
                                 ),
                                 child: Row(
                                   children: [
@@ -327,14 +267,8 @@ class _M11State extends State<M11> {
                                       children: [
                                         Padding(
                                             padding: EdgeInsets.only(
-                                              top: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.020,
-                                              left: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.009,
+                                              top: MediaQuery.of(context).size.width * 0.020,
+                                              left: MediaQuery.of(context).size.width * 0.009,
                                             ),
                                             child: Text(
                                               "Иванов Иван",
@@ -344,24 +278,20 @@ class _M11State extends State<M11> {
                                             )),
                                         Padding(
                                             padding: EdgeInsets.only(
-                                              right: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.050,
+                                              right: MediaQuery.of(context).size.width * 0.050,
                                             ),
                                             child: Text("Директор")),
                                       ],
                                     ),
                                     SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.4,
+                                      width: MediaQuery.of(context).size.width * 0.4,
                                     ),
                                     TitanButton(
                                       //pressTap: () => pressSave(),
                                       icon: Icons.chat_outlined,
                                       controlStyle: TitanControlStyle(),
-                                      width: 45.0,
-                                      height: 100.0,
+                                      width: 43,
+                                      height: 43,
                                     ),
                                   ],
                                 ),

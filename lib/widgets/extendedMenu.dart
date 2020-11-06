@@ -14,55 +14,19 @@ class ExtendedMenuWidget extends StatelessWidget {
         physics: NeverScrollableScrollPhysics(),
         crossAxisCount: 5,
         children: <Widget>[
-          _getButton(
-              context,
-              Icon(Icons.monitor, size: _iconSize, color: _color),
-              "М1",
-              MainState.m1),
-          _getButton(
-              context,
-              Icon(Icons.monitor, size: _iconSize, color: _color),
-              "М2",
-              MainState.m2),
-          _getButton(context,
-              Icon(Icons.monitor, size: _iconSize, color: _color),
-              "М3",
-              MainState.m3),
-          _getButton(
-              context,
-              Icon(Icons.monitor, size: _iconSize, color: _color),
-              "М3-1",
-              MainState.m3_1),
-          _getButton(
-              context,
-              Icon(Icons.monitor, size: _iconSize, color: _color),
-              "N2",
-              MainState.n_2),
-          _getButton(
-              context,
-              Icon(Icons.monitor, size: _iconSize, color: _color),
-              "user_manag",
-              MainState.user_managment),
-          _getButton(
-              context,
-              Icon(Icons.monitor, size: _iconSize, color: _color),
-              "m11",
-              MainState.m11),
-          _getButton(
-              context,
-              Icon(Icons.monitor, size: _iconSize, color: _color),
-              "m11_2",
-              MainState.m11_2),
-          _getButton(
-              context,
-              Icon(Icons.monitor, size: _iconSize, color: _color),
-              "m11_3",
-              MainState.m11_3),
-          _getButton(
-              context,
-              Icon(Icons.monitor, size: _iconSize, color: _color),
-              "n_16",
-              MainState.n_16),
+          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "М1", MainState.m1),
+          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "М2", MainState.m2),
+          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "М3", MainState.m3),
+          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "М3-1", MainState.m3_1),
+          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "N2", MainState.n_2),
+          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "user_manag", MainState.user_managment),
+          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "m11", MainState.m11),
+          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "m11_2", MainState.m11_2),
+          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "m11_3", MainState.m11_3),
+          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "n_16", MainState.n_16),
+          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "m11_4", MainState.m11_4),
+          _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "m11_5", MainState.m11_5),
+                    _getButton(context, Icon(Icons.monitor, size: _iconSize, color: _color), "m11_6", MainState.m11_6),
         ],
       )
     ]);
