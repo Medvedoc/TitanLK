@@ -9,9 +9,11 @@ import 'package:flutter_image/stubPage/TitanStubPage1.dart';
 import 'package:flutter_image/stubPage/TitanStubPage2.dart';
 import 'package:flutter_image/stubPage/TitanStubPage3.dart';
 import 'package:flutter_image/stubPage/TitanStubPage4.dart';
+import 'package:flutter_image/widgets/OpenObjecktTable.dart';
 import 'package:flutter_image/widgets/extendedMenu.dart';
 import 'package:flutter_image/widgets/m11-2.dart';
 import 'package:flutter_image/widgets/m11-3.dart';
+import 'package:flutter_image/widgets/m11-4-2.dart';
 import 'package:flutter_image/widgets/m11-4.dart';
 import 'package:flutter_image/widgets/m11-5.dart';
 import 'package:flutter_image/widgets/m11-6.dart';
@@ -125,6 +127,8 @@ class MainPage extends StatelessWidget {
         return M11_5();
       case MainState.m11_6:
         return M11_6();
+      case MainState.m11_4_2:
+        return M11_4_2();
       default:
         return ExtendedMenuWidget();
     }
