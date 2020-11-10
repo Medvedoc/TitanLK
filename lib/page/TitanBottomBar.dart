@@ -58,6 +58,10 @@ Widget getNavigationBar(BuildContext context, MainState state) {
         return 3;
       case MainState.stubPage4:
         return 4;
+      case MainState.m1:
+        return 0;
+      case MainState.m2:
+        return 0;
     }
     return 4;
   }

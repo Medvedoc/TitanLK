@@ -6,7 +6,7 @@ import 'package:flutter_image/bloc/mainBloc.dart';
 class ExtendedMenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var _iconSize = 25.0;
+    var _iconSize = 20.0;
     var _color = Theme.of(context).textTheme.button.color;
     return Column(children: <Widget>[
       GridView.count(
@@ -63,6 +63,11 @@ class ExtendedMenuWidget extends StatelessWidget {
               Icon(Icons.monitor, size: _iconSize, color: _color),
               "n_16",
               MainState.n_16),
+          _getButton(
+              context,
+              Icon(Icons.monitor, size: _iconSize, color: _color),
+              "m4-1",
+              MainState.m4_1),
         ],
       )
     ]);
