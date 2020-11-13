@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_image/control/TitanButton.dart';
-import 'package:flutter_image/control/TitanCheckbox.dart';
-import 'package:flutter_image/control/TitanCheckbox2.dart';
 import 'package:flutter_image/control/TitanControlStyle.dart';
-import 'package:flutter_image/control/TitanPickerAccordion.dart';
-import 'package:flutter_image/control/TitanToogle.dart';
+import 'package:flutter_image/control/!!!TitanToogle.dart';
 import 'package:flutter_image/control/TitanToogleAccordion.dart';
 import 'package:flutter_image/theme/themeStyle.dart';
 
@@ -45,7 +42,7 @@ class _M11_4State extends State<M11_4> {
           height: MediaQuery.of(context).size.height * 0.01,
         ),
         TitanButton(
-          type: 'yellow',
+          types: Types.yellow,
           headButton: "УДАЛИТЬ ТЕКУЩИЙ ПРОФИЛЬ",
           controlStyle: TitanControlStyle(),
           width: MediaQuery.of(context).size.width * 0.9,
@@ -59,12 +56,13 @@ class _M11_4State extends State<M11_4> {
           textStyle: TextStyle(
             fontSize: 1,
           ),
+          
           callback: callback,
           children: [
             TitanToogle(
               textHeading: 'Может создавать других пользователей',
               isSwitched: false,
-              border: [1, 1, 0, 1],
+              border: Borderic.all(),
             ),
           ],
         ),
@@ -85,7 +83,7 @@ class _M11_4State extends State<M11_4> {
           height: MediaQuery.of(context).size.height * 0.02,
         ),
         TitanButton(
-          type: 'yellow',
+          types: Types.yellow,
           headButton: "ДАЛЕЕ",
           controlStyle: TitanControlStyle(),
           width: MediaQuery.of(context).size.width * 0.9,

@@ -27,7 +27,8 @@ class TitanButton extends StatefulWidget {
   final IconData icon;
   final String headButton;
   final bool variable;
-  final String type;
+  final Color buttonColor;
+  final String types;
 
   TitanButton({
     this.controlStyle,
@@ -48,8 +49,9 @@ class TitanButton extends StatefulWidget {
     this.icon,
     this.headButton,
     this.variable,
-    this.type,
     this.textColor,
+    this.buttonColor,
+    this.types,
   });
 
   @override
@@ -67,6 +69,7 @@ class _TitanButtonState extends State<TitanButton> {
   IconData _arrow; //Иконка выбранного режима Dropbox
   int _counter = 0; //Переключатель срабатывания Dropbox
   List<Color> _colors; //Цвета градиента
+  LinearGradient colors;
   List<double> _stops; //Точки расположения градиента
   List<Color> _typeColoring;
   Color _coloring;
@@ -402,8 +405,7 @@ class _TitanButtonState extends State<TitanButton> {
 
   void initState() {
     super.initState();
-
-    switch (widget.type) {
+    switch (widget.types) {
       case 'yellow':
         _typeColoring = widget.controlStyle.buttonColorGradientYellow;
         _coloring = widget.controlStyle.buttonColorBodyYellow;
@@ -416,7 +418,7 @@ class _TitanButtonState extends State<TitanButton> {
         _textColor = widget.controlStyle.textColorWhite;
         _iconColor = widget.controlStyle.iconColorWhite;
         break;
-      case 'gray':
+      case 'grey':
         _typeColoring = widget.controlStyle.buttonColorGradientGray;
         _coloring = widget.controlStyle.buttonColorBodyGray;
         _textColor = widget.controlStyle.textColorDark;
@@ -427,6 +429,7 @@ class _TitanButtonState extends State<TitanButton> {
         _coloring = widget.controlStyle.buttonColorBody;
         _textColor = widget.controlStyle.textColorDark;
         _iconColor = widget.controlStyle.iconColorDark;
+        break;
     }
 
     _click = false;
@@ -472,7 +475,7 @@ class _TitanButtonState extends State<TitanButton> {
         _begin = widget.controlStyle.buttonAlignmentGradient[0];
         _end = widget.controlStyle.buttonAlignmentGradient[1];
         _stops = widget.controlStyle.buttonPointGradient;
-        _colors = [
+       _colors = [
           widget.buttonColorGradient != null
               ? widget.buttonColorGradient[0]
               : _typeColoring[0],

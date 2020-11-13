@@ -139,7 +139,7 @@ class _M11_3State extends State<M11_3> {
                 height: MediaQuery.of(context).size.height * 0.2,
               ),
               TitanButton(
-                type: 'red',
+                types: Types.red,
                 headButton: "УДАЛИТЬ ТЕКУЩИЙ ПРОФИЛЬ",
                 controlStyle: TitanControlStyle(),
                 width: MediaQuery.of(context).size.width * 0.9,

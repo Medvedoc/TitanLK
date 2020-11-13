@@ -23,9 +23,23 @@ class MyApp extends StatelessWidget {
             unselectedItemColor: Colors.white),
         iconTheme: IconThemeData(color: Colors.white),
         textTheme: TextTheme(
-            headline3: TextStyle(
-              color: Colors.black,
-              fontSize: 20,
+            bodyText1: TextStyle(
+              fontSize: 14.0,
+              fontWeight: FontWeight.w400,
+            ),
+            headline1: TextStyle(
+              fontSize: 18.0,
+              color: Color.fromRGBO(0, 0, 0, 1),
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.w600,
+              height: 0.90,
+            ),
+            headline2: TextStyle(
+              fontSize: 18.0,
+              color: Color.fromRGBO(0, 0, 0, 1),
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.w400,
+              height: 0.90,
             ),
             //fontWeight: FontWeight.bold),
             headline4: TextStyle(

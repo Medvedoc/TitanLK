@@ -1,62 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_image/control/TitanControlStyle.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TitanToogleAccordion extends StatefulWidget {
   TitanToogleAccordion({
-    this.textDialog,
+    this.controlStyle,
+    this.background,
     this.border,
     this.textHeading,
+    this.textDialog,
+    this.margin,
+    this.padding,
+    this.isSwitched,
+    this.multiAccordion,
+    this.textStyle,
     this.title,
     this.children,
     this.renderKeyHeight,
     this.callback,
     this.showAccordion = false,
-    this.titleChild,
-    this.expandedTitleBackgroundColor = const Color(0xFFE0E0E0),
-    this.collapsedIcon = const Icon(Icons.keyboard_arrow_down),
-    this.expandedIcon = const Icon(Icons.keyboard_arrow_up),
-    this.textStyle = const TextStyle(color: Colors.black, fontSize: 16),
-    this.titlePadding = const EdgeInsets.all(10),
-    this.contentBackgroundColor,
-    this.contentPadding = const EdgeInsets.all(10),
-    this.titleBorder = const Border(),
-    this.contentBorder = const Border(),
-    this.margin,
-    this.titleBorderRadius = const BorderRadius.all(Radius.circular(0)),
-    this.contentBorderRadius = const BorderRadius.all(Radius.circular(0)),
-    this.multiAccordion,
   });
-
-  final List<int> border;
-  final String textDialog;
+  final TitanControlStyle controlStyle;
+  final Color background;
+  final Border border;
   final String textHeading;
+  final String textDialog;
+  final EdgeInsets margin;
+  final EdgeInsets padding;
+  final bool isSwitched;
+  final bool multiAccordion;
+  final TextStyle textStyle;
+
   final String title;
   final double renderKeyHeight;
   final Function(double) callback;
   final List<Widget> children;
   final bool showAccordion;
-  final bool multiAccordion;
-  final Widget titleChild;
-  final Color expandedTitleBackgroundColor;
-  final Widget collapsedIcon;
-  final Widget expandedIcon;
-  final TextStyle textStyle;
-  final EdgeInsets titlePadding;
-  final EdgeInsets contentPadding;
-  final Color contentBackgroundColor;
-  final EdgeInsets margin;
-  final Border titleBorder;
-  final Border contentBorder;
-  final BorderRadius titleBorderRadius;
-  final BorderRadius contentBorderRadius;
 
   @override
   _TitanToogleAccordionState createState() => _TitanToogleAccordionState();
 }
 
-class _TitanToogleAccordionState extends State<TitanToogleAccordion> with TickerProviderStateMixin {
+class _TitanToogleAccordionState extends State<TitanToogleAccordion>
+    with TickerProviderStateMixin {
   final GlobalKey _renderKey = GlobalKey();
   double renderKeyHeight;
   double renderKeyPosition;
@@ -66,122 +53,131 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion> with Ticker
   Animation<Offset> offset;
   bool showAccordion;
   bool isSwitched = false;
+  Border borderAll = Borderic.all();
+  EdgeInsets _padding = EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0);
+  EdgeInsets _margin = EdgeInsets.symmetric(horizontal: 0.0);
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         Container(
-          key: _renderKey,
-          // margin: widget.margin ?? const EdgeInsets.all(10),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
-                margin: widget.multiAccordion != true ? EdgeInsets.only(top: 10.0) : EdgeInsets.all(0.0),
-                padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-                decoration: new BoxDecoration(
-                  color: widget.multiAccordion != null
-                      ? Color.fromRGBO(233, 200, 45, 1)
-                      : (widget.multiAccordion == true ? Color.fromRGBO(233, 200, 45, 1) : Colors.white),
-                  border: new Border(
-                    top: BorderSide(
-                      color: Color.fromRGBO(0, 0, 0, 1),
-                      width: widget.border != null ? widget.border[0].toDouble() : 1.0,
-                    ),
-                    right: BorderSide(
-                      color: Color.fromRGBO(0, 0, 0, 1),
-                      width: widget.border != null ? widget.border[1].toDouble() : 1.0,
-                    ),
-                    bottom: BorderSide(
-                      color: Color.fromRGBO(0, 0, 0, 1),
-                      width: widget.border != null ? widget.border[2].toDouble() : 1.0,
-                    ),
-                    left: BorderSide(
-                      color: Color.fromRGBO(0, 0, 0, 1),
-                      width: widget.border != null ? widget.border[3].toDouble() : 1.0,
-                    ),
-                  ),
+                padding: widget.padding != null ? widget.padding : _padding,
+                margin: widget.margin != null ? widget.margin : _margin,
+                decoration: BoxDecoration(
+                  color: widget.background != null
+                      ? widget.background
+                      : Colors.white,
+                  border: widget.border != null ? widget.border : borderAll,
                 ),
                 child: Stack(
                   alignment: AlignmentDirectional.centerStart,
                   children: <Widget>[
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Expanded(
+                        Flexible(
+                          flex: 4,
                           child: Text(
-                            widget.textHeading != null ? widget.textHeading : '',
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.w400,
-                            ),
+                            widget.textHeading != null
+                                ? widget.textHeading
+                                : '',
+                            style: Theme.of(context).textTheme.bodyText1,
+                            softWrap: true,
                           ),
                         ),
-                        widget.textDialog != null
-                            ? GestureDetector(
-                                child: Container(
-                                  margin: EdgeInsets.only(left: 10.0),
-                                  padding: const EdgeInsets.all(5.0),
-                                  decoration: new BoxDecoration(
-                                    border: new Border.all(color: Color.fromRGBO(101, 91, 0, 0.5), width: 2.0, style: BorderStyle.solid),
-                                    shape: BoxShape.circle,
-                                    color: Color.fromRGBO(254, 229, 0, 1),
+                        Flexible(
+                          flex: 1,
+                          child: widget.textDialog != null
+                              ? GestureDetector(
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    margin: widget.controlStyle.marginDialog,
+                                    padding: widget.controlStyle.paddingDialog,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: widget
+                                              .controlStyle.borderColorDialog,
+                                          width: widget
+                                              .controlStyle.borderWidthDialog,
+                                          style: BorderStyle.solid),
+                                      shape: BoxShape.circle,
+                                      color: widget
+                                          .controlStyle.borderColorIconDialog,
+                                    ),
+                                    child: Icon(
+                                      widget.controlStyle.iconDialog,
+                                      color:
+                                          widget.controlStyle.iconColorDialog,
+                                      size: widget.controlStyle.sizeIconDialog,
+                                    ),
                                   ),
-                                  child: Icon(
-                                    FontAwesomeIcons.question,
-                                    color: Color.fromRGBO(101, 91, 0, 0.5),
-                                    size: 20.0,
-                                  ),
-                                ),
-                                onTap: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return Dialog(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(20),
-                                        ),
-                                        elevation: 8,
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 16.0),
-                                          width: double.infinity,
+
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return Dialog(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: widget.controlStyle
+                                                .borderRadiusWindowDialog,
+                                          ),
                                           child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             mainAxisSize: MainAxisSize.min,
                                             children: <Widget>[
-                                              Padding(padding: EdgeInsets.all(10), child: Text(widget.textDialog != null ? widget.textDialog : '')),
+                                              Container(
+                                                padding: widget.controlStyle
+                                                    .paddingWindowDialog,
+                                                child: Text(
+                                                    widget.textDialog != null
+                                                        ? widget.textDialog
+                                                        : ''),
+                                              ),
                                             ],
                                           ),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                              )
-                            : SizedBox(height: 34.0),
+                                        );
+                                      },
+                                    );
+                                  },
+                                )
+                              : SizedBox(height: 34.0),
+                        ),
+                        Flexible(flex: 1, child: SizedBox()),
                       ],
                     ),
                     Container(
                       alignment: Alignment.centerRight,
                       child: FlutterSwitch(
-                        value: isSwitched,
+                        value: widget.isSwitched != null
+                            ? isSwitched != widget.isSwitched
+                            : isSwitched,
                         onToggle: (val) {
                           setState(() {
-                            toggleAccordion();
-                            isSwitched = val;
+                            if (widget.isSwitched == null) {
+                              toggleAccordion();
+                            }
+                            isSwitched = !isSwitched;
                           });
                         },
+                        toggleColor: widget.background != null
+                            ? widget.background
+                            : Colors.white,
                         activeColor: Colors.black,
                         inactiveColor: Color.fromRGBO(101, 91, 0, 0.4),
-
-                        toggleColor: widget.multiAccordion != null
-                            ? Color.fromRGBO(233, 200, 45, 1)
-                            : (widget.multiAccordion == true ? Color.fromRGBO(233, 200, 45, 1) : Colors.white),
-                        // toggleColor: Color.fromRGBO(233, 200, 45, 1),
                         width: 40.0,
                         height: 20.0,
                         toggleSize: 18.0,
-                        valueFontSize: 16.0,
                         borderRadius: 20.0,
                         padding: 2.0,
                       ),
@@ -189,28 +185,23 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion> with Ticker
                   ],
                 ),
               ),
-              showAccordion
-                  ? Container(
-                      decoration: BoxDecoration(
-                        borderRadius: widget.contentBorderRadius,
-                        border: widget.contentBorder,
-                        color: widget.contentBackgroundColor ?? Colors.white70,
-                      ),
-                      //width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.only(
-                          bottom: showAccordion != false
-                              ? widget.multiAccordion != null
-                                  ? 10.0
-                                  : 0.0
-                              : 0.0),
-                      child: SlideTransition(
-                        position: offset,
-                        child: Column(
-                          children: widget.children,
-                        ),
-                      ),
-                    )
-                  : Container(),
+              widget.multiAccordion != null && widget.multiAccordion == true
+                  ? showAccordion
+                      ? Container(
+                          key: _renderKey,
+                          child: SlideTransition(
+                            position: offset,
+                            child: Column(
+                              children: widget.children,
+                            ),
+                          ),
+                        )
+                      : Container(
+                          key: _renderKey,
+                        )
+                  : Container(
+                      key: _renderKey,
+                    ),
             ],
           ),
         ),
@@ -221,7 +212,8 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion> with Ticker
   @override
   void initState() {
     showAccordion = widget.showAccordion;
-    controllerAccordion = AnimationController(duration: Duration(seconds: 2), vsync: this);
+    controllerAccordion =
+        AnimationController(duration: Duration(seconds: 2), vsync: this);
     offset = Tween(
       begin: Offset(0, 0),
       end: Offset.zero,
@@ -254,7 +246,9 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion> with Ticker
             alignment: 10.0,
             duration: Duration(milliseconds: 100),
             curve: Curves.linear,
-            alignmentPolicy: renderKeyHeight > screenSize ? ScrollPositionAlignmentPolicy.explicit : ScrollPositionAlignmentPolicy.keepVisibleAtEnd,
+            alignmentPolicy: renderKeyHeight > screenSize
+                ? ScrollPositionAlignmentPolicy.explicit
+                : ScrollPositionAlignmentPolicy.keepVisibleAtEnd,
           );
   }
 

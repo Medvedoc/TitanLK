@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_image/control/TitanControlStyle.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -10,7 +11,7 @@ class TitanToogle extends StatefulWidget {
 
   final String textHeading;
   final String textDialog;
-  final List<num> border;
+  final Border border;
   final List<Widget> children;
   bool isSwitched;
   Function() onToggle;
@@ -19,11 +20,11 @@ class TitanToogle extends StatefulWidget {
     this.textDialog,
     this.textHeading,
     this.isSwitched,
-    this.border,
     this.children,
     this.abc,
     this.callback,
     this.onToggle,
+    this.border,
   });
   @override
   _TitanToogleState createState() => _TitanToogleState();
@@ -50,33 +51,8 @@ class _TitanToogleState extends State<TitanToogle> {
         key: _cardKey,
         padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
         decoration: new BoxDecoration(
-          color: Colors.white,
-          border: new Border(
-            left: widget.border[0] != 0
-                ? BorderSide(
-                    color: Color.fromRGBO(0, 0, 0, 1),
-                    width: 1.0,
-                  )
-                : BorderSide.none,
-            right: widget.border[1] != 0
-                ? BorderSide(
-                    color: Color.fromRGBO(0, 0, 0, 1),
-                    width: 1.0,
-                  )
-                : BorderSide.none,
-            top: widget.border[2] != 0
-                ? BorderSide(
-                    color: Color.fromRGBO(0, 0, 0, 1),
-                    width: 1.0,
-                  )
-                : BorderSide.none,
-            bottom: widget.border[3] != 0
-                ? BorderSide(
-                    color: Color.fromRGBO(0, 0, 0, 1),
-                    width: 1.0,
-                  )
-                : BorderSide.none,
-          ),
+          border: widget.border,
+          //color: Colors.white,
         ),
         child: Stack(
           alignment: AlignmentDirectional.centerStart,
@@ -84,7 +60,7 @@ class _TitanToogleState extends State<TitanToogle> {
             Row(
               children: <Widget>[
                 Text(
-                          widget.textHeading != null ? widget.textHeading : '',
+                  widget.textHeading != null ? widget.textHeading : '',
                   style: TextStyle(
                     fontSize: 14.0,
                     fontWeight: FontWeight.w400,
@@ -183,6 +159,8 @@ class _TitanToogleState extends State<TitanToogle> {
     RenderBox _cardBox = _cardKey.currentContext.findRenderObject();
 
     cardSizeheight = _cardBox.size.height;
-    print('Внутренний блок $cardSizeheight');
   }
 }
+
+
+

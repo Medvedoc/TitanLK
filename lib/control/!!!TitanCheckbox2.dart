@@ -69,8 +69,8 @@ class _TitanCheckBox2State extends State<TitanCheckBox2> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+    print('2 $isChecked');
         setState(() {
-        //isChecked=widget.isChecked;
           isChecked = !isChecked;
         widget.callback(isChecked);
         });

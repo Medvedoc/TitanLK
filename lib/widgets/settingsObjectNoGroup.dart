@@ -1,143 +1,149 @@
-import 'package:flutter_image/control/TitanPicker.dart';
-import 'package:flutter_image/control/TitanPickerAccordion.dart';
+import 'package:flutter_image/control/TitanControlStyle.dart';
+import 'package:flutter_image/control/TitanTimeAccordion.dart';
 import 'package:flutter_image/control/TitanToogleAccordion.dart';
-import 'package:flutter_image/control/TitanToogle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image/control/TitanPicker.dart';
+import 'package:intl/intl.dart';
 
 class TitanSettingsObjectNoGroup extends StatefulWidget {
   @override
-  _TitanSettingsObjectNoGroupState createState() => _TitanSettingsObjectNoGroupState();
+  _TitanSettingsObjectNoGroupState createState() =>
+      _TitanSettingsObjectNoGroupState();
 }
 
-class _TitanSettingsObjectNoGroupState extends State<TitanSettingsObjectNoGroup> {
-  double abc = 0.0;
+class _TitanSettingsObjectNoGroupState
+    extends State<TitanSettingsObjectNoGroup> {
+  List<String> heading = [
+    'ОБЪЕКТЫ БЕЗ ГРУППЫ',
+    'Основные настройки',
+    'Дополнительные настройки',
+  ];
+  List<String> text = [
+    'Получать уведомления',
+    'Полная постановка под охрану',
+    'Постановка под охрану по разделам',
+    'Первое снятие объекта с охраны',
+    'Снятие объекта с охраны по разделам',
+    'Тревога',
+    'Отсутствие 220',
+    'Восстановление 220',
+    'Разряд АКБ',
+    'Пожарная тревога',
+    'Снятие пожарной тревоги',
+    'Услуга Тревога Расписания',
+    'Снятие объекта с охраны',
+    'Постановка объекта под охрану',
+  ];
+  List<String> timetable = ['Пн-Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 
   callback(heightBlock) {
-    setState(() {
-      abc = heightBlock;
-    });
+    setState(() {});
   }
-
-  double abc11 = 0.0;
 
   callback11(heightBlock11) {
-    setState(() {
-      abc11 = heightBlock11;
-    });
+    setState(() {});
   }
 
-  bool abc1 = false;
-
   callback1(heightBlock1) {
-    setState(() {
-      abc1 = heightBlock1;
-    });
+    setState(() {});
   }
 
   Alignment alignment; //Начало раскрывания контенера
   double _height = 0.0; //Высота раскрывающегося контейнера
   bool _visible = false; //Раскрывающийся контейнер по умолчанию скрыт
-  double _paddingVertical = 0.0; //Начльное значение отступа раскрывающегося контейнера в Dropbox
+  double _paddingVertical =
+      0.0; //Начльное значение отступа раскрывающегося контейнера в Dropbox
   int _counter = 0; //Переключатель срабатывания Dropbox
   bool isSwitched = false;
   bool isSwitched2 = false;
   List<bool> _sumPadding = [false, false, false, false, false, false];
-  //bool isSwitched1 = false;
-  //bool isSwitched2 = false;
-  //bool isSwitched3 = false;
-
-  //List value;
-
-  //final double listSpec = 4.0;
-  //final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    //print("Основной блок $abc");
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          'ОБЪЕКТЫ БЕЗ ГРУППЫ'.toUpperCase(),
-          style: TextStyle(
-            fontSize: 18.0,
-            color: Color.fromRGBO(0, 0, 0, 1),
-            fontFamily: 'Roboto',
-            fontWeight: FontWeight.w600,
-            height: 0.90,
-          ),
+          heading[0].toUpperCase(),
+          style: Theme.of(context).textTheme.headline1,
         ),
         SizedBox(height: 20.0),
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            'Основные настройки',
-            style: TextStyle(
-              fontSize: 18.0,
-              color: Color.fromRGBO(0, 0, 0, 1),
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.w400,
-              height: 0.90,
-            ),
+            heading[1],
+            style: Theme.of(context).textTheme.headline2,
           ),
         ),
         SizedBox(height: 10.0),
         TitanToogleAccordion(
+          background: Color.fromRGBO(233, 200, 45, 1),
+          border: Borderic.all(),
+          textHeading: text[0],
           multiAccordion: true,
           callback: callback,
-          textDialog: '111',
-          textHeading: 'Получать уведомления',
+          controlStyle: TitanControlStyle(),
           children: [
-            TitanToogle(
-              textHeading: 'Полная постановка под охрану',
+            TitanToogleAccordion(
+              border: Borderic.rbl(color: Colors.red, width: 20.0),
+              textHeading: text[1],
               isSwitched: true,
-              border: [1, 1, 0, 1],
+              controlStyle: TitanControlStyle(),
             ),
-            TitanToogle(
-              textHeading: 'Постановка под охрану по разделам',
+            TitanToogleAccordion(
+              textHeading: text[2],
               isSwitched: true,
-              border: [1, 1, 0, 1],
+              border: Borderic.all(),
+              controlStyle: TitanControlStyle(),
             ),
-            TitanToogle(
-              textHeading: 'Первое снятие объекта с охраны',
+            TitanToogleAccordion(
+              textHeading: text[3],
               isSwitched: true,
-              border: [1, 1, 0, 1],
+              border: Borderic.rbl(),
+              controlStyle: TitanControlStyle(),
             ),
-            TitanToogle(
-              textHeading: 'Снятие объекта с охраны по разделам',
+            TitanToogleAccordion(
+              textHeading: text[4],
               isSwitched: true,
-              border: [1, 1, 0, 1],
+              border: Borderic.rbl(),
+              controlStyle: TitanControlStyle(),
             ),
-            TitanToogle(
-              textHeading: 'Тревога',
+            TitanToogleAccordion(
+              textHeading: text[5],
+              border: Borderic.rbl(),
               isSwitched: true,
-              border: [1, 1, 0, 1],
+              controlStyle: TitanControlStyle(),
             ),
-            TitanToogle(
-              textHeading: 'Отсутствие 220',
+            TitanToogleAccordion(
+              textHeading: text[6],
               isSwitched: false,
-              border: [1, 1, 0, 1],
+              border: Borderic.rbl(),
+              controlStyle: TitanControlStyle(),
             ),
-            TitanToogle(
-              textHeading: 'Восстановление 220',
+            TitanToogleAccordion(
+              textHeading: text[7],
               isSwitched: false,
-              border: [1, 1, 0, 1],
+              border: Borderic.rbl(),
+              controlStyle: TitanControlStyle(),
             ),
-            TitanToogle(
-              textHeading: 'Разряд АКБ',
+            TitanToogleAccordion(
+              textHeading: text[8],
               isSwitched: true,
-              border: [1, 1, 0, 1],
+              border: Borderic.rbl(),
+              controlStyle: TitanControlStyle(),
             ),
-            TitanToogle(
-              textHeading: 'Пожарная тревога',
+            TitanToogleAccordion(
+              textHeading: text[9],
               isSwitched: true,
-              border: [1, 1, 0, 1],
+              border: Borderic.rbl(),
+              controlStyle: TitanControlStyle(),
             ),
-            TitanToogle(
-              textHeading: 'Снятие пожарной тревоги',
+            TitanToogleAccordion(
+              textHeading: text[10],
               isSwitched: true,
-              border: [1, 1, 0, 1],
+              border: Borderic.rbl(),
+              controlStyle: TitanControlStyle(),
             ),
           ],
         ),
@@ -145,14 +151,8 @@ class _TitanSettingsObjectNoGroupState extends State<TitanSettingsObjectNoGroup>
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            'Дополнительные настройки',
-            style: TextStyle(
-              fontSize: 18.0,
-              color: Color.fromRGBO(0, 0, 0, 1),
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.w400,
-              height: 0.90,
-            ),
+            heading[2],
+            style: Theme.of(context).textTheme.headline2,
           ),
         ),
         SizedBox(height: 10.0),
@@ -160,103 +160,61 @@ class _TitanSettingsObjectNoGroupState extends State<TitanSettingsObjectNoGroup>
         //Text('$abc'),
         // Text('$abc11'),
         TitanToogleAccordion(
+          background: Color.fromRGBO(233, 200, 45, 1),
+          border: Borderic.all(),
+          textHeading: text[11],
           multiAccordion: true,
           callback: callback,
-          textDialog: '111',
-          textHeading: 'Услуга Тревога Расписания',
+          controlStyle: TitanControlStyle(),
           children: [
             TitanToogleAccordion(
-              border: [1, 1, 1, 1],
+              margin: EdgeInsets.only(top: 10.0),
+              border: Borderic.all(),
               callback: callback,
-              textHeading: 'Снятие объекта с охраны',
+              textHeading: text[12],
+              multiAccordion: true,
+              controlStyle: TitanControlStyle(),
               children: [
-                TitanPickerAccordion(
-                  border: [0, 1, 1, 1],
+                TitanTimeAccordion(
+                  border: Borderic.rbl(),
                   callback11: callback11,
-                  textHeading: 'Пн-Вс',
+                  textHeading: timetable[0],
+                  isChecked: true,
+                  multiAccordion: true,
                   children: [
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Пн',
+                    TitanTimeAccordion(
+                      border: Borderic.rbl(),
+                      textHeading: timetable[1],
                       isChecked: false,
                     ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Вт',
+                    TitanTimeAccordion(
+                      border: Borderic.rbl(),
+                      textHeading: timetable[2],
                       isChecked: true,
                     ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Ср',
+                    TitanTimeAccordion(
+                      border: Borderic.rbl(),
+                      textHeading: timetable[3],
                       isChecked: true,
                     ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Чт',
+                    TitanTimeAccordion(
+                      border: Borderic.rbl(),
+                      textHeading: timetable[4],
                       isChecked: true,
                     ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Пт',
+                    TitanTimeAccordion(
+                      border: Borderic.rbl(),
+                      textHeading: timetable[5],
                       isChecked: true,
                     ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Сб',
+                    TitanTimeAccordion(
+                      border: Borderic.rbl(),
+                      textHeading: timetable[6],
                       isChecked: true,
                     ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Вс',
-                      isChecked: false,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            TitanToogleAccordion(
-              border: [1, 1, 1, 1],
-              callback: callback,
-              textHeading: 'Постановка объекта под охрану',
-              children: [
-                TitanPickerAccordion(
-                  border: [0, 1, 1, 1],
-                  callback11: callback11,
-                  textHeading: 'Пн-Вс',
-                  children: [
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Пн',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Вт',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Ср',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Чт',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Пт',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Сб',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Вс',
+                    TitanTimeAccordion(
+                      border: Borderic.rbl(),
+                      textHeading: timetable[7],
                       isChecked: false,
                     ),
                   ],
@@ -264,146 +222,52 @@ class _TitanSettingsObjectNoGroupState extends State<TitanSettingsObjectNoGroup>
               ],
             ),
             TitanToogleAccordion(
-              border: [1, 1, 1, 1],
+              margin: EdgeInsets.only(top: 10.0),
+              border: Borderic.all(),
               callback: callback,
-              textHeading: 'Постановка объекта под охрану',
+              textHeading: text[13],
+              multiAccordion: true,
               children: [
-                TitanPickerAccordion(
-                  border: [0, 1, 1, 1],
+                TitanTimeAccordion(
+                  border: Borderic.rbl(),
                   callback11: callback11,
-                  textHeading: 'Пн-Вс',
+                  textHeading: timetable[0],
+                  isChecked: false,
+                  multiAccordion: true,
                   children: [
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Пн',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Вт',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Ср',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Чт',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Пт',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Сб',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Вс',
+                    TitanTimeAccordion(
+                      border: Borderic.rbl(),
+                      textHeading: timetable[1],
                       isChecked: false,
                     ),
-                  ],
-                ),
-              ],
-            ),
-            TitanToogleAccordion(
-              border: [1, 1, 1, 1],
-              callback: callback,
-              textHeading: 'Постановка объекта под охрану',
-              children: [
-                TitanPickerAccordion(
-                  border: [0, 1, 1, 1],
-                  callback11: callback11,
-                  textHeading: 'Пн-Вс',
-                  children: [
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Пн',
+                    TitanTimeAccordion(
+                      border: Borderic.rbl(),
+                      textHeading: timetable[2],
                       isChecked: true,
                     ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Вт',
+                    TitanTimeAccordion(
+                      border: Borderic.rbl(),
+                      textHeading: timetable[3],
                       isChecked: true,
                     ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Ср',
+                    TitanTimeAccordion(
+                      border: Borderic.rbl(),
+                      textHeading: timetable[4],
                       isChecked: true,
                     ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Чт',
+                    TitanTimeAccordion(
+                      border: Borderic.rbl(),
+                      textHeading: timetable[5],
                       isChecked: true,
                     ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Пт',
+                    TitanTimeAccordion(
+                      border: Borderic.rbl(),
+                      textHeading: timetable[6],
                       isChecked: true,
                     ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Сб',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Вс',
-                      isChecked: false,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            TitanToogleAccordion(
-              border: [1, 1, 1, 1],
-              callback: callback,
-              textHeading: 'Постановка объекта под охрану',
-              children: [
-                TitanPickerAccordion(
-                  border: [0, 1, 1, 1],
-                  callback11: callback11,
-                  textHeading: 'Пн-Вс',
-                  children: [
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Пн',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Вт',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Ср',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Чт',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Пт',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Сб',
-                      isChecked: true,
-                    ),
-                    TitanPicker(
-                      border: [0, 1, 1, 1],
-                      textHeading: 'Вс',
+                    TitanTimeAccordion(
+                      border: Borderic.rbl(),
+                      textHeading: timetable[7],
                       isChecked: false,
                     ),
                   ],

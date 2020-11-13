@@ -46,8 +46,7 @@ class _TitanCheckBoxState extends State<TitanCheckBox> {
 
   @override
   void initState() {
-    isChecked = true;
-    print('isChecked11 $isChecked');
+    isChecked = widget.isChecked11!=null?widget.isChecked11: true;
     animationDuration = widget.animationDuration ?? Duration(milliseconds: 50);
     size = widget.size ?? 20.0;
     checkedColor = widget.checkedColor ?? Colors.black;
@@ -72,6 +71,7 @@ class _TitanCheckBoxState extends State<TitanCheckBox> {
     return GestureDetector(
       onTap: () {
         setState(() {
+          widget.isChecked11==true?print('true'):print('false');
         widget.callback(isChecked);
         //isChecked=widget.isChecked;
           isChecked = !isChecked;
