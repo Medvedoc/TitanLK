@@ -57,8 +57,7 @@ class TitanPickerAccordion extends StatefulWidget {
   _TitanPickerAccordionState createState() => _TitanPickerAccordionState();
 }
 
-class _TitanPickerAccordionState extends State<TitanPickerAccordion>
-    with TickerProviderStateMixin {
+class _TitanPickerAccordionState extends State<TitanPickerAccordion> with TickerProviderStateMixin {
   final GlobalKey _renderKey = GlobalKey();
   double renderKeyHeight11;
   double renderKeyPosition;
@@ -173,11 +172,7 @@ class _TitanPickerAccordionState extends State<TitanPickerAccordion>
                         width: 70.0,
                         height: 30.0,
                         decoration: new BoxDecoration(
-                          border: new Border.all(
-                              color: Color.fromRGBO(
-                                  0, 0, 0, abc != true ? 1 : 0.2),
-                              width: 1.0,
-                              style: BorderStyle.solid),
+                          border: new Border.all(color: Color.fromRGBO(0, 0, 0, abc != true ? 1 : 0.2), width: 1.0, style: BorderStyle.solid),
                         ),
                         child: Text('$toTime',
                             style: TextStyle(
@@ -185,8 +180,7 @@ class _TitanPickerAccordionState extends State<TitanPickerAccordion>
                               fontSize: 18.0,
                               fontWeight: FontWeight.w400,
                               fontStyle: FontStyle.normal,
-                              color: Color.fromRGBO(
-                                  0, 0, 0, abc != true ? 1 : 0.2),
+                              color: Color.fromRGBO(0, 0, 0, abc != true ? 1 : 0.2),
                             )),
                       ),
                     ),
@@ -213,11 +207,7 @@ class _TitanPickerAccordionState extends State<TitanPickerAccordion>
                         width: 70.0,
                         height: 30.0,
                         decoration: new BoxDecoration(
-                          border: new Border.all(
-                              color: Color.fromRGBO(
-                                  0, 0, 0, abc != true ? 1 : 0.2),
-                              width: 1.0,
-                              style: BorderStyle.solid),
+                          border: new Border.all(color: Color.fromRGBO(0, 0, 0, abc != true ? 1 : 0.2), width: 1.0, style: BorderStyle.solid),
                         ),
                         child: Text('$fromTime',
                             style: TextStyle(
@@ -225,8 +215,7 @@ class _TitanPickerAccordionState extends State<TitanPickerAccordion>
                               fontSize: 18.0,
                               fontWeight: FontWeight.w400,
                               fontStyle: FontStyle.normal,
-                              color: Color.fromRGBO(
-                                  0, 0, 0, abc != true ? 1 : 0.2),
+                              color: Color.fromRGBO(0, 0, 0, abc != true ? 1 : 0.2),
                             )),
                       ),
                     ),
@@ -244,7 +233,7 @@ class _TitanPickerAccordionState extends State<TitanPickerAccordion>
                   color: widget.contentBackgroundColor ?? Colors.white70,
                 ),
                 //width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.only(bottom:showAccordion!=false? 10.0:0.0),
+                margin: EdgeInsets.only(bottom: showAccordion != false ? 10.0 : 0.0),
                 child: SlideTransition(
                   position: offset,
                   child: Column(
@@ -420,8 +409,7 @@ class _TitanPickerAccordionState extends State<TitanPickerAccordion>
             onConfirm: (Picker picker, List value) {
               setState(() {
                 fromTimeHour = (value[0] < 10) ? "0${value[0]}" : "${value[0]}";
-                fromTimeMinute =
-                    (value[1] < 10) ? "0${value[1]}" : "${value[1]}";
+                fromTimeMinute = (value[1] < 10) ? "0${value[1]}" : "${value[1]}";
                 fromTime = '$fromTimeHour:$fromTimeMinute';
                 //  print(fromTime);
               });
@@ -432,8 +420,7 @@ class _TitanPickerAccordionState extends State<TitanPickerAccordion>
   @override
   void initState() {
     showAccordion = widget.showAccordion;
-    controllerAccordion =
-        AnimationController(duration: Duration(seconds: 2), vsync: this);
+    controllerAccordion = AnimationController(duration: Duration(seconds: 2), vsync: this);
     offset = Tween(
       begin: Offset(0, 0),
       end: Offset.zero,
@@ -469,9 +456,7 @@ class _TitanPickerAccordionState extends State<TitanPickerAccordion>
             alignment: 0.0,
             duration: Duration(milliseconds: 100),
             curve: Curves.linear,
-            alignmentPolicy: renderKeyHeight11 > screenSize
-                ? ScrollPositionAlignmentPolicy.explicit
-                : ScrollPositionAlignmentPolicy.keepVisibleAtEnd,
+            alignmentPolicy: renderKeyHeight11 > screenSize ? ScrollPositionAlignmentPolicy.explicit : ScrollPositionAlignmentPolicy.keepVisibleAtEnd,
           );
   }
 

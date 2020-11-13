@@ -56,8 +56,7 @@ class TitanToogleAccordion extends StatefulWidget {
   _TitanToogleAccordionState createState() => _TitanToogleAccordionState();
 }
 
-class _TitanToogleAccordionState extends State<TitanToogleAccordion>
-    with TickerProviderStateMixin {
+class _TitanToogleAccordionState extends State<TitanToogleAccordion> with TickerProviderStateMixin {
   final GlobalKey _renderKey = GlobalKey();
   double renderKeyHeight;
   double renderKeyPosition;
@@ -78,38 +77,28 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-              margin: widget.multiAccordion!=true?EdgeInsets.only(top:10.0):EdgeInsets.all(0.0),
+                margin: widget.multiAccordion != true ? EdgeInsets.only(top: 10.0) : EdgeInsets.all(0.0),
                 padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
                 decoration: new BoxDecoration(
                   color: widget.multiAccordion != null
                       ? Color.fromRGBO(233, 200, 45, 1)
-                      : (widget.multiAccordion == true
-                          ? Color.fromRGBO(233, 200, 45, 1)
-                          : Colors.white),
+                      : (widget.multiAccordion == true ? Color.fromRGBO(233, 200, 45, 1) : Colors.white),
                   border: new Border(
                     top: BorderSide(
                       color: Color.fromRGBO(0, 0, 0, 1),
-                      width: widget.border != null
-                          ? widget.border[0].toDouble()
-                          : 1.0,
+                      width: widget.border != null ? widget.border[0].toDouble() : 1.0,
                     ),
                     right: BorderSide(
                       color: Color.fromRGBO(0, 0, 0, 1),
-                      width: widget.border != null
-                          ? widget.border[1].toDouble()
-                          : 1.0,
+                      width: widget.border != null ? widget.border[1].toDouble() : 1.0,
                     ),
                     bottom: BorderSide(
                       color: Color.fromRGBO(0, 0, 0, 1),
-                      width: widget.border != null
-                          ? widget.border[2].toDouble()
-                          : 1.0,
+                      width: widget.border != null ? widget.border[2].toDouble() : 1.0,
                     ),
                     left: BorderSide(
                       color: Color.fromRGBO(0, 0, 0, 1),
-                      width: widget.border != null
-                          ? widget.border[3].toDouble()
-                          : 1.0,
+                      width: widget.border != null ? widget.border[3].toDouble() : 1.0,
                     ),
                   ),
                 ),
@@ -118,11 +107,13 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Text(
-                          widget.textHeading != null ? widget.textHeading : '',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.w400,
+                        Expanded(
+                          child: Text(
+                            widget.textHeading != null ? widget.textHeading : '',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
                         ),
                         widget.textDialog != null
@@ -131,10 +122,7 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
                                   margin: EdgeInsets.only(left: 10.0),
                                   padding: const EdgeInsets.all(5.0),
                                   decoration: new BoxDecoration(
-                                    border: new Border.all(
-                                        color: Color.fromRGBO(101, 91, 0, 0.5),
-                                        width: 2.0,
-                                        style: BorderStyle.solid),
+                                    border: new Border.all(color: Color.fromRGBO(101, 91, 0, 0.5), width: 2.0, style: BorderStyle.solid),
                                     shape: BoxShape.circle,
                                     color: Color.fromRGBO(254, 229, 0, 1),
                                   ),
@@ -150,27 +138,18 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
                                     builder: (context) {
                                       return Dialog(
                                         shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
+                                          borderRadius: BorderRadius.circular(20),
                                         ),
                                         elevation: 8,
                                         child: Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 10.0, vertical: 16.0),
+                                          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 16.0),
                                           width: double.infinity,
                                           child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.center,
                                             mainAxisSize: MainAxisSize.min,
                                             children: <Widget>[
-                                              Padding(
-                                                  padding: EdgeInsets.all(10),
-                                                  child: Text(
-                                                      widget.textDialog != null
-                                                          ? widget.textDialog
-                                                          : '')),
+                                              Padding(padding: EdgeInsets.all(10), child: Text(widget.textDialog != null ? widget.textDialog : '')),
                                             ],
                                           ),
                                         ),
@@ -197,9 +176,7 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
 
                         toggleColor: widget.multiAccordion != null
                             ? Color.fromRGBO(233, 200, 45, 1)
-                            : (widget.multiAccordion == true
-                                ? Color.fromRGBO(233, 200, 45, 1)
-                                : Colors.white),
+                            : (widget.multiAccordion == true ? Color.fromRGBO(233, 200, 45, 1) : Colors.white),
                         // toggleColor: Color.fromRGBO(233, 200, 45, 1),
                         width: 40.0,
                         height: 20.0,
@@ -220,7 +197,12 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
                         color: widget.contentBackgroundColor ?? Colors.white70,
                       ),
                       //width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.only(bottom:showAccordion!=false? widget.multiAccordion!=null?10.0:0.0:0.0),
+                      margin: EdgeInsets.only(
+                          bottom: showAccordion != false
+                              ? widget.multiAccordion != null
+                                  ? 10.0
+                                  : 0.0
+                              : 0.0),
                       child: SlideTransition(
                         position: offset,
                         child: Column(
@@ -239,8 +221,7 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
   @override
   void initState() {
     showAccordion = widget.showAccordion;
-    controllerAccordion =
-        AnimationController(duration: Duration(seconds: 2), vsync: this);
+    controllerAccordion = AnimationController(duration: Duration(seconds: 2), vsync: this);
     offset = Tween(
       begin: Offset(0, 0),
       end: Offset.zero,
@@ -273,9 +254,7 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
             alignment: 10.0,
             duration: Duration(milliseconds: 100),
             curve: Curves.linear,
-            alignmentPolicy: renderKeyHeight > screenSize
-                ? ScrollPositionAlignmentPolicy.explicit
-                : ScrollPositionAlignmentPolicy.keepVisibleAtEnd,
+            alignmentPolicy: renderKeyHeight > screenSize ? ScrollPositionAlignmentPolicy.explicit : ScrollPositionAlignmentPolicy.keepVisibleAtEnd,
           );
   }
 

@@ -9,10 +9,16 @@ import 'package:flutter_image/stubPage/TitanStubPage1.dart';
 import 'package:flutter_image/stubPage/TitanStubPage2.dart';
 import 'package:flutter_image/stubPage/TitanStubPage3.dart';
 import 'package:flutter_image/stubPage/TitanStubPage4.dart';
+//import 'package:flutter_image/widgets/OpenObjecktTable.dart';
 import 'package:flutter_image/widgets/extendedMenu.dart';
 import 'package:flutter_image/widgets/m11-2.dart';
 import 'package:flutter_image/widgets/m11-3.dart';
+import 'package:flutter_image/widgets/m11-4-2.dart';
+import 'package:flutter_image/widgets/m11-4.dart';
+import 'package:flutter_image/widgets/m11-5.dart';
+import 'package:flutter_image/widgets/m11-6.dart';
 import 'package:flutter_image/widgets/m11.dart';
+import 'package:flutter_image/widgets/m30.dart';
 import 'package:flutter_image/widgets/m4-1.dart';
 import 'package:flutter_image/widgets/n_16.dart';
 import 'package:flutter_image/widgets/n_2.dart';
@@ -60,13 +66,7 @@ class MainPage extends StatelessWidget {
             decoration: new BoxDecoration(
               color: Colors.white,
               borderRadius: new BorderRadius.all(Radius.circular(20.0)),
-              boxShadow: [
-                new BoxShadow(
-                    color: Color.fromRGBO(0, 0, 0, 0.15),
-                    offset: new Offset(0.0, 4.0),
-                    blurRadius: 4.0,
-                    spreadRadius: 2.0)
-              ],
+              boxShadow: [new BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.15), offset: new Offset(0.0, 4.0), blurRadius: 4.0, spreadRadius: 2.0)],
             ),
             margin: EdgeInsets.symmetric(horizontal: 15.0, vertical: 18.0),
             padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 16.0),
@@ -123,8 +123,19 @@ class MainPage extends StatelessWidget {
         return M11_3();
       case MainState.n_16:
         return N16();
+
+      case MainState.m11_4:
+        return M11_4();
+      case MainState.m11_5:
+        return M11_5();
+      case MainState.m11_6:
+        return M11_6();
+      case MainState.m11_4_2:
+        return M11_4_2();
       case MainState.m4_1:
         return TitanChooseContract();
+      case MainState.m30:
+        return M30();
       default:
         return ExtendedMenuWidget();
     }
