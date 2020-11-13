@@ -1,18 +1,21 @@
-import 'dart:math';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_image/control/TitanControlStyle.dart';
 import 'package:flutter_image/control/TitanIconShadow.dart';
-import 'package:flutter_shine/flutter_shine.dart';
 import 'package:icon_shadow/icon_shadow.dart';
 
 class TitanButton2 extends StatefulWidget {
   final TitanControlStyle controlStyle;
 
   final IconData iconButton;
-  final IconData iconText;
+  final IconData iconTextLeft;
+  final IconData iconTextRight;
+  final double iconSize;
+  final String headButton;
   final bool timer;
+  final TextStyle textStyle;
+  final EdgeInsets margin;
 
   final double width;
   final double height;
@@ -30,7 +33,6 @@ class TitanButton2 extends StatefulWidget {
   final Function() pressTapDown;
   final Function() pressTapUp;
   final int count;
-  final String headButton;
   final bool variable;
   final Color buttonColor;
   final String types;
@@ -38,7 +40,12 @@ class TitanButton2 extends StatefulWidget {
   TitanButton2({
     this.controlStyle,
     this.iconButton,
-    this.iconText,
+    this.iconSize,
+    this.iconTextLeft,
+    this.iconTextRight,
+    this.headButton,
+    this.textStyle,
+    this.margin,
     this.timer,
     this.width,
     this.height,
@@ -54,7 +61,6 @@ class TitanButton2 extends StatefulWidget {
     this.pressTapDown,
     this.pressTapUp,
     this.count,
-    this.headButton,
     this.variable,
     this.textColor,
     this.buttonColor,
@@ -90,7 +96,7 @@ class _TitanButtonState extends State<TitanButton2> {
         alignment: Alignment.center,
         key: _renderKey,
         width: widget.width != null ? widget.width : renderWidth,
-        margin: EdgeInsets.symmetric(
+        margin: widget.margin!=null? widget.margin:EdgeInsets.symmetric(
             horizontal: widget.controlStyle.buttonMarginHorizontal),
         child: AnimatedContainer(
           height: widget.height != null
@@ -206,8 +212,8 @@ class _TitanButtonState extends State<TitanButton2> {
                                         color: _iconColor,
                                         size: 26.0,
                                       ),
-  showShadow:true,
-  shadowColor: Colors.black,
+                                      showShadow: true,
+                                      shadowColor: Colors.black,
                                     )
                                   : SizedBox(),
                             ),
@@ -231,7 +237,7 @@ class _TitanButtonState extends State<TitanButton2> {
                                 textAlign: TextAlign.center,
                                 text: TextSpan(
                                   style: TextStyle(
-                                    height: widget.controlStyle.textHeight,
+                                    //height: widget.controlStyle.textHeight,
                                     color: widget.textColor != null
                                         ? widget.textColor
                                         : _textColor,
@@ -244,7 +250,7 @@ class _TitanButtonState extends State<TitanButton2> {
                                         : widget.controlStyle.letterSpacingUp,
                                   ),
                                   children: [
-                                    widget.iconText.runtimeType != Null
+                                    widget.iconTextLeft.runtimeType != Null
                                         ? WidgetSpan(
                                             alignment:
                                                 PlaceholderAlignment.middle,
@@ -253,9 +259,9 @@ class _TitanButtonState extends State<TitanButton2> {
                                                   EdgeInsets.only(right: 5.0),
                                               child: IconShadowWidget(
                                                 Icon(
-                                                  widget.iconText,
+                                                  widget.iconTextLeft,
                                                   color: _iconColor,
-                                                  size: widget
+                                                  size: widget.iconSize!=null?widget.iconSize: widget
                                                       .controlStyle.iconSize,
                                                 ),
                                                 shadowColor: widget
@@ -273,21 +279,23 @@ class _TitanButtonState extends State<TitanButton2> {
                                       style: TextStyle(
                                         shadows: <Shadow>[
                                           Shadow(
-                                            offset: Offset(2.0, 2.0),
+                                            offset: Offset(1.0, 1.0),
                                             blurRadius: 2.0,
                                             color: Colors.grey.shade700,
                                           ),
                                         ],
-                                        height: widget.controlStyle.textHeight,
+                                        //height: widget.controlStyle.textHeight,
                                         color: widget.textColor != null
                                             ? widget.textColor
                                             : _textColor,
                                         fontFamily:
                                             widget.controlStyle.fontFamily,
-                                        fontSize:
-                                            widget.controlStyle.textFontSize,
-                                        fontWeight:
-                                            widget.controlStyle.fontWeight,
+                                        fontSize: widget.textStyle != null
+                                            ? widget.textStyle.fontSize
+                                            : widget.controlStyle.textFontSize,
+                                        fontWeight: widget.textStyle != null
+                                            ? widget.textStyle.fontWeight
+                                            : widget.controlStyle.fontWeight,
                                         fontStyle:
                                             widget.controlStyle.fontStyle,
                                         letterSpacing: _click
@@ -297,6 +305,26 @@ class _TitanButtonState extends State<TitanButton2> {
                                                 .controlStyle.letterSpacingUp,
                                       ),
                                     ),
+                                    widget.iconTextRight.runtimeType != Null
+                                        ? WidgetSpan(
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 1.5),
+                                              child: IconShadowWidget(
+                                                Icon(
+                                                  widget.iconTextRight,
+                                                  color: _iconColor,
+                                                  size: widget.iconSize!=null?widget.iconSize: widget
+                                                      .controlStyle.iconSize,
+                                                ),
+                                                shadowColor: widget
+                                                    .controlStyle.iconShadow,
+                                                showShadow: widget.controlStyle
+                                                    .iconShadowVisible,
+                                              ),
+                                            ),
+                                          )
+                                        : WidgetSpan(child: SizedBox()),
                                   ],
                                 ),
                               ),
@@ -425,8 +453,8 @@ class _TitanButtonState extends State<TitanButton2> {
                                         widget.count.toString(),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          height:
-                                              widget.controlStyle.counterHeight,
+                                          //height:
+                                          //    widget.controlStyle.counterHeight,
                                           color:
                                               widget.controlStyle.counterColor,
                                           fontFamily:

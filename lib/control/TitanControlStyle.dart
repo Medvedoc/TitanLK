@@ -80,10 +80,8 @@ class TitanControlStyle {
   FontWeight fontWeight = FontWeight.w500;
   FontStyle fontStyle = FontStyle.normal;
   double counterFontSize = 14.0;
-  double counterHeight = 0.95;
   Color counterColor = Color.fromRGBO(255, 255, 255, 1);
   double textFontSize = 16.0;
-  double textHeight = 1.20;
   Color textColorDark = Color.fromRGBO(33, 32, 30, 1);
   Color textColorWhite = Color.fromRGBO(255, 255, 255, 1);
   Color textShadowColor = Color.fromRGBO(118, 106, 2, 0.2);

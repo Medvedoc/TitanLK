@@ -61,7 +61,17 @@ class _TitanSettingsObjectNoGroupState
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return SingleChildScrollView(
+          child: Container(
+            decoration: new BoxDecoration(
+              color: Colors.white,
+              borderRadius: new BorderRadius.all(Radius.circular(20.0)),
+              boxShadow: [new BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.15), offset: new Offset(0.0, 4.0), blurRadius: 4.0, spreadRadius: 2.0)],
+            ),
+            margin: EdgeInsets.symmetric(horizontal: 15.0, vertical: 18.0),
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 16.0),
+            width: double.infinity,
+            child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
@@ -86,7 +96,7 @@ class _TitanSettingsObjectNoGroupState
           controlStyle: TitanControlStyle(),
           children: [
             TitanToogleAccordion(
-              border: Borderic.rbl(color: Colors.red, width: 20.0),
+              border: Borderic.rbl(),
               textHeading: text[1],
               isSwitched: true,
               controlStyle: TitanControlStyle(),
@@ -94,7 +104,7 @@ class _TitanSettingsObjectNoGroupState
             TitanToogleAccordion(
               textHeading: text[2],
               isSwitched: true,
-              border: Borderic.all(),
+              border: Borderic.rbl(),
               controlStyle: TitanControlStyle(),
             ),
             TitanToogleAccordion(
@@ -278,6 +288,8 @@ class _TitanSettingsObjectNoGroupState
         ),
         SizedBox(height: 30.0),
       ],
-    );
+    ),
+          ),
+        );
   }
 }

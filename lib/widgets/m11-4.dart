@@ -31,64 +31,89 @@ class _M11_4State extends State<M11_4> {
     titanButtonStandart.showShadow = false;
     titanButtonStandart.fontWeight400 = FontWeight.bold;
     titanButtonStandart.colors[4] = Colors.red;
-    return Column(
-      children: [
-        Center(child: Text("Создание Пользователя".toUpperCase(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.01,
-        ),
-        Align(alignment: Alignment.centerLeft, child: Text("Объекты пользователя", style: TextStyle(fontSize: 20))),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.01,
-        ),
-        TitanButton(
-          types: Types.yellow,
-          headButton: "УДАЛИТЬ ТЕКУЩИЙ ПРОФИЛЬ",
-          controlStyle: TitanControlStyle(),
-          width: MediaQuery.of(context).size.width * 0.9,
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.03,
-        ),
-        TitanToogleAccordion(
-          multiAccordion: true,
-          textHeading: 'Подключение объектов для удалённого администрирования и контроля ',
-          textStyle: TextStyle(
-            fontSize: 1,
-          ),
-          
-          callback: callback,
-          children: [
-            TitanToogle(
-              textHeading: 'Может создавать других пользователей',
-              isSwitched: false,
-              border: Borderic.all(),
-            ),
+    return SingleChildScrollView(
+      child: Container(
+        decoration: new BoxDecoration(
+          color: Colors.white,
+          borderRadius: new BorderRadius.all(Radius.circular(20.0)),
+          boxShadow: [
+            new BoxShadow(
+                color: Color.fromRGBO(0, 0, 0, 0.15),
+                offset: new Offset(0.0, 4.0),
+                blurRadius: 4.0,
+                spreadRadius: 2.0)
           ],
         ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.02,
-        ),
-        Row(
+        margin: EdgeInsets.symmetric(horizontal: 15.0, vertical: 18.0),
+        padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 16.0),
+        width: double.infinity,
+        child: Column(
           children: [
-            Expanded(
-              child: Text("Объекты удалённого администрирования", style: TextStyle(fontSize: 20)),
+            Center(
+                child: Text("Создание Пользователя".toUpperCase(),
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.01,
             ),
-            SizedBox(width: MediaQuery.of(context).size.width * 0.1),
-            Text('''Добавлено 25 
+            Align(
+                alignment: Alignment.centerLeft,
+                child: Text("Объекты пользователя",
+                    style: TextStyle(fontSize: 20))),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.01,
+            ),
+            TitanButton(
+              types: Types.yellow,
+              headButton: "УДАЛИТЬ ТЕКУЩИЙ ПРОФИЛЬ",
+              controlStyle: TitanControlStyle(),
+              width: MediaQuery.of(context).size.width * 0.9,
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.03,
+            ),
+            TitanToogleAccordion(
+              multiAccordion: true,
+              textHeading:
+                  'Подключение объектов для удалённого администрирования и контроля ',
+              textStyle: TextStyle(
+                fontSize: 1,
+              ),
+              callback: callback,
+              children: [
+                TitanToogle(
+                  textHeading: 'Может создавать других пользователей',
+                  isSwitched: false,
+                  border: Borderic.all(),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Text("Объекты удалённого администрирования",
+                      style: TextStyle(fontSize: 20)),
+                ),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.1),
+                Text('''Добавлено 25 
   объектов'''),
+              ],
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            TitanButton(
+              types: Types.yellow,
+              headButton: "ДАЛЕЕ",
+              controlStyle: TitanControlStyle(),
+              width: MediaQuery.of(context).size.width * 0.9,
+            ),
           ],
         ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.02,
-        ),
-        TitanButton(
-          types: Types.yellow,
-          headButton: "ДАЛЕЕ",
-          controlStyle: TitanControlStyle(),
-          width: MediaQuery.of(context).size.width * 0.9,
-        ),
-      ],
+      ),
     );
   }
 }

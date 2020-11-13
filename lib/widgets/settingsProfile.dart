@@ -117,106 +117,124 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
     titanButtonStandart2.intensity = 2;
     titanButtonStandart2.showShadow = true;
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 10.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'Настройка профиля'.toUpperCase(),
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    color: Color.fromRGBO(0, 0, 0, 1),
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w600,
-                    height: 0.90,
-                  ),
-                ),
-                SizedBox(height: 40.0),
-                _buildPhone(),
-                SizedBox(height: 40.0),
-                _buildFamily(),
-                SizedBox(height: 40.0),
-                _buildName(),
-                SizedBox(height: 40.0),
-                _buildCompany(),
-                SizedBox(height: 40.0),
-                _buildPosition(),
-                SizedBox(height: 40.0),
-                _buildEmail(),
-                SizedBox(height: 30.0),
-                _pushToogle(),
-                _pinToogle(),
-                SizedBox(height: 30.0),
-                TitanButton(
-                  pressTap: () => pressSave(),
-                  headButton: "Сохранить",
-                  controlStyle: TitanControlStyle(),
-                ),
-                SizedBox(height: 50.0),
-                Text(
-                  'Фотография'.toUpperCase(),
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    color: Color.fromRGBO(0, 0, 0, 1),
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w600,
-                    height: 0.90,
-                  ),
-                ),
-                SizedBox(height: 15.0),
-                getImageWidget(),
-                SizedBox(height: 10.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.min,
+    return SingleChildScrollView(
+      child: Container(
+        decoration: new BoxDecoration(
+          color: Colors.white,
+          borderRadius: new BorderRadius.all(Radius.circular(20.0)),
+          boxShadow: [
+            new BoxShadow(
+                color: Color.fromRGBO(0, 0, 0, 0.15),
+                offset: new Offset(0.0, 4.0),
+                blurRadius: 4.0,
+                spreadRadius: 2.0)
+          ],
+        ),
+        margin: EdgeInsets.symmetric(horizontal: 15.0, vertical: 18.0),
+        padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 16.0),
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 10.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: TitanButton(
-                        pressTap: () => getImage(ImageSource.camera),
-                        icon: Icons.camera_alt_outlined,
-                        headButton: "Фото",
-                        controlStyle: TitanControlStyle(),
-                        types: Types.yellow,
+                    Text(
+                      'Настройка профиля'.toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: Color.fromRGBO(0, 0, 0, 1),
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w600,
+                        height: 0.90,
                       ),
                     ),
-                    SizedBox(width: 15.0),
-                    Expanded(
-                      flex: 1,
-                      child: TitanButton(
-                        pressTap: () => getImage(ImageSource.gallery),
-                        icon: Icons.image_outlined,
-                        headButton: "Галерея",
-                        controlStyle: TitanControlStyle(),
-                        types: Types.yellow,
+                    SizedBox(height: 40.0),
+                    _buildPhone(),
+                    SizedBox(height: 40.0),
+                    _buildFamily(),
+                    SizedBox(height: 40.0),
+                    _buildName(),
+                    SizedBox(height: 40.0),
+                    _buildCompany(),
+                    SizedBox(height: 40.0),
+                    _buildPosition(),
+                    SizedBox(height: 40.0),
+                    _buildEmail(),
+                    SizedBox(height: 30.0),
+                    _pushToogle(),
+                    _pinToogle(),
+                    SizedBox(height: 30.0),
+                    TitanButton(
+                      pressTap: () => pressSave(),
+                      headButton: "Сохранить",
+                      controlStyle: TitanControlStyle(),
+                    ),
+                    SizedBox(height: 50.0),
+                    Text(
+                      'Фотография'.toUpperCase(),
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: Color.fromRGBO(0, 0, 0, 1),
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w600,
+                        height: 0.90,
                       ),
                     ),
+                    SizedBox(height: 15.0),
+                    getImageWidget(),
+                    SizedBox(height: 10.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 1,
+                          child: TitanButton(
+                            pressTap: () => getImage(ImageSource.camera),
+                            icon: Icons.camera_alt_outlined,
+                            headButton: "Фото",
+                            controlStyle: TitanControlStyle(),
+                            types: Types.yellow,
+                          ),
+                        ),
+                        SizedBox(width: 15.0),
+                        Expanded(
+                          flex: 1,
+                          child: TitanButton(
+                            pressTap: () => getImage(ImageSource.gallery),
+                            icon: Icons.image_outlined,
+                            headButton: "Галерея",
+                            controlStyle: TitanControlStyle(),
+                            types: Types.yellow,
+                          ),
+                        ),
+                      ],
+                    ),
+                    (_inProcess)
+                        ? Container(
+                            color: Colors.white,
+                            height: MediaQuery.of(context).size.height * 0.95,
+                            child: Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          )
+                        : Center(),
+                    SizedBox(height: 15.0),
                   ],
                 ),
-                (_inProcess)
-                    ? Container(
-                        color: Colors.white,
-                        height: MediaQuery.of(context).size.height * 0.95,
-                        child: Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      )
-                    : Center(),
-                SizedBox(height: 15.0),
-              ],
+              ),
             ),
-          ),
+            _logToogle(),
+            SizedBox(height: 15.0),
+          ],
         ),
-        _logToogle(),
-        SizedBox(height: 15.0),
-      ],
+      ),
     );
   }
 

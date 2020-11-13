@@ -28,26 +28,44 @@ class _TitanChooseContractState extends State<TitanChooseContract> {
           .toList();
     });
   }
-@override
+
+  @override
   void initState() {
     super.initState();
-            newDataList.sort();
+    newDataList.sort();
   }
+
   final List<int> entries = <int>[112348, 234543, 567345, 345432, 435675];
   final List<int> colorCodes = <int>[600, 500, 100, 200, 300];
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      FlatButton(
-        child: Text('data'),
-        onPressed: () {
-          setState(() {
-            _reverse = !_reverse;
-            newDataList.sort();
-          });
-        },
-      ),
-      /*ListView.separated(
+    return SingleChildScrollView(
+      child: Container(
+        decoration: new BoxDecoration(
+          color: Colors.white,
+          borderRadius: new BorderRadius.all(Radius.circular(20.0)),
+          boxShadow: [
+            new BoxShadow(
+                color: Color.fromRGBO(0, 0, 0, 0.15),
+                offset: new Offset(0.0, 4.0),
+                blurRadius: 4.0,
+                spreadRadius: 2.0)
+          ],
+        ),
+        margin: EdgeInsets.symmetric(horizontal: 15.0, vertical: 18.0),
+        padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 16.0),
+        width: double.infinity,
+        child: Column(children: <Widget>[
+          FlatButton(
+            child: Text('data'),
+            onPressed: () {
+              setState(() {
+                _reverse = !_reverse;
+                newDataList.sort();
+              });
+            },
+          ),
+          /*ListView.separated(
         shrinkWrap: true,
         padding: const EdgeInsets.all(8),
         itemCount: entries.length,
@@ -61,41 +79,49 @@ class _TitanChooseContractState extends State<TitanChooseContract> {
         separatorBuilder: (BuildContext context, int index) => const Divider(),
       ),*/
 
-      Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: TextField(
-          controller: _textController,
-          decoration: InputDecoration(
-            hintText: 'Search Here...',
-          ),
-          onChanged: onItemChanged,
-        ),
-      ),
-      ListView.separated(
-        reverse: _reverse,
-        shrinkWrap: true,
-        padding: const EdgeInsets.all(8),
-        itemCount: newDataList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            height: 50,
-            //color: Colors.amber[colorCodes[index]],
-            child: Center(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                mainAxisSize: MainAxisSize.max,
-                
-                children: [
-                Flexible(flex:1, child: Text(newDataList[index].toString())),
-                Flexible(flex:2, child: Text(newDataList2[index].toString())),
-                Flexible(flex:1, child: Text(newDataList3[index].toString())),
-              ]),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: TextField(
+              controller: _textController,
+              decoration: InputDecoration(
+                hintText: 'Search Here...',
+              ),
+              onChanged: onItemChanged,
             ),
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) => const Divider(),
+          ),
+          ListView.separated(
+            reverse: _reverse,
+            shrinkWrap: true,
+            padding: const EdgeInsets.all(8),
+            itemCount: newDataList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                height: 50,
+                //color: Colors.amber[colorCodes[index]],
+                child: Center(
+                  child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Flexible(
+                            flex: 1,
+                            child: Text(newDataList[index].toString())),
+                        Flexible(
+                            flex: 2,
+                            child: Text(newDataList2[index].toString())),
+                        Flexible(
+                            flex: 1,
+                            child: Text(newDataList3[index].toString())),
+                      ]),
+                ),
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) =>
+                const Divider(),
+          ),
+        ]),
       ),
-    ]);
+    );
   }
 }

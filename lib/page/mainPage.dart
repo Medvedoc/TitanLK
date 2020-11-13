@@ -61,7 +61,7 @@ class MainPage extends StatelessWidget {
             ),
           ),
         ),
-        SingleChildScrollView(
+        /*SingleChildScrollView(
           child: Container(
             decoration: new BoxDecoration(
               color: Colors.white,
@@ -70,10 +70,11 @@ class MainPage extends StatelessWidget {
             ),
             margin: EdgeInsets.symmetric(horizontal: 15.0, vertical: 18.0),
             padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 16.0),
-            child: _selectBody(context, state),
             width: double.infinity,
+            child: _selectBody(context, state),
           ),
-        ),
+        ),*/
+         _selectBody(context, state),
       ],
     );
   }

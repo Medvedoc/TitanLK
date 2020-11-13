@@ -21,87 +21,106 @@ class _M11_6State extends State<M11_6> {
     titanButtonStandart.showShadow = false;
     titanButtonStandart.fontWeight400 = FontWeight.bold;
     titanButtonStandart.colors[4] = Colors.red;
-    return Column(
-      children: [
-        Text("""КОПИРОВАНИЕ НАСТРОЕК ТЕКУЩЕГО 
-    ПРОФИЛЯ ДЛЯ СОЗДАНИЯ НОВОГО
-                     ПОЛЬЗОВАТЕЛЯ""", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        TextField(
-          decoration: InputDecoration(
-            labelText: "+7 (921) 987-6543",
-          ),
+    return SingleChildScrollView(
+      child: Container(
+        decoration: new BoxDecoration(
+          color: Colors.white,
+          borderRadius: new BorderRadius.all(Radius.circular(20.0)),
+          boxShadow: [
+            new BoxShadow(
+                color: Color.fromRGBO(0, 0, 0, 0.15),
+                offset: new Offset(0.0, 4.0),
+                blurRadius: 4.0,
+                spreadRadius: 2.0)
+          ],
         ),
-        TextField(
-          decoration: InputDecoration(
-            labelText: "Фамилия",
-            helperText: "Тут отображаются ошибки",
-          ),
-        ),
-        TextField(
-          decoration: InputDecoration(
-            labelText: "Имя",
-            helperText: "Тут отображаются ошибки",
-          ),
-        ),
-        TextField(
-          decoration: InputDecoration(
-            labelText: "E-mail",
-            helperText: "Тут отображаются ошибки",
-          ),
-        ),
-        TextField(
-          decoration: InputDecoration(
-            labelText: "Тип пользователя",
-            helperText: "Тут отображаются ошибки",
-          ),
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.02,
-        ),
-        Container(
-          decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(40.0),
-                topRight: Radius.circular(40.0),
-                bottomLeft: Radius.circular(40.0),
-                bottomRight: Radius.circular(40.0),
-              )),
-          height: MediaQuery.of(context).size.height * 0.2,
-          width: MediaQuery.of(context).size.width * 0.9,
-          child: Row(
-            children: [
-              Icon(
-                Icons.add_location,
-                size: 65,
-              ),
-              Expanded(
-                  child:
-                      Text("После переноса настроек текущего профиля на новый номер телефона, аккаунт на предыдущем номере телефона деактивируется")),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.02,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        margin: EdgeInsets.symmetric(horizontal: 15.0, vertical: 18.0),
+        padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 16.0),
+        width: double.infinity,
+        child: Column(
           children: [
-            TitanButton(
-              controlStyle: TitanControlStyle(),
-              width: MediaQuery.of(context).size.width * 0.35,
-              height: MediaQuery.of(context).size.height * 0.07,
-              headButton: "ОТМЕНИТЬ",
+            Text("""КОПИРОВАНИЕ НАСТРОЕК ТЕКУЩЕГО 
+    ПРОФИЛЯ ДЛЯ СОЗДАНИЯ НОВОГО
+                     ПОЛЬЗОВАТЕЛЯ""",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            TextField(
+              decoration: InputDecoration(
+                labelText: "+7 (921) 987-6543",
+              ),
             ),
-            TitanButton(
-              controlStyle: TitanControlStyle(),
-              width: MediaQuery.of(context).size.width * 0.35,
-              height: MediaQuery.of(context).size.height * 0.07,
-              headButton: "ОК",
+            TextField(
+              decoration: InputDecoration(
+                labelText: "Фамилия",
+                helperText: "Тут отображаются ошибки",
+              ),
+            ),
+            TextField(
+              decoration: InputDecoration(
+                labelText: "Имя",
+                helperText: "Тут отображаются ошибки",
+              ),
+            ),
+            TextField(
+              decoration: InputDecoration(
+                labelText: "E-mail",
+                helperText: "Тут отображаются ошибки",
+              ),
+            ),
+            TextField(
+              decoration: InputDecoration(
+                labelText: "Тип пользователя",
+                helperText: "Тут отображаются ошибки",
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40.0),
+                    topRight: Radius.circular(40.0),
+                    bottomLeft: Radius.circular(40.0),
+                    bottomRight: Radius.circular(40.0),
+                  )),
+              height: MediaQuery.of(context).size.height * 0.2,
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.add_location,
+                    size: 65,
+                  ),
+                  Expanded(
+                      child: Text(
+                          "После переноса настроек текущего профиля на новый номер телефона, аккаунт на предыдущем номере телефона деактивируется")),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                TitanButton(
+                  controlStyle: TitanControlStyle(),
+                  width: MediaQuery.of(context).size.width * 0.35,
+                  height: MediaQuery.of(context).size.height * 0.07,
+                  headButton: "ОТМЕНИТЬ",
+                ),
+                TitanButton(
+                  controlStyle: TitanControlStyle(),
+                  width: MediaQuery.of(context).size.width * 0.35,
+                  height: MediaQuery.of(context).size.height * 0.07,
+                  headButton: "ОК",
+                ),
+              ],
             ),
           ],
         ),
-      ],
+      ),
     );
   }
 }

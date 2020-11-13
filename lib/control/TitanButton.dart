@@ -206,7 +206,7 @@ class _TitanButtonState extends State<TitanButton> {
                                     textAlign: TextAlign.center,
                                     text: TextSpan(
                                       style: TextStyle(
-                                        height: widget.controlStyle.textHeight,
+                                        //height: widget.controlStyle.textHeight,
                                         color: widget.textColor != null
                                             ? widget.textColor
                                             : _textColor,
@@ -255,8 +255,8 @@ class _TitanButtonState extends State<TitanButton> {
                                               ? widget.headButton.toUpperCase()
                                               : ""),
                                           style: TextStyle(
-                                            height:
-                                                widget.controlStyle.textHeight,
+                                            //height:
+                                            //    widget.controlStyle.textHeight,
                                             color: widget.textColor != null
                                                 ? widget.textColor
                                                 : _textColor,
@@ -369,8 +369,8 @@ class _TitanButtonState extends State<TitanButton> {
                                             widget.count.toString(),
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              height: widget
-                                                  .controlStyle.counterHeight,
+                                             // height: widget
+                                              //    .controlStyle.counterHeight,
                                               color: widget
                                                   .controlStyle.counterColor,
                                               fontFamily: widget
