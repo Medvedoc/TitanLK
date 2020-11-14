@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_image/control/TitanCheckbox.dart';
 import 'package:flutter_image/control/TitanControlStyle.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
@@ -20,6 +21,8 @@ class TitanToogleAccordion extends StatefulWidget {
     this.renderKeyHeight,
     this.callback,
     this.showAccordion = false,
+    this.isChecked,
+    this.types,
   });
   final TitanControlStyle controlStyle;
   final Color background;
@@ -31,12 +34,14 @@ class TitanToogleAccordion extends StatefulWidget {
   final bool isSwitched;
   final bool multiAccordion;
   final TextStyle textStyle;
+  final bool isChecked;
 
   final String title;
   final double renderKeyHeight;
   final Function(double) callback;
   final List<Widget> children;
   final bool showAccordion;
+  final String types;
 
   @override
   _TitanToogleAccordionState createState() => _TitanToogleAccordionState();
@@ -44,6 +49,16 @@ class TitanToogleAccordion extends StatefulWidget {
 
 class _TitanToogleAccordionState extends State<TitanToogleAccordion>
     with TickerProviderStateMixin {
+
+      
+  int selectedRadio;
+
+  setSelectedRadio(int val) {
+    setState(() {
+      selectedRadio = val;
+    });
+  }
+
   final GlobalKey _renderKey = GlobalKey();
   double renderKeyHeight;
   double renderKeyPosition;
@@ -56,6 +71,14 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
   Border borderAll = Borderic.all();
   EdgeInsets _padding = EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0);
   EdgeInsets _margin = EdgeInsets.symmetric(horizontal: 0.0);
+
+  bool abc = false;
+
+  callback(heightBlock) {
+    setState(() {
+      abc = heightBlock;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +142,6 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
                                       size: widget.controlStyle.sizeIconDialog,
                                     ),
                                   ),
-
                                   onTap: () {
                                     showDialog(
                                       context: context,
@@ -156,31 +178,55 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
                         Flexible(flex: 1, child: SizedBox()),
                       ],
                     ),
-                    Container(
-                      alignment: Alignment.centerRight,
-                      child: FlutterSwitch(
-                        value: widget.isSwitched != null
-                            ? isSwitched != widget.isSwitched
-                            : isSwitched,
-                        onToggle: (val) {
-                          setState(() {
-                            if (widget.isSwitched == null) {
-                              toggleAccordion();
-                            }
-                            isSwitched = !isSwitched;
-                          });
-                        },
-                        toggleColor: widget.background != null
-                            ? widget.background
-                            : Colors.white,
-                        activeColor: Colors.black,
-                        inactiveColor: Color.fromRGBO(101, 91, 0, 0.4),
-                        width: 40.0,
-                        height: 20.0,
-                        toggleSize: 18.0,
-                        borderRadius: 20.0,
-                        padding: 2.0,
-                      ),
+                    Stack(
+                      children: [
+                        widget.types != null && widget.types == 'checkbox'
+                            ? Container(
+                                alignment: Alignment.centerRight,
+                                child: TitanCheckBox(
+                                  abc: abc,
+                                  callback: callback,
+                                  isChecked11: widget.isChecked != null
+                                      ? widget.isChecked
+                                      : true,
+                                  onTap: (selected) {
+                                    if (widget.multiAccordion != null) {
+                                      toggleAccordion();
+                                    }
+                                  },
+                                ),
+                              )
+                            : SizedBox(),
+                        widget.types != null && widget.types == 'toogle'
+                            ? Container(
+                                alignment: Alignment.centerRight,
+                                child: FlutterSwitch(
+                                  value: widget.isSwitched != null
+                                      ? isSwitched != widget.isSwitched
+                                      : isSwitched,
+                                  onToggle: (val) {
+                                    setState(() {
+                                      if (widget.isSwitched == null) {
+                                        toggleAccordion();
+                                      }
+                                      isSwitched = !isSwitched;
+                                    });
+                                  },
+                                  toggleColor: widget.background != null
+                                      ? widget.background
+                                      : Colors.white,
+                                  activeColor: Colors.black,
+                                  inactiveColor:
+                                      Color.fromRGBO(101, 91, 0, 0.4),
+                                  width: 40.0,
+                                  height: 20.0,
+                                  toggleSize: 18.0,
+                                  borderRadius: 20.0,
+                                  padding: 2.0,
+                                ),
+                              )
+                            : SizedBox(),
+                      ],
                     ),
                   ],
                 ),

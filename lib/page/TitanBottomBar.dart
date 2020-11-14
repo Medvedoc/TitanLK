@@ -100,6 +100,32 @@ getCurrentButton(int state) {
       return 0;
     case MainState.m2:
       return 0;
+    case MainState.m3_1:
+      return 0;
+    case MainState.n_2:
+      return 0;
+    case MainState.user_managment:
+      return 0;
+    case MainState.m11:
+      return 0;
+    case MainState.m11:
+      return 0;
+    case MainState.m11_2:
+      return 0;
+    case MainState.m11_3:
+      return 0;
+    case MainState.m11_4:
+      return 0;
+    case MainState.m11_4_2:
+      return 0;
+    case MainState.m11_5:
+      return 0;
+    case MainState.m11_6:
+      return 0;
+    case MainState.n_16:
+      return 0;
+    case MainState.m4_1:
+      return 0;
   }
   return 4;
 }

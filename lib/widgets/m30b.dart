@@ -3,12 +3,12 @@ import 'package:flutter_image/control/TitanButton%20copy.dart';
 import 'package:flutter_image/control/TitanControlStyle.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class M30 extends StatefulWidget {
+class M30b extends StatefulWidget {
   @override
-  _M30State createState() => _M30State();
+  _M30bState createState() => _M30bState();
 }
 
-class _M30State extends State<M30> {
+class _M30bState extends State<M30b> {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
@@ -81,7 +81,7 @@ class _M30State extends State<M30> {
         'Действующий тарифный план (до 31.12.2020)',
         style: TextStyle(
           height: 1.20,
-          color: Colors.black,
+          color: Colors.red,
           fontFamily: 'Roboto',
           fontSize: 15.0,
           fontWeight: FontWeight.w400,
@@ -116,7 +116,7 @@ class _M30State extends State<M30> {
         headButton: "3 550,00",
         //pressTap: () => pressSave(),
         controlStyle: TitanControlStyle(),
-        types: Types.grey,
+        types: Types.red,
       ),
       SizedBox(height: 15.0),
       Text(
@@ -135,7 +135,7 @@ class _M30State extends State<M30> {
         'за счёт предприятия',
         style: TextStyle(
           height: 1.20,
-          color: Colors.black,
+          color: Colors.red,
           fontFamily: 'Roboto',
           fontSize: 15.0,
           fontWeight: FontWeight.bold,
@@ -159,7 +159,7 @@ class _M30State extends State<M30> {
         'за счёт предприятия',
         style: TextStyle(
           height: 1.20,
-          color: Colors.black,
+          color: Colors.red,
           fontFamily: 'Roboto',
           fontSize: 15.0,
           fontWeight: FontWeight.bold,

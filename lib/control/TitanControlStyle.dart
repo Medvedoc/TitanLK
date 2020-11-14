@@ -365,3 +365,10 @@ class Types {
   static String red = 'red';
   static String grey = 'grey';
 }
+
+
+class Toogle {
+  static String radio = 'radio';
+  static String checkbox = 'checkbox';
+  static String toogle = 'toogle';
+}

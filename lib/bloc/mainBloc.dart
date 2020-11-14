@@ -32,6 +32,8 @@ class MainState {
   static const int m11_4_2 = 18;
   static const int m4_1 = 19;
   static const int m30 = 30;
+  static const int m30b = 31;
+  static const int m33_2 = 32;
 
   //static const int participants = 1;
   //static const int myWFRS = 2;
@@ -81,6 +83,10 @@ class MainState {
         return 'Выбор договора';
       case m30:
         return 'НАСТРОЙКИ ПОЛЬЗОВАТЕЛЯ';
+      case m30b:
+        return 'НАСТРОЙКИ ПОЛЬЗОВАТЕЛЯ';
+      case m33_2:
+        return 'ДОБАВИТЬ УЧАСТНИКА';
       //case participants:
       //  return 'wfrsParticipants';
       //case myWFRS:

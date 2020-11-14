@@ -309,7 +309,7 @@ class _TitanButtonState extends State<TitanButton2> {
                                         ? WidgetSpan(
                                             child: Padding(
                                               padding:
-                                                  EdgeInsets.only(bottom: 1.5),
+                                                  EdgeInsets.only(bottom: 2.0),
                                               child: IconShadowWidget(
                                                 Icon(
                                                   widget.iconTextRight,

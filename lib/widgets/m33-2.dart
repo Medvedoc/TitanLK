@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter_image/control/TitanButton.dart';
 import 'package:flutter_image/control/TitanControlStyle.dart';
+import 'package:flutter_image/control/TitanToogleAccordion.dart';
 import 'package:flutter_image/theme/themeStyle.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,12 +12,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
-class TitanSettingsProfile extends StatefulWidget {
+class M33_2 extends StatefulWidget {
   @override
   _TitanSettingsProfileState createState() => _TitanSettingsProfileState();
 }
 
-class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
+class FruitsList {
+  String name;
+  int index;
+  FruitsList({this.name, this.index});
+}
+
+class _TitanSettingsProfileState extends State<M33_2> {
+  int selectedRadio;
+
+  setSelectedRadio(int val) {
+    setState(() {
+      selectedRadio = val;
+    });
+  }
+
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   PhoneCountryData _countryData;
   TextEditingController _phoneController = TextEditingController();
@@ -77,6 +92,7 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
   @override
   void initState() {
     super.initState();
+    selectedRadio = 0;
     _phoneFocus = new FocusNode();
     _phoneFocus.addListener(_focusNodeEvent);
     _familyFocus = new FocusNode();
@@ -117,108 +133,165 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
     titanButtonStandart2.intensity = 2;
     titanButtonStandart2.showShadow = true;
 
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 10.0),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'Настройка профиля'.toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      color: Color.fromRGBO(0, 0, 0, 1),
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.w600,
-                      height: 0.90,
-                    ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 10.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 20.0),
+                _buildPhone(),
+                SizedBox(height: 40.0),
+                _buildFamily(),
+                SizedBox(height: 40.0),
+                _buildName(),
+                SizedBox(height: 40.0),
+                _buildCompany(),
+                SizedBox(height: 40.0),
+                _buildPosition(),
+                SizedBox(height: 40.0),
+                _buildEmail(),
+                SizedBox(height: 30.0),
+                Text(
+                  'ПРОИЗВОДИТЬ ОПЛАТУ'.toUpperCase(),
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: Color.fromRGBO(0, 0, 0, 1),
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w600,
+                    height: 0.90,
                   ),
-                  SizedBox(height: 40.0),
-                  _buildPhone(),
-                  SizedBox(height: 40.0),
-                  _buildFamily(),
-                  SizedBox(height: 40.0),
-                  _buildName(),
-                  SizedBox(height: 40.0),
-                  _buildCompany(),
-                  SizedBox(height: 40.0),
-                  _buildPosition(),
-                  SizedBox(height: 40.0),
-                  _buildEmail(),
-                  SizedBox(height: 30.0),
-                  _pushToogle(),
-                  _pinToogle(),
-                  SizedBox(height: 30.0),
-                  TitanButton(
-                    pressTap: () => pressSave(),
-                    headButton: "Сохранить",
-                    controlStyle: TitanControlStyle(),
+                ),
+                SizedBox(height: 10.0),
+                Text(
+                  'ЗА СЧЕТ БИЗНЕС-АККАУНТА'.toUpperCase(),
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: Color.fromRGBO(0, 0, 0, 1),
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w600,
+                    height: 0.90,
                   ),
-                  SizedBox(height: 50.0),
-                  Text(
-                    'Фотография'.toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      color: Color.fromRGBO(0, 0, 0, 1),
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.w600,
-                      height: 0.90,
-                    ),
-                  ),
-                  SizedBox(height: 15.0),
-                  getImageWidget(),
-                  SizedBox(height: 10.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Expanded(
-                        flex: 1,
-                        child: TitanButton(
-                          pressTap: () => getImage(ImageSource.camera),
-                          icon: Icons.camera_alt_outlined,
-                          headButton: "Фото",
-                          controlStyle: TitanControlStyle(),
-                          types: Types.yellow,
+                ),
+                SizedBox(height: 30.0),
+                Container(
+                  padding: EdgeInsets.only(left: 10.0),
+                  color: Colors.grey.shade200,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "АБОНЕНТСКАЯ ПЛАТА",
+                          style: TextStyle(
+                            fontSize: 17,
+                          ),
                         ),
                       ),
-                      SizedBox(width: 15.0),
-                      Expanded(
-                        flex: 1,
-                        child: TitanButton(
-                          pressTap: () => getImage(ImageSource.gallery),
-                          icon: Icons.image_outlined,
-                          headButton: "Галерея",
-                          controlStyle: TitanControlStyle(),
-                          types: Types.yellow,
+                      Container(
+                        alignment: Alignment.centerRight,
+                        child: Radio(
+                          value: 1,
+                          groupValue: selectedRadio,
+                          activeColor: Colors.black,
+                          onChanged: (val) {
+                            print("Radio $val");
+                            setSelectedRadio(val);
+                          },
                         ),
                       ),
                     ],
                   ),
-                  (_inProcess)
-                      ? Container(
-                          color: Colors.white,
-                          height: MediaQuery.of(context).size.height * 0.95,
-                          child: Center(
-                            child: CircularProgressIndicator(),
+                ),
+                SizedBox(height: 5.0),
+                Container(
+                  padding: EdgeInsets.only(left: 10.0),
+                  color: Colors.grey.shade200,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "ГРУППА РЕАГИРОВАНИЯ (ГБР)",
+                          style: TextStyle(
+                            fontSize: 17,
                           ),
-                        )
-                      : Center(),
-                  SizedBox(height: 15.0),
-                ],
-              ),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerRight,
+                        child: Radio(
+                          value: 2,
+                          groupValue: selectedRadio,
+                          activeColor: Colors.black,
+                          onChanged: (val) {
+                            print("Radio $val");
+                            setSelectedRadio(val);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 50.0),
+                TitanToogleAccordion(
+                  background: Colors.grey.shade200,
+                  types: Toogle.checkbox,
+                  isChecked: false,
+                  border: Borderic.zero(),
+                  textHeading: 'КАРТА 0000-0000-0000-0000',
+                  isSwitched: true,
+                  controlStyle: TitanControlStyle(),
+                ),
+                Container(
+                  padding: EdgeInsets.only(left: 10.0),
+                  color: Colors.grey.shade200,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "ГРУППА РЕАГИРОВАНИЯ (ГБР)",
+                          style: TextStyle(
+                            fontSize: 17,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.centerRight,
+                        child: Radio(
+                          value: 2,
+                          groupValue: selectedRadio,
+                          activeColor: Colors.black,
+                          onChanged: (val) {
+                            print("Radio $val");
+                            setSelectedRadio(val);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                TitanButton(
+                  pressTap: () => pressSave(),
+                  headButton: "Подключить",
+                  controlStyle: TitanControlStyle(),
+                ),
+              ],
             ),
           ),
-          _logToogle(),
-          SizedBox(height: 15.0),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

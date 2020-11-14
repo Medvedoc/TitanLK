@@ -19,6 +19,8 @@ import 'package:flutter_image/widgets/m11-5.dart';
 import 'package:flutter_image/widgets/m11-6.dart';
 import 'package:flutter_image/widgets/m11.dart';
 import 'package:flutter_image/widgets/m30.dart';
+import 'package:flutter_image/widgets/m30b.dart';
+import 'package:flutter_image/widgets/m33-2.dart';
 import 'package:flutter_image/widgets/m4-1.dart';
 import 'package:flutter_image/widgets/n_16.dart';
 import 'package:flutter_image/widgets/n_2.dart';
@@ -61,20 +63,25 @@ class MainPage extends StatelessWidget {
             ),
           ),
         ),
-        /*SingleChildScrollView(
+        SingleChildScrollView(
           child: Container(
             decoration: new BoxDecoration(
               color: Colors.white,
               borderRadius: new BorderRadius.all(Radius.circular(20.0)),
-              boxShadow: [new BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.15), offset: new Offset(0.0, 4.0), blurRadius: 4.0, spreadRadius: 2.0)],
+              boxShadow: [
+                new BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.15),
+                    offset: new Offset(0.0, 4.0),
+                    blurRadius: 4.0,
+                    spreadRadius: 2.0)
+              ],
             ),
             margin: EdgeInsets.symmetric(horizontal: 15.0, vertical: 18.0),
             padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 16.0),
             width: double.infinity,
             child: _selectBody(context, state),
           ),
-        ),*/
-         _selectBody(context, state),
+        ),
       ],
     );
   }
@@ -124,6 +131,8 @@ class MainPage extends StatelessWidget {
         return M11_3();
       case MainState.n_16:
         return N16();
+      case MainState.n_16:
+        return N16();
 
       case MainState.m11_4:
         return M11_4();
@@ -137,6 +146,10 @@ class MainPage extends StatelessWidget {
         return TitanChooseContract();
       case MainState.m30:
         return M30();
+      case MainState.m30b:
+        return M30b();
+      case MainState.m33_2:
+        return M33_2();
       default:
         return ExtendedMenuWidget();
     }
