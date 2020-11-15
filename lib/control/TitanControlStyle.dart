@@ -366,9 +366,116 @@ class Types {
   static String grey = 'grey';
 }
 
-
 class Toogle {
   static String radio = 'radio';
   static String checkbox = 'checkbox';
   static String toogle = 'toogle';
+  static String indicator = 'indicator';
+}
+
+class Indication {
+  static Widget all = Container(
+    alignment: Alignment.centerRight,
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        CircleAvatar(
+          radius: 10,
+          backgroundColor: Color.fromRGBO(39, 174, 96, 1),
+          child: CircleAvatar(
+            backgroundColor: Colors.grey.shade200,
+            radius: 8,
+          ),
+        ),
+        SizedBox(width: 2.0),
+        CircleAvatar(
+          radius: 10,
+          backgroundColor: Color.fromRGBO(39, 174, 96, 1),
+          child: CircleAvatar(
+            backgroundColor: Colors.grey.shade200,
+            radius: 8,
+          ),
+        ),
+      ],
+    ),
+  );
+  static Widget zero = Container(
+    alignment: Alignment.centerRight,
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        CircleAvatar(
+          radius: 10,
+          backgroundColor: Color.fromRGBO(204, 204, 204, 1),
+          child: CircleAvatar(
+            backgroundColor: Colors.grey.shade200,
+            radius: 8,
+          ),
+        ),
+        SizedBox(width: 2.0),
+        CircleAvatar(
+          radius: 10,
+          backgroundColor: Color.fromRGBO(204, 204, 204, 1),
+          child: CircleAvatar(
+            backgroundColor: Colors.grey.shade200,
+            radius: 8,
+          ),
+        ),
+      ],
+    ),
+  );
+  static Widget first = Container(
+    alignment: Alignment.centerRight,
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        CircleAvatar(
+          radius: 10,
+          backgroundColor: Color.fromRGBO(39, 174, 96, 1),
+          child: CircleAvatar(
+            backgroundColor: Colors.grey.shade200,
+            radius: 8,
+          ),
+        ),
+        SizedBox(width: 2.0),
+        CircleAvatar(
+          radius: 10,
+          backgroundColor: Color.fromRGBO(204, 204, 204, 1),
+          child: CircleAvatar(
+            backgroundColor: Colors.grey.shade200,
+            radius: 8,
+          ),
+        ),
+      ],
+    ),
+  );
+  static Widget second = Container(
+    alignment: Alignment.centerRight,
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        CircleAvatar(
+          radius: 10,
+          backgroundColor: Color.fromRGBO(204, 204, 204, 1),
+          child: CircleAvatar(
+            backgroundColor: Colors.grey.shade200,
+            radius: 8,
+          ),
+        ),
+        SizedBox(width: 2.0),
+        CircleAvatar(
+          radius: 10,
+          backgroundColor: Color.fromRGBO(39, 174, 96, 1),
+          child: CircleAvatar(
+            backgroundColor: Colors.grey.shade200,
+            radius: 8,
+          ),
+        ),
+      ],
+    ),
+  );
 }

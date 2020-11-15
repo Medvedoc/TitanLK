@@ -20,7 +20,10 @@ import 'package:flutter_image/widgets/m11-6.dart';
 import 'package:flutter_image/widgets/m11.dart';
 import 'package:flutter_image/widgets/m30.dart';
 import 'package:flutter_image/widgets/m30b.dart';
+import 'package:flutter_image/widgets/m32.dart';
 import 'package:flutter_image/widgets/m33-2.dart';
+import 'package:flutter_image/widgets/m33-3.dart';
+import 'package:flutter_image/widgets/m33.dart';
 import 'package:flutter_image/widgets/m4-1.dart';
 import 'package:flutter_image/widgets/n_16.dart';
 import 'package:flutter_image/widgets/n_2.dart';
@@ -131,9 +134,6 @@ class MainPage extends StatelessWidget {
         return M11_3();
       case MainState.n_16:
         return N16();
-      case MainState.n_16:
-        return N16();
-
       case MainState.m11_4:
         return M11_4();
       case MainState.m11_5:
@@ -150,6 +150,12 @@ class MainPage extends StatelessWidget {
         return M30b();
       case MainState.m33_2:
         return M33_2();
+      case MainState.m33_1:
+        return M33_1();
+      case MainState.m33:
+        return M33();
+      case MainState.m32:
+        return M32();
       default:
         return ExtendedMenuWidget();
     }

@@ -103,7 +103,22 @@ class ExtendedMenuWidget extends StatelessWidget {
               context,
               Icon(Icons.monitor, size: _iconSize, color: _color),
               "m33_2",
-              MainState.m33_2)
+              MainState.m33_2),
+          _getButton(
+              context,
+              Icon(Icons.monitor, size: _iconSize, color: _color),
+              "m33_1",
+              MainState.m33_1),
+          _getButton(
+              context,
+              Icon(Icons.monitor, size: _iconSize, color: _color),
+              "m33",
+              MainState.m33),
+          _getButton(
+              context,
+              Icon(Icons.monitor, size: _iconSize, color: _color),
+              "m32",
+              MainState.m32)
         ],
       )
     ]);

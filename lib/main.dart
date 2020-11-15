@@ -35,8 +35,15 @@ class MyApp extends StatelessWidget {
               height: 0.90,
             ),
             headline2: TextStyle(
-              fontSize: 18.0,
+              fontSize: 16.0,
               color: Color.fromRGBO(0, 0, 0, 1),
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.w400,
+              height: 0.90,
+            ),
+            headline3: TextStyle(
+              fontSize: 14.0,
+              color: Color.fromRGBO(110,110,110,1),
               fontFamily: 'Roboto',
               fontWeight: FontWeight.w400,
               height: 0.90,

@@ -63,6 +63,7 @@ flutter:
     - assets/titan-bell.png
     - assets/titan-menu.png
     - assets/image.png
+    - assets/!.png
     - assets/titan-placeholder.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see

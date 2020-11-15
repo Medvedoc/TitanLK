@@ -6,10 +6,13 @@ import 'package:flutter_switch/flutter_switch.dart';
 
 class TitanToogleAccordion extends StatefulWidget {
   TitanToogleAccordion({
+    this.labels,
+    this.picked,
     this.controlStyle,
     this.background,
     this.border,
     this.textHeading,
+    this.textsubHeading,
     this.textDialog,
     this.margin,
     this.padding,
@@ -23,11 +26,23 @@ class TitanToogleAccordion extends StatefulWidget {
     this.showAccordion = false,
     this.isChecked,
     this.types,
+    this.group,
+    this.value,
+    this.aaa,
+    this.callbackaaa,
+    this.onChanged,
+    this.radioChecked,
+    this.childok,
+    this.indication,
   });
+  final bool radioChecked;
+  final bool aaa;
+  final Function(int) callbackaaa;
   final TitanControlStyle controlStyle;
   final Color background;
   final Border border;
   final String textHeading;
+  final String textsubHeading;
   final String textDialog;
   final EdgeInsets margin;
   final EdgeInsets padding;
@@ -42,6 +57,14 @@ class TitanToogleAccordion extends StatefulWidget {
   final List<Widget> children;
   final bool showAccordion;
   final String types;
+  final int value;
+  final int group;
+  final Function(int) onChanged;
+  final String picked;
+  final List<String> labels;
+  final List<Widget> childok;
+  final Widget indication;
+
 
   @override
   _TitanToogleAccordionState createState() => _TitanToogleAccordionState();
@@ -49,15 +72,11 @@ class TitanToogleAccordion extends StatefulWidget {
 
 class _TitanToogleAccordionState extends State<TitanToogleAccordion>
     with TickerProviderStateMixin {
+  int groupValue_1 = 0;
 
-      
+  int groupValue_2 = 0;
+
   int selectedRadio;
-
-  setSelectedRadio(int val) {
-    setState(() {
-      selectedRadio = val;
-    });
-  }
 
   final GlobalKey _renderKey = GlobalKey();
   double renderKeyHeight;
@@ -80,6 +99,7 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
     });
   }
 
+  String _picked;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -108,12 +128,26 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
                       children: <Widget>[
                         Flexible(
                           flex: 4,
-                          child: Text(
-                            widget.textHeading != null
-                                ? widget.textHeading
-                                : '',
-                            style: Theme.of(context).textTheme.bodyText1,
-                            softWrap: true,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                widget.textHeading != null
+                                    ? widget.textHeading
+                                    : '',
+                                style: Theme.of(context).textTheme.headline2,
+                                softWrap: true,
+                              ),
+                              SizedBox(height: 2.0),
+                              Text(
+                                widget.textsubHeading != null
+                                    ? widget.textsubHeading
+                                    : '',
+                                style: Theme.of(context).textTheme.headline3,
+                                softWrap: true,
+                              ),
+                            ],
                           ),
                         ),
                         Flexible(
@@ -175,7 +209,7 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
                                 )
                               : SizedBox(height: 34.0),
                         ),
-                        Flexible(flex: 1, child: SizedBox()),
+                        //Flexible(flex: 1, child: SizedBox()),
                       ],
                     ),
                     Stack(
@@ -226,6 +260,66 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
                                 ),
                               )
                             : SizedBox(),
+                        /*widget.types != null && widget.types == 'radio'
+                            ? RadioButtonGroup(
+                                orientation: GroupedButtonsOrientation.VERTICAL,
+                                margin: const EdgeInsets.only(left: 12.0),
+                                onSelected: (String selected) => setState(() {
+                                  _picked = selected;
+                                }),
+                                labels:
+                                    widget.labels != null ? widget.labels : [],
+                                picked: _picked,
+                                itemBuilder: (Radio rb, Text txt, int i,
+                                    Widget children) {
+                                  return Column(children: [
+                                    Stack(
+                                      children: <Widget>[
+                                        Container(
+                                            alignment: Alignment.centerLeft,
+                                            child: txt),
+                                        Container(
+                                            alignment: Alignment.centerRight,
+                                            child: rb),
+                                      ],
+                                    ),
+                                    children,
+                                  ]);
+                                },
+                              )
+                            : SizedBox(),*/
+                        widget.types != null && widget.types == 'indicator'
+                            ? widget.indication
+                            /*Container(
+                                alignment: Alignment.centerRight,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 10,
+                                      backgroundColor:
+                                          widget.indication!=null||widget.indication==1? Color.fromRGBO(204,204,204,1):Color.fromRGBO(39, 174, 96, 1),
+                                      child: CircleAvatar(
+                                        backgroundColor: Colors.grey.shade200,
+                                        radius: 8,
+                                      ),
+                                    ),
+                                    SizedBox(width:2.0),
+                                    CircleAvatar(
+                                      radius: 10,
+                                      backgroundColor:
+                                          Color.fromRGBO(39, 174, 96, 1),
+                                      child: CircleAvatar(
+                                        backgroundColor: Colors.grey.shade200,
+                                        radius: 8,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )*/
+
+                            : SizedBox(),
                       ],
                     ),
                   ],
@@ -257,6 +351,8 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
 
   @override
   void initState() {
+    _picked = widget.picked;
+    selectedRadio = 0;
     showAccordion = widget.showAccordion;
     controllerAccordion =
         AnimationController(duration: Duration(seconds: 2), vsync: this);

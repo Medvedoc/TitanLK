@@ -1,18 +1,17 @@
 import 'dart:io';
 import 'package:flutter_image/control/TitanButton.dart';
 import 'package:flutter_image/control/TitanControlStyle.dart';
-import 'package:flutter_image/control/TitanToogleAccordion.dart';
 import 'package:flutter_image/theme/themeStyle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
-class M33_2 extends StatefulWidget {
+class M33_1 extends StatefulWidget {
   @override
   _TitanSettingsProfileState createState() => _TitanSettingsProfileState();
 }
 
-class _TitanSettingsProfileState extends State<M33_2> {
+class _TitanSettingsProfileState extends State<M33_1> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   PhoneCountryData countryData;
   TextEditingController _phoneController = TextEditingController();
@@ -248,7 +247,7 @@ class _TitanSettingsProfileState extends State<M33_2> {
                 SizedBox(height: 30.0),
                 TitanButton(
                   pressTap: () => pressSave(),
-                  headButton: "Подключить",
+                  headButton: "Сохранить",
                   controlStyle: TitanControlStyle(),
                 ),
                 SizedBox(height: 15.0),

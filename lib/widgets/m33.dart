@@ -7,12 +7,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
-class M33_2 extends StatefulWidget {
+class M33 extends StatefulWidget {
   @override
   _TitanSettingsProfileState createState() => _TitanSettingsProfileState();
 }
 
-class _TitanSettingsProfileState extends State<M33_2> {
+class _TitanSettingsProfileState extends State<M33> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   PhoneCountryData countryData;
   TextEditingController _phoneController = TextEditingController();
@@ -186,7 +186,7 @@ class _TitanSettingsProfileState extends State<M33_2> {
                       Container(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "АБОНЕНТСКАЯ ПЛАТА",
+                          "ЗА СЧЁТ ПРЕДПРИЯТИЯ",
                           style: TextStyle(
                             fontSize: 16,
                           ),
@@ -210,7 +210,26 @@ class _TitanSettingsProfileState extends State<M33_2> {
                     ],
                   ),
                 ),
-                SizedBox(height: 5.0),
+                TitanToogleAccordion(
+                  margin: EdgeInsets.only(top: 2.0),
+                  textHeading: 'КАРТА 0000-0000-0000-0000',
+                  background: Colors.grey.shade200,
+                  border: Borderic.zero(),
+                  types: Toogle.checkbox,
+                  isChecked: false,
+                ),
+                SizedBox(height: 40.0),
+                Text(
+                  'ОПЛАТА ВЫЕЗДА ГРУППЫ'.toUpperCase(),
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: Color.fromRGBO(0, 0, 0, 1),
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w600,
+                    height: 0.90,
+                  ),
+                ),
+                SizedBox(height: 30.0),
                 Container(
                   padding: EdgeInsets.only(left: 10.0),
                   color: Colors.grey.shade200,
@@ -221,7 +240,7 @@ class _TitanSettingsProfileState extends State<M33_2> {
                       Container(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "ГРУППА РЕАГИРОВАНИЯ (ГБР)",
+                          "ЗА СЧЁТ ПРЕДПРИЯТИЯ",
                           style: TextStyle(
                             fontSize: 16,
                           ),
@@ -233,7 +252,7 @@ class _TitanSettingsProfileState extends State<M33_2> {
                         child: Radio(
                           materialTapTargetSize:
                               MaterialTapTargetSize.shrinkWrap,
-                          value: 2,
+                          value: 1,
                           groupValue: selectedRadio,
                           activeColor: Colors.black,
                           onChanged: (val) {
@@ -245,18 +264,34 @@ class _TitanSettingsProfileState extends State<M33_2> {
                     ],
                   ),
                 ),
+                TitanToogleAccordion(
+                  margin: EdgeInsets.only(top: 2.0),
+                  textHeading: 'КАРТА 0000-0000-0000-0000',
+                  background: Colors.grey.shade200,
+                  border: Borderic.zero(),
+                  types: Toogle.checkbox,
+                  isChecked: false,
+                ),
                 SizedBox(height: 30.0),
                 TitanButton(
-                  pressTap: () => pressSave(),
-                  headButton: "Подключить",
+                  headButton: "ПРИВЯЗАТЬ КАРТУ",
                   controlStyle: TitanControlStyle(),
                 ),
                 SizedBox(height: 15.0),
                 TitanButton(
-                  headButton: "Отменить",
+                  headButton: "СЕМЕЙНЫЙ АККАУНТ",
                   controlStyle: TitanControlStyle(),
-                  types: Types.grey
                 ),
+                SizedBox(height: 15.0),
+                TitanButton(
+                  headButton: "БИЗНЕС АККАУНТ",
+                  controlStyle: TitanControlStyle(),
+                ),
+                SizedBox(height: 15.0),
+                TitanButton(
+                    headButton: "Отменить",
+                    controlStyle: TitanControlStyle(),
+                    types: Types.grey),
               ],
             ),
           ),
