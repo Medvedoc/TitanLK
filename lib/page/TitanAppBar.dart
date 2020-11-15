@@ -26,6 +26,18 @@ AppBar getAppBar(BuildContext context, MainState state) {
     case MainState.m33_2:
       return getAppBarSettings(context, state);
       break;
+    case MainState.m31:
+      return getAppBarSettings(context, state);
+      break;
+    case MainState.m31-2:
+      return getAppBarSettings(context, state);
+      break;
+    case MainState.m27:
+      return getAppBarSettings(context, state);
+      break;
+    case MainState.m27-2:
+      return getAppBarSettings(context, state);
+      break;
     case MainState.stubPage1:
       return getAppBarGeneral(context, state);
       break;

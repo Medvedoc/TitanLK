@@ -78,7 +78,7 @@ class _M11_5State extends State<M32> {
               ],
             ),
           ),
-          SizedBox(height: 30.0),
+          SizedBox(height: 306.0),
           TitanToogleAccordion(
             background: Colors.grey.shade200,
             border: Borderic.zero(),

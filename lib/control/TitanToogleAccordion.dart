@@ -6,6 +6,7 @@ import 'package:flutter_switch/flutter_switch.dart';
 
 class TitanToogleAccordion extends StatefulWidget {
   TitanToogleAccordion({
+    this.borderRadius,
     this.labels,
     this.picked,
     this.controlStyle,
@@ -34,7 +35,9 @@ class TitanToogleAccordion extends StatefulWidget {
     this.radioChecked,
     this.childok,
     this.indication,
+    this.textAlign,
   });
+  final double borderRadius;
   final bool radioChecked;
   final bool aaa;
   final Function(int) callbackaaa;
@@ -64,7 +67,7 @@ class TitanToogleAccordion extends StatefulWidget {
   final List<String> labels;
   final List<Widget> childok;
   final Widget indication;
-
+  final AlignmentDirectional textAlign;
 
   @override
   _TitanToogleAccordionState createState() => _TitanToogleAccordionState();
@@ -103,164 +106,161 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
+          width: MediaQuery.of(context).size.width,
+          padding: widget.padding != null ? widget.padding : _padding,
+          margin: widget.margin != null ? widget.margin : _margin,
+          decoration: BoxDecoration(
+            color: widget.background != null ? widget.background : Colors.white,
+            border: widget.border != null ? widget.border : borderAll,
+            borderRadius: widget.borderRadius!=null?BorderRadius.all(Radius.circular(widget.borderRadius)):null,
+          ),
+          child: Stack(
+            alignment: widget.textAlign!=null?widget.textAlign: AlignmentDirectional.centerStart,
             children: <Widget>[
-              Container(
-                padding: widget.padding != null ? widget.padding : _padding,
-                margin: widget.margin != null ? widget.margin : _margin,
-                decoration: BoxDecoration(
-                  color: widget.background != null
-                      ? widget.background
-                      : Colors.white,
-                  border: widget.border != null ? widget.border : borderAll,
-                ),
-                child: Stack(
-                  alignment: AlignmentDirectional.centerStart,
-                  children: <Widget>[
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Flexible(
-                          flex: 4,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                widget.textHeading != null
-                                    ? widget.textHeading
-                                    : '',
-                                style: Theme.of(context).textTheme.headline2,
-                                softWrap: true,
-                              ),
-                              SizedBox(height: 2.0),
-                              Text(
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Flexible(
+                    flex: 4,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          widget.textHeading != null ? widget.textHeading : '',
+                          style: widget.textStyle!=null?widget.textStyle: Theme.of(context).textTheme.headline2,
+                          softWrap: true,
+                          //textAlign: TextAlign.center,
+                        ),
+                        widget.textsubHeading != null
+                            ? SizedBox(height: 2.0)
+                            : SizedBox(),
+                        widget.textsubHeading != null
+                            ? Text(
                                 widget.textsubHeading != null
                                     ? widget.textsubHeading
                                     : '',
                                 style: Theme.of(context).textTheme.headline3,
                                 softWrap: true,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Flexible(
-                          flex: 1,
-                          child: widget.textDialog != null
-                              ? GestureDetector(
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    margin: widget.controlStyle.marginDialog,
-                                    padding: widget.controlStyle.paddingDialog,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: widget
-                                              .controlStyle.borderColorDialog,
-                                          width: widget
-                                              .controlStyle.borderWidthDialog,
-                                          style: BorderStyle.solid),
-                                      shape: BoxShape.circle,
-                                      color: widget
-                                          .controlStyle.borderColorIconDialog,
-                                    ),
-                                    child: Icon(
-                                      widget.controlStyle.iconDialog,
-                                      color:
-                                          widget.controlStyle.iconColorDialog,
-                                      size: widget.controlStyle.sizeIconDialog,
-                                    ),
-                                  ),
-                                  onTap: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return Dialog(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: widget.controlStyle
-                                                .borderRadiusWindowDialog,
-                                          ),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: <Widget>[
-                                              Container(
-                                                padding: widget.controlStyle
-                                                    .paddingWindowDialog,
-                                                child: Text(
-                                                    widget.textDialog != null
-                                                        ? widget.textDialog
-                                                        : ''),
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                )
-                              : SizedBox(height: 34.0),
-                        ),
-                        //Flexible(flex: 1, child: SizedBox()),
+                              )
+                            : SizedBox(),
                       ],
                     ),
-                    Stack(
-                      children: [
-                        widget.types != null && widget.types == 'checkbox'
-                            ? Container(
-                                alignment: Alignment.centerRight,
-                                child: TitanCheckBox(
-                                  abc: abc,
-                                  callback: callback,
-                                  isChecked11: widget.isChecked != null
-                                      ? widget.isChecked
-                                      : true,
-                                  onTap: (selected) {
-                                    if (widget.multiAccordion != null) {
-                                      toggleAccordion();
-                                    }
-                                  },
-                                ),
-                              )
-                            : SizedBox(),
-                        widget.types != null && widget.types == 'toogle'
-                            ? Container(
-                                alignment: Alignment.centerRight,
-                                child: FlutterSwitch(
-                                  value: widget.isSwitched != null
-                                      ? isSwitched != widget.isSwitched
-                                      : isSwitched,
-                                  onToggle: (val) {
-                                    setState(() {
-                                      if (widget.isSwitched == null) {
-                                        toggleAccordion();
-                                      }
-                                      isSwitched = !isSwitched;
-                                    });
-                                  },
-                                  toggleColor: widget.background != null
-                                      ? widget.background
-                                      : Colors.white,
-                                  activeColor: Colors.black,
-                                  inactiveColor:
-                                      Color.fromRGBO(101, 91, 0, 0.4),
-                                  width: 40.0,
-                                  height: 20.0,
-                                  toggleSize: 18.0,
-                                  borderRadius: 20.0,
-                                  padding: 2.0,
-                                ),
-                              )
-                            : SizedBox(),
-                        /*widget.types != null && widget.types == 'radio'
+                  ),
+                  Flexible(
+                    flex: 1,
+                    child: widget.textDialog != null
+                        ? GestureDetector(
+                            child: Container(
+                              alignment: Alignment.center,
+                              margin: widget.controlStyle.marginDialog,
+                              padding: widget.controlStyle.paddingDialog,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color:
+                                        widget.controlStyle.borderColorDialog,
+                                    width:
+                                        widget.controlStyle.borderWidthDialog,
+                                    style: BorderStyle.solid),
+                                shape: BoxShape.circle,
+                                color:
+                                    widget.controlStyle.borderColorIconDialog,
+                              ),
+                              child: Icon(
+                                widget.controlStyle.iconDialog,
+                                color: widget.controlStyle.iconColorDialog,
+                                size: widget.controlStyle.sizeIconDialog,
+                              ),
+                            ),
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return Dialog(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: widget.controlStyle
+                                          .borderRadiusWindowDialog,
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        Container(
+                                          padding: widget
+                                              .controlStyle.paddingWindowDialog,
+                                          child: Text(widget.textDialog != null
+                                              ? widget.textDialog
+                                              : ''),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          )
+                        : SizedBox(height: 34.0),
+                  ),
+                  //Flexible(flex: 1, child: SizedBox()),
+                ],
+              ),
+              Stack(
+                children: [
+                  widget.types != null && widget.types == 'checkbox'
+                      ? Container(
+                          alignment: Alignment.centerRight,
+                          child: TitanCheckBox(
+                            abc: abc,
+                            callback: callback,
+                            isChecked11: widget.isChecked != null
+                                ? widget.isChecked
+                                : true,
+                            onTap: (selected) {
+                              if (widget.multiAccordion != null) {
+                                toggleAccordion();
+                              }
+                            },
+                          ),
+                        )
+                      : SizedBox(),
+                  widget.types != null && widget.types == 'toogle'
+                      ? Container(
+                          alignment: Alignment.centerRight,
+                          child: FlutterSwitch(
+                            value: widget.isSwitched != null
+                                ? isSwitched != widget.isSwitched
+                                : isSwitched,
+                            onToggle: (val) {
+                              setState(() {
+                                if (widget.isSwitched == null) {
+                                  toggleAccordion();
+                                }
+                                isSwitched = !isSwitched;
+                              });
+                            },
+                            toggleColor: widget.background != null
+                                ? widget.background
+                                : Colors.white,
+                            activeColor: Colors.black,
+                            inactiveColor: Color.fromRGBO(101, 91, 0, 0.4),
+                            width: 40.0,
+                            height: 20.0,
+                            toggleSize: 18.0,
+                            borderRadius: 20.0,
+                            padding: 2.0,
+                          ),
+                        )
+                      : SizedBox(),
+                  /*widget.types != null && widget.types == 'radio'
                             ? RadioButtonGroup(
                                 orientation: GroupedButtonsOrientation.VERTICAL,
                                 margin: const EdgeInsets.only(left: 12.0),
@@ -288,9 +288,9 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
                                 },
                               )
                             : SizedBox(),*/
-                        widget.types != null && widget.types == 'indicator'
-                            ? widget.indication
-                            /*Container(
+                  widget.types != null && widget.types == 'indicator'
+                      ? widget.indication
+                      /*Container(
                                 alignment: Alignment.centerRight,
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -319,32 +319,29 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
                                 ),
                               )*/
 
-                            : SizedBox(),
-                      ],
-                    ),
-                  ],
-                ),
+                      : SizedBox(),
+                ],
               ),
-              widget.multiAccordion != null && widget.multiAccordion == true
-                  ? showAccordion
-                      ? Container(
-                          key: _renderKey,
-                          child: SlideTransition(
-                            position: offset,
-                            child: Column(
-                              children: widget.children,
-                            ),
-                          ),
-                        )
-                      : Container(
-                          key: _renderKey,
-                        )
-                  : Container(
-                      key: _renderKey,
-                    ),
             ],
           ),
         ),
+        widget.multiAccordion != null && widget.multiAccordion == true
+            ? showAccordion
+                ? Container(
+                    key: _renderKey,
+                    child: SlideTransition(
+                      position: offset,
+                      child: Column(
+                        children: widget.children,
+                      ),
+                    ),
+                  )
+                : Container(
+                    key: _renderKey,
+                  )
+            : Container(
+                key: _renderKey,
+              ),
       ],
     );
   }

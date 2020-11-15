@@ -76,6 +76,7 @@ class _TitanSettingsObjectNoGroupState
         ),
         SizedBox(height: 10.0),
         TitanToogleAccordion(
+          
           types: Toogle.toogle,
           background: Color.fromRGBO(233, 200, 45, 1),
           border: Borderic.all(),

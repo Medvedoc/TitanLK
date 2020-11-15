@@ -371,6 +371,7 @@ class Toogle {
   static String checkbox = 'checkbox';
   static String toogle = 'toogle';
   static String indicator = 'indicator';
+  static String zero = 'zero';
 }
 
 class Indication {
