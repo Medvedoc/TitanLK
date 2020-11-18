@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_image/bloc/mainBloc.dart';
 import 'package:flutter_image/page/mainPage.dart';
+import 'package:badges/badges.dart';
 
 AppBar getAppBar(BuildContext context, MainState state) {
   switch (state.subState) {
@@ -20,7 +21,7 @@ AppBar getAppBar(BuildContext context, MainState state) {
     case MainState.m33:
       return getAppBarSettings(context, state);
       break;
-    case MainState.m33_1:
+    case MainState.m33_3:
       return getAppBarSettings(context, state);
       break;
     case MainState.m33_2:
@@ -29,14 +30,14 @@ AppBar getAppBar(BuildContext context, MainState state) {
     case MainState.m31:
       return getAppBarSettings(context, state);
       break;
-    case MainState.m31-2:
+    case MainState.m31 - 2:
       return getAppBarSettings(context, state);
       break;
     case MainState.m27:
-      return getAppBarSettings(context, state);
+      return null;
       break;
-    case MainState.m27-2:
-      return getAppBarSettings(context, state);
+    case MainState.m27 - 2:
+      return null;
       break;
     case MainState.stubPage1:
       return getAppBarGeneral(context, state);
@@ -91,7 +92,22 @@ Widget getAppBarWidget(BuildContext context, MainState state) {
     ),
     title: Text(state.getPageName(context)),
     actions: <Widget>[
-      Center(
+      Badge(
+        padding:EdgeInsets.all(5.0),
+        badgeColor: Color.fromRGBO(254, 229, 0, 1),
+        position: BadgePosition.topEnd(top: 5, end: -10),
+        animationDuration: Duration(milliseconds: 50),
+        animationType: BadgeAnimationType.scale,
+        badgeContent: Text(
+          1.toString(),
+          style: TextStyle(color: Colors.black, fontSize: 14.0),
+        ),
+        child: Image.asset(
+          'assets/titan-bell.png',
+          height: 30.0,
+        ),
+      ),
+      /*Center(
         child: Container(
           child: Stack(
             overflow: Overflow.visible,
@@ -126,7 +142,7 @@ Widget getAppBarWidget(BuildContext context, MainState state) {
             ],
           ),
         ),
-      ),
+      ),*/
       SizedBox(width: 5.0),
       IconButton(
         icon: Image.asset(
@@ -148,7 +164,7 @@ Widget getAppBarSettings(BuildContext context, MainState state) {
     shadowColor: Colors.black,
     backgroundColor: Colors.white,
     leading: Transform.translate(
-      offset: Offset(10, 0),
+      offset: Offset(5, 0),
       child: IconButton(
         icon: Image.asset('assets/titan-icon-back.png'),
         iconSize: 26,
@@ -161,6 +177,7 @@ Widget getAppBarSettings(BuildContext context, MainState state) {
         },
       ),
     ),
-    title: Text(state.getPageName(context)),
+    title: Text(state.getPageName(context).toUpperCase(),
+        style: Theme.of(context).textTheme.headline2),
   );
 }

@@ -103,7 +103,6 @@ ItemBuilder _defaultItemBuilder({
   Color backgroundColor,
   double fontSize,
   double iconSize,
-  double fontHeight,
 }) {
   return (BuildContext context, TitanNavigationBarItem item) => Expanded(
         child: Row(

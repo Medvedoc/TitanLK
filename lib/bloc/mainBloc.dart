@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:flutter_image/locale/Translations.dart';
 
 abstract class MainEvent {}
 
@@ -34,7 +36,7 @@ class MainState {
   static const int m30 = 30;
   static const int m30b = 31;
   static const int m33_2 = 32;
-  static const int m33_1 = 33;
+  static const int m33_3 = 33;
   static const int m33 = 34;
   static const int m32 = 35;
   static const int m31 = 36;
@@ -89,25 +91,25 @@ class MainState {
       case m4_1:
         return 'Выбор договора';
       case m30:
-        return 'НАСТРОЙКИ ПОЛЬЗОВАТЕЛЯ';
+        return 'user_setting'.tr;
       case m30b:
-        return 'НАСТРОЙКИ ПОЛЬЗОВАТЕЛЯ';
+        return 'user_setting'.tr;
       case m33_2:
-        return 'ДОБАВИТЬ УЧАСТНИКА';
-      case m33_1:
-        return 'ДОБАВИТЬ УЧАСТНИКА';
+        return 'add_member'.tr;
+      case m33_3:
+        return 'edit_member'.tr;
       case m33:
-        return 'ДОБАВИТЬ УЧАСТНИКА';
+        return 'buisness_accaunt'.tr;
       case m32:
-        return 'ДОБАВИТЬ УЧАСТНИКА';
+        return 'payment_method'.tr;
       case m31:
-        return 'ДОБАВИТЬ УЧАСТНИКА';
+        return 'up_balance'.tr;
       case m31-2:
-        return 'ДОБАВИТЬ УЧАСТНИКА';
+        return 'up_balance'.tr;
       case m27:
-        return 'ДОБАВИТЬ УЧАСТНИКА';
+        return '';
       case m27-2:
-        return 'ДОБАВИТЬ УЧАСТНИКА';
+        return '';
       //case participants:
       //  return 'wfrsParticipants';
       //case myWFRS:

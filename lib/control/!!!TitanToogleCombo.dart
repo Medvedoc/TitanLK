@@ -14,7 +14,7 @@ class _TitanToogleComboState extends State<TitanToogleCombo> {
   Alignment alignment; //Начало раскрывания контенера
   double _height; //Высота раскрывающегося контейнера
   bool _visible = false; //Раскрывающийся контейнер по умолчанию скрыт
-  double _paddingVertical = 0.0; //Начльное значение отступа раскрывающегося контейнера в Dropbox
+  double paddingVertical = 0.0; //Начльное значение отступа раскрывающегося контейнера в Dropbox
   int _counter = 0; //Переключатель срабатывания Dropbox
   bool isSwitched = false;
   bool isSwitched2;
@@ -113,7 +113,7 @@ class _TitanToogleComboState extends State<TitanToogleCombo> {
                       if (_counter == 0) {
                         _height = _visible ? 0.0 : 200.0;
                         _visible = !_visible;
-                        _paddingVertical = 0;
+                        paddingVertical = 0;
                         _counter += 1;
                       } else {
                         _counter -= 1;

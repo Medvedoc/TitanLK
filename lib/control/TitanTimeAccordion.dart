@@ -88,7 +88,6 @@ class _TitanTimeAccordionState extends State<TitanTimeAccordion>
   String fromTimeMinute;
   bool isChecked = false;
   bool isSwitched2 = false;
-  bool _isChecked = false;
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -66,7 +66,7 @@ class TitanToogleAccordion extends StatefulWidget {
   final String picked;
   final List<String> labels;
   final List<Widget> childok;
-  final Widget indication;
+  final List<bool> indication;
   final AlignmentDirectional textAlign;
 
   @override
@@ -102,7 +102,7 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
     });
   }
 
-  String _picked;
+  String picked;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -116,10 +116,14 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
           decoration: BoxDecoration(
             color: widget.background != null ? widget.background : Colors.white,
             border: widget.border != null ? widget.border : borderAll,
-            borderRadius: widget.borderRadius!=null?BorderRadius.all(Radius.circular(widget.borderRadius)):null,
+            borderRadius: widget.borderRadius != null
+                ? BorderRadius.all(Radius.circular(widget.borderRadius))
+                : null,
           ),
           child: Stack(
-            alignment: widget.textAlign!=null?widget.textAlign: AlignmentDirectional.centerStart,
+            alignment: widget.textAlign != null
+                ? widget.textAlign
+                : AlignmentDirectional.centerStart,
             children: <Widget>[
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -134,7 +138,9 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
                       children: [
                         Text(
                           widget.textHeading != null ? widget.textHeading : '',
-                          style: widget.textStyle!=null?widget.textStyle: Theme.of(context).textTheme.headline2,
+                          style: widget.textStyle != null
+                              ? widget.textStyle
+                              : Theme.of(context).textTheme.headline2,
                           softWrap: true,
                           //textAlign: TextAlign.center,
                         ),
@@ -289,7 +295,32 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
                               )
                             : SizedBox(),*/
                   widget.types != null && widget.types == 'indicator'
-                      ? widget.indication
+                      ? Container(
+                          alignment: Alignment.centerRight,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              CircleAvatar(
+                                radius: 10,
+                                backgroundColor: widget.indication!=null&&widget.indication[0]==true? Color.fromRGBO(39, 174, 96, 1):Color.fromRGBO(204, 204, 204, 1),
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.grey.shade200,
+                                  radius: 8,
+                                ),
+                              ),
+                              SizedBox(width: 2.0),
+                              CircleAvatar(
+                                radius: 10,
+                                backgroundColor: widget.indication!=null&&widget.indication[1]==true? Color.fromRGBO(39, 174, 96, 1):Color.fromRGBO(204, 204, 204, 1),
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.grey.shade200,
+                                  radius: 8,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
                       /*Container(
                                 alignment: Alignment.centerRight,
                                 child: Row(
@@ -348,7 +379,7 @@ class _TitanToogleAccordionState extends State<TitanToogleAccordion>
 
   @override
   void initState() {
-    _picked = widget.picked;
+    picked = widget.picked;
     selectedRadio = 0;
     showAccordion = widget.showAccordion;
     controllerAccordion =

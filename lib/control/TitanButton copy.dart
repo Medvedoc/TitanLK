@@ -292,7 +292,7 @@ class _TitanButtonState extends State<TitanButton2> {
                                             widget.controlStyle.fontFamily,
                                         fontSize: widget.textStyle != null
                                             ? widget.textStyle.fontSize
-                                            : widget.controlStyle.textFontSize,
+                                            : Theme.of(context).textTheme.button.fontSize,
                                         fontWeight: widget.textStyle != null
                                             ? widget.textStyle.fontWeight
                                             : widget.controlStyle.fontWeight,

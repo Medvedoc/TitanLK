@@ -15,7 +15,7 @@ Widget getNavigationBar(BuildContext context, MainState state) {
     case MainState.m33_2:
       return null;
       break;
-    case MainState.m33_1:
+    case MainState.m33_3:
       return null;
       break;
     case MainState.m33:
@@ -155,7 +155,7 @@ getCurrentButton(int state) {
       return 0;
     case MainState.m33_2:
       return 0;
-    case MainState.m33_1:
+    case MainState.m33_3:
       return 0;
     case MainState.m33:
       return 0;

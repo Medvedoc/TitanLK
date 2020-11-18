@@ -57,11 +57,12 @@ class _M11_4State extends State<M11_4> {
             height: MediaQuery.of(context).size.height * 0.03,
           ),
           TitanToogleAccordion(
+            types: Toogle.toogle,
             multiAccordion: true,
             textHeading:
                 'Подключение объектов для удалённого администрирования и контроля ',
             textStyle: TextStyle(
-              fontSize: 1,
+              fontSize: 15,
             ),
             callback: callback,
             children: [

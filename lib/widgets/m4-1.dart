@@ -7,7 +7,89 @@ class TitanChooseContract extends StatefulWidget {
 }
 
 class _TitanChooseContractState extends State<TitanChooseContract> {
-  TextEditingController _textController = TextEditingController();
+  TextEditingController searchController = new TextEditingController();
+  String filter;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  FocusNode _phoneFocus;
+
+  final _phoneText = TextEditingController();
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+    _phoneFocus.dispose();
+
+
+
+
+
+
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _phoneFocus = new FocusNode();
+    _phoneFocus.addListener(_focusNodeEvent);
+    newDataList.sort();
+
+    newList1 = [];
+    newList2 = [];
+    for (var i = 0; i < stroke.length; i++) {
+      newList1.add(stroke[i][0]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    searchController.addListener(() {
+      setState(() {
+        filter = searchController.text;
+      });
+    });
+  }
+
+  
+
+
+
+  _focusNodeEvent() {
+    setState(() {});
+  }
 
   static List<int> mainDataList = [112348, 234543, 567345, 345432, 435675];
 
@@ -29,27 +111,46 @@ class _TitanChooseContractState extends State<TitanChooseContract> {
     });
   }
 
-  @override
-  void initState() {
-    super.initState();
-    newDataList.sort();
-  }
+  
 
-  final List<int> entries = <int>[112348, 234543, 567345, 345432, 435675];
-  final List<int> colorCodes = <int>[600, 500, 100, 200, 300];
+  List<List<dynamic>> stroke = [
+    [
+      '112348',
+      '03.10.2020',
+      'ООО “1 Охранная фирма “Титан”',
+      'ООО “Фирма заказчика”',
+      'ТО Охранная сигнализация ТО Пожарная сигнализация КТС'
+    ],
+    [
+      '312348',
+      '05.10.2020',
+      'ООО “ 6 Охранная фирма “Титан”',
+      'ООО “Фирма заказчика”',
+      'ТО Охранная сигнализация ТО Пожарная сигнализация КТС'
+    ],
+    [
+      '412348',
+      '08.10.2020',
+      'ООО “9 Охранная фирма “Титан”',
+      'ООО “Фирма заказчика”',
+      'ТО Охранная сигнализация ТО Пожарная сигнализация КТС'
+    ],
+    [
+      '212348',
+      '04.10.2020',
+      'ООО “44Охранная фирма “Титан”',
+      'ООО “Фирма заказчика”',
+      'ТО Охранная сигнализация ТО Пожарная сигнализация КТС'
+    ],
+  ];
+  List newList1 = [];
+  List newList2 = [];
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      FlatButton(
-        child: Text('data'),
-        onPressed: () {
-          setState(() {
-            _reverse = !_reverse;
-            newDataList.sort();
-          });
-        },
-      ),
-      /*ListView.separated(
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          /*ListView.separated(
         shrinkWrap: true,
         padding: const EdgeInsets.all(8),
         itemCount: entries.length,
@@ -63,43 +164,151 @@ class _TitanChooseContractState extends State<TitanChooseContract> {
         separatorBuilder: (BuildContext context, int index) => const Divider(),
       ),*/
 
-      Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: TextField(
-          controller: _textController,
-          decoration: InputDecoration(
-            hintText: 'Search Here...',
+          SizedBox(height: 40.0),
+          Row(
+            children: [
+              Flexible(
+                child: _buildPhone(),
+              ),
+              FlatButton(
+                child: Text('data'),
+                onPressed: () {
+                  setState(() {
+                    _reverse = !_reverse;
+
+                    if (_reverse == true) {
+                      newList1.sort();
+                      newList2.clear();
+                      for (var a = 0; a < newList1.length; a++) {
+                        for (var c = 0; c < stroke.length; c++) {
+                          if (stroke[c].contains(newList1[a])) {
+                            newList2.add(stroke[c]);
+                          }
+                        }
+                      }
+                      stroke.clear();
+                      for (var k = 0; k < newList2.length; k++) {
+                        stroke.add(newList2[k]);
+                      }
+                      
+                    } else if(_reverse !=true) {
+                      newList1 = newList1.reversed.toList();
+                      newList2.clear();
+                      for (var a = 0; a < newList1.length; a++) {
+                        for (var c = 0; c < stroke.length; c++) {
+                          if (stroke[c].contains(newList1[a])) {
+                            newList2.add(stroke[c]);
+                          }
+                        }
+                      }
+                      stroke.clear();
+                      for (var k = 0; k < newList2.length; k++) {
+                        stroke.add(newList2[k]);
+                      }
+                    }
+                  });
+                },
+              ),
+            ],
           ),
-          onChanged: onItemChanged,
+          ListView.builder(
+            key: new Key(stroke.length.toString()),
+            shrinkWrap: true,
+            padding: const EdgeInsets.all(8),
+            itemCount: stroke.length,
+            itemBuilder: (BuildContext context, int index) {
+              return filter == null || filter == "" ? Column(
+                children: [
+                  Text('№ ${stroke[index][0]}'),
+                  Text('от ${stroke[index][1]}'),
+                  Text(stroke[index][2]),
+                  Text(stroke[index][3]),
+                  Text(stroke[index][4]),
+                ],
+              )
+                      : '${stroke[index][0]}'.toLowerCase()
+                              .contains(filter.toLowerCase())
+                          ? Column(
+                children: [
+                  Text('№ ${stroke[index][0]}'),
+                  Text('от ${stroke[index][1]}'),
+                  Text(stroke[index][2]),
+                  Text(stroke[index][3]),
+                  Text(stroke[index][4]),
+                ],
+              ):SizedBox();
+
+              /*Container(
+              height: 50,
+              //color: Colors.amber[colorCodes[index]],
+              child: Center(
+                child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Flexible(
+                          flex: 1, child: Text(newDataList[index].toString())),
+                      Flexible(
+                          flex: 2, child: Text(newDataList2[index].toString())),
+                      Flexible(
+                          flex: 1, child: Text(newDataList3[index].toString())),
+                    ]),
+              ),
+            );*/
+
+              /*Container(
+              height: 50,
+              //color: Colors.amber[colorCodes[index]],
+              child: Center(
+                child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Flexible(
+                          flex: 1, child: Text(newDataList[index].toString())),
+                      Flexible(
+                          flex: 2, child: Text(newDataList2[index].toString())),
+                      Flexible(
+                          flex: 1, child: Text(newDataList3[index].toString())),
+                    ]),
+              ),
+            );*/
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPhone() {
+    return Container(
+      child: TextFormField(
+                controller: searchController,
+        textAlign: TextAlign.center,
+        keyboardType: TextInputType.number,
+        focusNode: _phoneFocus,
+        style: TextStyle(
+          fontSize: 18.0,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.w500,
+          color: Color.fromRGBO(0, 0, 0, 1),
         ),
-      ),
-      ListView.separated(
-        reverse: _reverse,
-        shrinkWrap: true,
-        padding: const EdgeInsets.all(8),
-        itemCount: newDataList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            height: 50,
-            //color: Colors.amber[colorCodes[index]],
-            child: Center(
-              child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Flexible(
-                        flex: 1, child: Text(newDataList[index].toString())),
-                    Flexible(
-                        flex: 2, child: Text(newDataList2[index].toString())),
-                    Flexible(
-                        flex: 1, child: Text(newDataList3[index].toString())),
-                  ]),
-            ),
-          );
+        //controller: _phoneText,
+        decoration: InputDecoration(
+          hintText: _phoneFocus.hasFocus ? null : 'Поиск...',
+          hintStyle: TextStyle(
+            fontSize: 18.0,
+            fontFamily: 'Roboto',
+            fontWeight: FontWeight.w500,
+            color: Color.fromRGBO(110, 110, 110, 1),
+          ),
+        ),
+        onTap: () {
+          _phoneText.text = "";
         },
-        separatorBuilder: (BuildContext context, int index) => const Divider(),
       ),
-    ]);
+    );
   }
 }
