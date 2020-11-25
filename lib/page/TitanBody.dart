@@ -6,6 +6,7 @@ import 'package:flutter_image/stubPage/TitanStubPage2.dart';
 import 'package:flutter_image/stubPage/TitanStubPage3.dart';
 import 'package:flutter_image/stubPage/TitanStubPage4.dart';
 import 'package:flutter_image/widgets/extendedMenu.dart';
+import 'package:flutter_image/widgets/m0.dart';
 import 'package:flutter_image/widgets/m11-2.dart';
 import 'package:flutter_image/widgets/m11-3.dart';
 import 'package:flutter_image/widgets/m11-4-2.dart';
@@ -179,6 +180,8 @@ Widget _selectBody(BuildContext context, MainState state) {
       return M27();
     case MainState.m27_2:
       return M27_2();
+    case MainState.m0:
+      return M00();
     default:
       return ExtendedMenuWidget();
   }

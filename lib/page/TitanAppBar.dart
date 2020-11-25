@@ -99,7 +99,7 @@ Widget getAppBarWidget(BuildContext context, MainState state) {
         animationDuration: Duration(milliseconds: 50),
         animationType: BadgeAnimationType.scale,
         badgeContent: Text(
-          1.toString(),
+          15.toString(),
           style: TextStyle(color: Colors.black, fontSize: 14.0),
         ),
         child: Image.asset(

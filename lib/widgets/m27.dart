@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_image/control/TitanButton%20copy.dart';
 import 'package:flutter_image/control/TitanControlStyle.dart';
 import 'package:flutter_image/control/TitanToogleAccordion.dart';
+import 'package:flutter_image/elements/TitanBox.dart';
+import 'package:flutter_image/elements/TitanBoxStyle.dart';
 import 'package:flutter_image/page/mainPage.dart';
 import 'package:get/get.dart';
 

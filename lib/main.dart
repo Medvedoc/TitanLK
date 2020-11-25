@@ -55,11 +55,23 @@ class MyApp extends StatelessWidget {
             height: 1.40,
             letterSpacing: 1.0,
           ),
+          headline3: TextStyle(
+            fontSize: 18.0,
+            color: Color.fromRGBO(0, 0, 0, 1),
+            fontFamily: 'Roboto',
+            fontWeight: FontWeight.normal,
+          ),
+          headline4: TextStyle(
+            fontSize: 14.0,
+            color: Color.fromRGBO(0, 0, 0, 1),
+            fontFamily: 'Roboto',
+            fontWeight: FontWeight.normal,
+          ),
           button: TextStyle(
             fontSize: 19.0,
             color: Color.fromRGBO(0, 0, 0, 1),
             fontFamily: 'Roboto',
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.normal,
             height: 1.40,
           ),
           caption: TextStyle(
@@ -98,18 +110,6 @@ class MyApp extends StatelessWidget {
               fontSize: 14.0,
               fontWeight: FontWeight.w400,
             ),*/
-          headline3: TextStyle(
-            fontSize: 14.0,
-            color: Color.fromRGBO(110, 110, 110, 1),
-            fontFamily: 'Roboto',
-            fontWeight: FontWeight.w400,
-            height: 0.90,
-          ),
-          //fontWeight: FontWeight.bold),
-          headline4: TextStyle(
-              color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
-          headline5: TextStyle(color: Colors.white, fontSize: 15),
-          headline6: TextStyle(color: Colors.white, fontSize: 12),
         ),
         primaryTextTheme: TextTheme(
           headline3: TextStyle(

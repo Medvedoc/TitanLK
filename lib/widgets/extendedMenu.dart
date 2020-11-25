@@ -14,7 +14,8 @@ class ExtendedMenuWidget extends StatelessWidget {
         padding: EdgeInsets.zero, 
 
         children: <Widget>[
-          _getButton(context, Icons.monitor, "М1", MainState.m1, true),
+          _getButton(context, Icons.monitor, "M0", MainState.m0, true),
+          _getButton(context, Icons.monitor, "М1", MainState.m1, false),
           _getButton(context, Icons.monitor, "М2", MainState.m2, false),
           _getButton(context, Icons.monitor, "М3", MainState.m3, false),
           _getButton(context, Icons.monitor, "М3-1", MainState.m3_1, false),

@@ -43,6 +43,7 @@ class MainState {
   static const int m31_2 = 37;
   static const int m27 = 38;
   static const int m27_2 = 39;
+  static const int m0 = 40;
 
   //static const int participants = 1;
   //static const int myWFRS = 2;
@@ -110,6 +111,8 @@ class MainState {
         return '';
       case m27-2:
         return '';
+      case m0:
+        return 'кнопочки';
       //case participants:
       //  return 'wfrsParticipants';
       //case myWFRS:

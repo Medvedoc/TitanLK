@@ -1,4 +1,5 @@
 import 'package:flutter_image/control/TitanButton.dart';
+import 'package:flutter_image/elements/TitanBox.dart';
 import 'package:flutter_image/control/TitanControlStyle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
