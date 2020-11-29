@@ -458,10 +458,11 @@ class Variable {
   static Variable toogle = Variable(number: 2);
   static Variable checkboxs = Variable(number: 3);
   static Variable indicators = Variable(number: 4);
-  //static Variable container = Variable (number: 5);
+  static Variable container = Variable (number: 5);
 }
 
 class Type {
+  final Function(bool) onTap;
   final Variable type;
   final TypeAlignment alignment;
   final IconData arrowUp;
@@ -496,6 +497,7 @@ class Type {
   final int indicatorCaunt;
   bool switched;
   Type({
+    @required this.onTap,
     this.type,
     this.alignment,
     this.arrowUp,
@@ -530,15 +532,46 @@ class Type {
     this.indicatorCaunt,
     this.switched,
   });
-/*
-container
-button
-checkbox
-radio
-indicator
-toogle
 
-*/
+  static Type _container(
+    TypeAlignment alignment,
+    bool switched,
+    IconData arrowUp,
+    IconData arrowDown,
+    Color arrowColor,
+    double arrowSize,
+    Variable type,
+  ) =>
+      Type(
+        alignment: alignment,
+        switched: switched,
+        arrowUp: arrowUp,
+        arrowDown: arrowDown,
+        arrowColor: arrowColor,
+        arrowSize: arrowSize,
+        type: type = Variable.container,
+      );
+
+  static Type container({
+    TypeAlignment alignment,
+    bool switched,
+    IconData arrowUp,
+    IconData arrowDown,
+    Color arrowColor,
+    double arrowSize,
+    Variable type,
+  }) {
+    return _container(
+      alignment,
+      switched,
+      arrowUp,
+      arrowDown,
+      arrowColor,
+      arrowSize,
+      type = Variable.container,
+    );
+  }
+
 
   static Type _button(
     TypeAlignment alignment,
@@ -635,6 +668,7 @@ toogle
   }
 
   static Type _checkbox(
+    Function(bool) onTap,
     TypeAlignment alignment,
     bool switched,
     double checkboxHeight,
@@ -650,6 +684,7 @@ toogle
     Variable type,
   ) =>
       Type(
+        onTap: onTap,
         alignment: alignment,
         switched: switched,
         checkboxHeight: checkboxHeight,
@@ -666,6 +701,7 @@ toogle
       );
 
   static Type checkbox({
+    Function(bool) onTap,
     TypeAlignment alignment,
     bool switched,
     double checkboxHeight,
@@ -681,6 +717,7 @@ toogle
     Variable type,
   }) {
     return _checkbox(
+      onTap,
       alignment,
       switched,
       checkboxHeight,

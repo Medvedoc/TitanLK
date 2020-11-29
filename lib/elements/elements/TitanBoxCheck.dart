@@ -24,9 +24,21 @@ class TitanBoxCheck extends StatefulWidget {
     this.checkboxBorderColor,
     this.checkboxCheckedColor,
     this.checkboxUncheckedColor,
+    this.isSelected,
     @required this.onTap,
   })  : assert(onTap != null),
         super(key: key);
+
+
+
+
+
+
+
+
+
+  
+  final bool isSelected;     
   final bool checked;
   final Function(bool) callbackCheckbox;
   final bool isChecked11;
@@ -83,14 +95,12 @@ class _TitanBoxCheckState extends State<TitanBoxCheck> {
 
   @override
   Widget build(BuildContext context) {
-    //print('1111 $isChecked');
     return GestureDetector(
       onTap: () {
         setState(() {
-          widget.isChecked11 == true ? print('true') : print('false');
-          widget.callbackCheckbox(isChecked);
-          //isChecked=widget.isChecked;
           isChecked = !isChecked;
+          widget.callbackCheckbox(isChecked);
+          print(widget.isSelected ? "true" : "false");
         });
         widget?.onTap(isChecked);
       },

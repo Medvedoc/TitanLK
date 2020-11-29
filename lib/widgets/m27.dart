@@ -26,6 +26,25 @@ class _M30State extends State<M27> {
         textAlign: TextAlign.center,
       ),
       SizedBox(height: 15.0),
+      TitanBox(
+        
+        type: Type.container(),
+        onPressed: () {},
+        style: Decorations(
+          height: 65,
+            borderRadius: 6.0,
+            background: ColorTheme.coloris(color: Color.fromRGBO(245, 0, 0, 1), textColor: Colors.white, shadowColor: Colors.grey.shade200),
+            border: BorderTheme(borderRadius: 6.0, borderColor: Colors.black, left:1.5, right: 1.5,bottom: 1.5,top: 1.5)),
+        title: TitleString(
+          title: '50.00 Р',
+          upperCase: true,
+          textStyle: Theme.of(context)
+              .textTheme
+              .headline1
+              .merge(TextStyle(color: Colors.white)),
+        ),
+      ),
+      SizedBox(height: 15.0),
       TitanToogleAccordion(
         borderRadius: 6.0,
         textAlign: AlignmentDirectional.center,
@@ -61,6 +80,25 @@ class _M30State extends State<M27> {
                     textHeading: _date.toUpperCase(),
                     types: Toogle.zero,
                     textStyle: Theme.of(context).textTheme.headline1),
+                    
+      TitanBox(
+        
+        type: Type.button(),
+        //onPressed: () {},
+        style: Decorations(
+          height: 45,
+            borderRadius: 6.0,
+            background: ColorTheme.coloris(color: Color.fromRGBO(245, 0, 0, 1), textColor: Colors.white, shadowColor: Colors.grey.shade200),
+            border: BorderTheme(borderRadius: 6.0, borderColor: Colors.black, left:1.5, right: 1.5,bottom: 1.5,top: 1.5)),
+        title: TitleString(
+          title: '50.00 Р',
+          upperCase: true,
+          textStyle: Theme.of(context)
+              .textTheme
+              .headline1
+              .merge(TextStyle(color: Colors.white)),
+        ),
+      ),
               ],
             ),
           ),

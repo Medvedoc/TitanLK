@@ -14,6 +14,11 @@ import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
 class TitanBox extends StatefulWidget {
+  final Function() pressTap;
+  final int index;
+  final bool isSelected;
+  Function(int) selectItem;
+
   final int value;
   final int groupValue;
   final ValueChanged<int> onChanged;
@@ -37,7 +42,12 @@ class TitanBox extends StatefulWidget {
   bool switches;
   Function(bool) callbackswitches;
 
-  TitanBox({
+  TitanBox(
+   // this.selectItem, 
+    {
+    this.pressTap,
+    this.index,
+    this.isSelected,
     this.value,
     this.groupValue,
     this.onChanged,
@@ -259,11 +269,11 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                       left: widget.type != null &&
                               widget.type.alignment != null &&
                               widget.type.alignment.number == 1
-                          ? sizeBox 
+                          ? sizeBox
                           : 0.0,
                       right: widget.type != null &&
-                                  widget.type.alignment != null &&
-                                  widget.type.alignment.number == 2
+                              widget.type.alignment != null &&
+                              widget.type.alignment.number == 2
                           ? sizeBox
                           : 0.0,
                       /*  left: widget.icon != null && widget.icon.alignment != null
@@ -642,8 +652,13 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                   : widget.type.switched != null
                       ? widget.type.switched
                       : true,
+                      isSelected: widget.isSelected?true:false,
               onTap: (selected) {
+            widget.selectItem(widget.index);
                 _toggleCollapsed();
+                print(selected);
+                
+        widget.type?.onTap(selected);
               },
             ),
           )
@@ -732,12 +747,18 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Text("${widget.isSelected ? "true" : "false"}"),
           widget.title != null
               ? Text(
                   widget.title.upperCase != null &&
                           widget.title.upperCase == true
-                      ? widget.title.title.toUpperCase()
-                      : widget.title.title,
+                      ? widget.title.title.toUpperCase() 
+                      +
+                          (widget.isSelected ? "true" : "false")
+                      : widget.title.title 
+                      +
+                          (widget.isSelected ? "true" : "false")
+                      ,
                   maxLines: 1,
                   overflow: TextOverflow.fade,
                   softWrap: false,
@@ -906,7 +927,9 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                 ? widget.icon.padding
                 : EdgeInsets.all(0.0),
             alignment: Alignment.centerRight,
-            child: showAccordion
+            child: 
+            widget.isSelected && 
+            showAccordion
                 ? Icon(
                     Icons.keyboard_arrow_up,
                     color: widget.style.background.textColor,
@@ -961,6 +984,7 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                 ),
               ],
             ),
+            widget.isSelected && 
             accordion == true
                 ? showAccordion
                     ? Container(
@@ -988,8 +1012,15 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
               widget.type.type != null &&
               widget.type.type.number == 1
           ? () {
+
+            
+    if (widget.pressTap != null) {
+      widget.pressTap();}
+
+              widget.selectItem(widget.index);
+       // widget.isSelected?
               if (_counter == 1) {
-                isTapped = false;
+              //  isTapped = false;
                 accordion == true ? isTapped = false : isTapped = true;
                 _counter -= 1;
               } else {
@@ -1000,54 +1031,15 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
               }
             }
           : () {},
-      onTapDown: widget.type != null &&
-              widget.type.type != null &&
-              widget.type.type.number == 1
-          ? (TapDownDetails event) {
-              setState(() {
-                // widget.callbackswitches(isTapped);
-                //widget.type.switched==true? isTapped = true:   isTapped = false;
-                isTapped = true;
 
-                _linerGradient = LinearGradient(
-                  begin: widget.style.background.end != null
-                      ? widget.style.background.end
-                      : Alignment.bottomCenter,
-                  end: widget.style.background.begin != null
-                      ? widget.style.background.begin
-                      : Alignment.topCenter,
-                  colors: widget.style.background.colors != null
-                      ? [
-                          widget.style.background.colors[2],
-                          widget.style.background.colors[2],
-                          widget.style.background.colors[3],
-                          widget.style.background.colors[3],
-                        ]
-                      : [
-                          Color.fromRGBO(237, 212, 3, 1),
-                          Color.fromRGBO(237, 212, 3, 1),
-                          Color.fromRGBO(237, 212, 3, 1),
-                          Color.fromRGBO(237, 212, 3, 1),
-                        ],
-                  stops: widget.style.background.stops != null
-                      ? widget.style.background.stops
-                      : [0.0, 0.2, 0.8, 1.0],
-                );
-              });
-              //_toggleCollapsed();
-            }
-          : (TapDownDetails event) {},
-      /*onTapCancel: () {
-        setState(() {
-          isTapped = false;
-        });
-      },*/
+      onTapDown: onDown,
       onTapUp: widget.type != null &&
               widget.type.type != null &&
               widget.type.type.number == 1
           ? (TapUpDetails event) {
-              if (accordion == true) {
+              if (widget.isSelected==true&& accordion == true) {
                 setState(() {
+                  //widget.selectItem(widget.index);
                   isTapped = false;
 
                   _linerGradient = LinearGradient(
@@ -1080,6 +1072,7 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
               } else {
                 Timer(Duration(milliseconds: 1), () {
                   setState(() {
+                   // widget.selectItem(widget.index);
                     isTapped = false;
                     _linerGradient = LinearGradient(
                       begin: widget.style.background.begin != null
@@ -1111,6 +1104,44 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
             }
           : (TapUpDetails event) {},
     );
+  }
+
+  onDown(TapDownDetails event) {
+    if (widget.type != null &&
+        widget.type.type != null &&
+        widget.type.type.number == 1)
+      setState(() {
+       // widget.selectItem(widget.index);
+        // widget.callbackswitches(isTapped);
+        //widget.type.switched==true? isTapped = true:   isTapped = false;
+        isTapped = true;
+
+        _linerGradient = LinearGradient(
+          begin: widget.style.background.end != null
+              ? widget.style.background.end
+              : Alignment.bottomCenter,
+          end: widget.style.background.begin != null
+              ? widget.style.background.begin
+              : Alignment.topCenter,
+          colors: widget.style.background.colors != null
+              ? [
+                  widget.style.background.colors[2],
+                  widget.style.background.colors[2],
+                  widget.style.background.colors[3],
+                  widget.style.background.colors[3],
+                ]
+              : [
+                  Color.fromRGBO(237, 212, 3, 1),
+                  Color.fromRGBO(237, 212, 3, 1),
+                  Color.fromRGBO(237, 212, 3, 1),
+                  Color.fromRGBO(237, 212, 3, 1),
+                ],
+          stops: widget.style.background.stops != null
+              ? widget.style.background.stops
+              : [0.0, 0.2, 0.8, 1.0],
+        );
+      });
+    //_toggleCollapsed();
   }
 
   @override
