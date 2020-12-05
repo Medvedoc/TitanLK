@@ -1,67 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_image/widgets/777.dart';
-
-class M00 extends StatefulWidget {
-  M00({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  _ParentState createState() => _ParentState();
-}
-
-class _ParentState extends State<M00> {
-  int _selectedItem = 2;int groups;
-  
-
-  selectItem(index, group) {
-    setState(() {
-      _selectedItem = index;
-      groups=group;
-      print(groups);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListView.builder(
-          shrinkWrap: true,
-          itemCount: 5,
-          itemBuilder: (context, index) {
-            return CustomItem(
-              selectItem, // callback function, setstate for parent
-              index: index,
-              isSelected: _selectedItem == index&&groups==1 ? true : false,
-              isChecked: _selectedItem == index&&groups==1? true : false,
-              title: index.toString(),
-              group:1,
-              content: 'ghjghjghj',
-            );
-          },
-        ),
-       /* SizedBox(height: 20.0),
-        ListView.builder(
-          shrinkWrap: true,
-          itemCount: 5,
-          itemBuilder: (context, index) {
-            return CustomItem(
-              selectItem, // callback function, setstate for parent
-              index: index,
-              isSelected: _selectedItem == index&&groups==2 ? true : false,
-              isChecked: _selectedItem == index&&groups==2 ? true : false,
-              title: index.toString(),
-              group:2,
-            );
-          },
-        ),*/
-      ],
-    );
-  }
-}
-
-/*import 'package:flutter_image/elements/TitanBox.dart';
+import 'package:flutter_image/elements/TitanBox.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image/elements/TitanBoxStyle.dart';
@@ -72,31 +9,7 @@ class M00 extends StatefulWidget {
 }
 
 class _M00State extends State<M00> {
-  int _selectedItem = 0;
-  bool selecteds=false;
-
-  selectItem(index) {
-    setState(() {
-      _selectedItem = index;
-      print(selectItem.toString());
-    });
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  int groupValue_1 = 1;
   callback(heightBlock) {
     setState(() {});
   }
@@ -106,105 +19,37 @@ class _M00State extends State<M00> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        ListView.builder(
-      shrinkWrap: true,
-      itemCount: 5,
-      itemBuilder: (context, index) {
-        return TitanBox(
-          selectItem, // callback function, setstate for parent
-          index: index,
-          isSelected:selecteds? (_selectedItem == index ? true : false):false,
-          //title: index.toString(),
-          type: Type.checkbox(
-            onTap: (selected) {
-              print('$index object $selected');
-              selecteds = selected;
+        TitanBox(
+            onTap: (value, fromTime, toTime) {
+              print(value);
             },
-          ),
-          onPressed: () {},
-          callback: callback,
-          style: Decorations(
-              background: ColorTheme.yellow,
-              border: BorderTheme.trbz,
-              textAlignment: MainAxisAlignment.start),
-          title: TitleString(title: index.toString(), upperCase: true),
-          dialog: DialogShow(title: 'sfgdfgfdgfdgfd'),
-          icon: IconsTheme(icons: Icons.ac_unit),
-          children: [
-            SizedBox(height: 10.0),
-            ListView.builder(
-                shrinkWrap: true,
-                physics: ScrollPhysics(),
-                padding: const EdgeInsets.all(8),
-                itemCount: 15,
-                itemBuilder: (BuildContext context, int index) {
-                  return Column(
-                    children: [
-                      Text('строка №$index'),
-                    ],
-                  );
-                }),
-          ],
-        );
-      },
-    ),
-        SizedBox(height: 10.0),
-      /*  TitanBox(
-          onPressed: () {},
-          type: Type.button(),
-          style: Decorations(
-            padding: EdgeInsets.zero,
-            margin: EdgeInsets.zero,
-            width:48,
-            height: 48,
-              background: ColorTheme.yellow, border: BorderTheme.button),
-          icon: IconsTheme(icons: Icons.ac_unit, alignment: AlignmentBox.righttext),
-        ),
+            callback: callback,
+            type: Type.button(alignment: TypeAlignment.leftblock),
+            style: Decorations(
+                background: ColorTheme.yellow, border: BorderTheme.button),
+            title: TitleString(title: 'Кнопка', upperCase: true),
+            icon: IconsTheme(
+                icons: Icons.ac_unit, alignment: AlignmentBox.lefttext)),
         SizedBox(height: 10.0),
         TitanBox(
-          onPressed: () {},
+          onTap: (value, fromTime, toTime) {
+            print(value);
+          },
           callback: callback,
-          type: Type.button(),
-          style: Decorations(
-              background: ColorTheme.yellow,
-              border: BorderTheme.trbz,
-              textAlignment: MainAxisAlignment.start),
-          title: TitleString(title: 'Кнопка', upperCase: true),
-          dialog: DialogShow(title: 'sfgdfgfdgfdgfd'),
-          icon: IconsTheme(icons: Icons.ac_unit),
-          children: [
-            SizedBox(height: 10.0),
-            ListView.builder(
-                shrinkWrap: true,
-                physics: ScrollPhysics(),
-                padding: const EdgeInsets.all(8),
-                itemCount: 15,
-                itemBuilder: (BuildContext context, int index) {
-                  return Column(
-                    children: [
-                      Text('строка №$index'),
-                    ],
-                  );
-                }),
-          ],
-        ),
-        SizedBox(height: 10.0),
-        TitanBox(
-          onPressed: () {},
-          callback: callback,
-          type: Type.button(alignment: TypeAlignment.rightblock),
+          type:
+              Type.button(alignment: TypeAlignment.rightblock, switched: true),
           style: Decorations(
               background: ColorTheme.yellow,
               border: BorderTheme.button,
               textAlignment: MainAxisAlignment.end),
           title: TitleString(title: 'Кнопка', upperCase: true),
+          icon: IconsTheme(icons: Icons.ac_unit),
           children: [
             SizedBox(height: 10.0),
             ListView.builder(
                 shrinkWrap: true,
-                physics: ScrollPhysics(),
                 padding: const EdgeInsets.all(8),
-                itemCount: 35,
+                itemCount: 5,
                 itemBuilder: (BuildContext context, int index) {
                   return Column(
                     children: [
@@ -216,13 +61,52 @@ class _M00State extends State<M00> {
         ),
         SizedBox(height: 10.0),
         TitanBox(
-          switched: true,
-          onPressed: () {},
           callback: callback,
-          type: Type.toogle(),
+          type: Type.button(alignment: TypeAlignment.rightblock),
           style: Decorations(
               background: ColorTheme.yellow,
-              border: BorderTheme.all,
+              border: BorderTheme.button,
+              textAlignment: MainAxisAlignment.start),
+          title: TitleString(title: 'Кнопка', upperCase: true),
+          icon: IconsTheme(
+              icons: Icons.ac_unit, alignment: AlignmentBox.lefttext),
+          children: [
+            SizedBox(height: 10.0),
+            ListView.builder(
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(8),
+                itemCount: 5,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      Text('строка №$index'),
+                    ],
+                  );
+                }),
+          ],
+        ),
+        SizedBox(height: 10.0),
+        TitanBox(
+          onTap: (value, fromTime, toTime) {
+            print(value);
+          },
+          switched: true,
+          callback: callback,
+          type: Type.toogle(alignment: TypeAlignment.leftblock),
+          style: Decorations(
+            background: ColorTheme.yellow,
+            border: BorderTheme.container,
+          ),
+          title: TitleString(title: 'Переключатель включен', upperCase: true),
+        ),
+        SizedBox(height: 10.0),
+        TitanBox(
+          switched: true,
+          callback: callback,
+          type: Type.toogle(alignment: TypeAlignment.rightblock),
+          style: Decorations(
+              background: ColorTheme.yellow,
+              border: BorderTheme.container,
               textAlignment: MainAxisAlignment.end),
           title: TitleString(title: 'Переключатель включен', upperCase: true),
           children: [
@@ -242,15 +126,32 @@ class _M00State extends State<M00> {
         ),
         SizedBox(height: 10.0),
         TitanBox(
+          onTap: (value, fromTime, toTime) {
+            print(value);
+          },
           picker: PickerShow(time: ['15:00', '23:00']),
-          onPressed: () {},
           callback: callback,
-          type:
-              Type.checkbox(alignment: TypeAlignment.rightblock, switched: true),
+          type: Type.checkbox(
+              alignment: TypeAlignment.rightblock, switched: true),
           style: Decorations(
               background: ColorTheme.yellow,
               border: BorderTheme.all,
-              textAlignment: MainAxisAlignment.end),
+              textAlignment: MainAxisAlignment.start),
+          title: TitleString(title: 'Пн-Вс', upperCase: true),
+        ),
+        SizedBox(height: 10.0),
+        TitanBox(
+          onTap: (value, fromTime, toTime) {
+            print('$value $fromTime $toTime');
+          },
+          picker: PickerShow(time: ['15:00', '23:00']),
+          callback: callback,
+          type:
+              Type.checkbox(alignment: TypeAlignment.leftblock, switched: true),
+          style: Decorations(
+              background: ColorTheme.yellow,
+              border: BorderTheme.all,
+              textAlignment: MainAxisAlignment.start),
           title: TitleString(title: 'Пн-Вс', upperCase: true),
           children: [
             /*SizedBox(height: 10.0),
@@ -266,8 +167,10 @@ class _M00State extends State<M00> {
                   );
                 }),*/
             TitanBox(
+              onTap: (value, fromTime, toTime) {
+                print('$value $fromTime $toTime');
+              },
               picker: PickerShow(time: ['15:00', '23:00']),
-              onPressed: () {},
               callback: callback,
               type: Type.checkbox(alignment: TypeAlignment.leftblock),
               style: Decorations(
@@ -279,7 +182,6 @@ class _M00State extends State<M00> {
             SizedBox(height: 10.0),
             TitanBox(
               picker: PickerShow(time: ['15:00', '23:00']),
-              onPressed: () {},
               callback: callback,
               type: Type.checkbox(
                   alignment: TypeAlignment.leftblock, switched: true),
@@ -293,7 +195,6 @@ class _M00State extends State<M00> {
         ),
         SizedBox(height: 10.0),
         TitanBox(
-          onPressed: () {},
           callback: callback,
           type: Type.indicator(alignment: TypeAlignment.rightblock),
           style: Decorations(
@@ -315,9 +216,211 @@ class _M00State extends State<M00> {
                   );
                 }),
           ],
-        ),*/
-        SizedBox(height: 30.0),
+        ),
       ],
+    );
+  }
+}
+
+/*import 'package:flutter/material.dart';
+import 'package:flutter_image/control/multic.dart';
+
+class M00 extends StatelessWidget {
+  const M00({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+          children: <Widget>[
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              'Horizontal',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Shape Disabled',
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      CustomRadioButton(
+                        horizontal: true,
+                        unSelectedColor: Theme.of(context).canvasColor,
+                        buttonLables: [
+                          'Student',
+                          'Parent',
+                          'Teacher',
+                          'hgfh',
+                          'jhgiugx'
+                        ],
+                        buttonValues: [
+                          "STUDENT",
+                          "PARENT",
+                          "TEACHER",
+                          'hgfh',
+                          'jhgiugx'
+                        ],
+                        defaultSelected: "STUDENT",
+                        radioButtonValue: (value) {
+                          print(value);
+                        },
+                        selectedColor: Theme.of(context).accentColor,
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Shape Enabled',
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      CustomRadioButton(
+                        horizontal: true,
+                        enableShape: true,
+                        elevation: 0,
+                        unSelectedColor: Theme.of(context).canvasColor,
+                        buttonLables: [
+                          'Student',
+                          'Parent',
+                          'Teacher',
+                        ],
+                        buttonValues: [
+                          1,
+                          2,
+                          3,
+                        ],
+                        defaultSelected: 1,
+                        radioButtonValue: (value) {
+                          print(value);
+                        },
+                        selectedColor: Theme.of(context).accentColor,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              'Verticle',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Column(
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Shape Disabled',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    CustomRadioButton(
+                      elevation: 0,
+                      absoluteZeroSpacing: true,
+                      unSelectedColor: Theme.of(context).canvasColor,
+                      buttonLables: [
+                        'Student',
+                        'Parent',
+                        'Teacher',
+                      ],
+                      buttonValues: [
+                        "STUDENT",
+                        "PARENT",
+                        "TEACHER",
+                      ],
+                      buttonTextStyle: ButtonTextStyle(
+                          selectedColor: Colors.white,
+                          unSelectedColor: Colors.black,
+                          textStyle: TextStyle(fontSize: 16)),
+                      radioButtonValue: (value) {
+                        print(value);
+                      },
+                      selectedColor: Theme.of(context).accentColor,
+                    ),
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Shape Enabled',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    CustomRadioButton(
+                      enableShape: true,
+                      elevation: 0,
+                      defaultSelected: "Sunday",
+                      enableButtonWrap: true,
+                      width: 120,
+                      autoWidth: false,
+                      unSelectedColor: Theme.of(context).canvasColor,
+                      buttonLables: [
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday",
+                        "Saturday",
+                        "Sunday",
+                      ],
+                      buttonValues: [
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday",
+                        "Saturday",
+                        "Sunday",
+                      ],
+                      radioButtonValue: (value) {
+                        print(value);
+                      },
+                      selectedColor: Theme.of(context).accentColor,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
     );
   }
 }*/

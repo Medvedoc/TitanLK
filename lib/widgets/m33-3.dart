@@ -423,9 +423,9 @@ class _M33_3State extends State<M33_3> {
                 margin: EdgeInsets.symmetric(vertical: 8.0),
                 child: Radio(
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  value: 1,
+                  value: 1,toggleable:true ,
                   groupValue: selectedRadio,
-                  activeColor: Colors.black,
+                  activeColor: Colors.black,autofocus:true ,
                   onChanged: (val) {
                     print("Radio $val");
                     setSelectedRadio(val);
