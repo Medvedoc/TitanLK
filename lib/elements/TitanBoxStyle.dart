@@ -310,6 +310,15 @@ class BorderTheme {
     borderRadius: 15.0,
   );
 
+  static BorderTheme container = BorderTheme(
+    borderColor: Colors.black,
+    top: 1.5,
+    right: 1.0,
+    bottom: 1.0,
+    left: 1.0,
+    borderRadius: 10.0,
+  );
+
   static BorderTheme all = BorderTheme(
     borderColor: Colors.black,
     top: 1.0,
@@ -458,11 +467,12 @@ class Variable {
   static Variable toogle = Variable(number: 2);
   static Variable checkboxs = Variable(number: 3);
   static Variable indicators = Variable(number: 4);
-  static Variable container = Variable (number: 5);
+  static Variable container = Variable(number: 5);
 }
 
 class Type {
-  final Function(bool) onTap;
+  final double padding;
+  final ValueChanged<bool> onTap;
   final Variable type;
   final TypeAlignment alignment;
   final IconData arrowUp;
@@ -497,6 +507,7 @@ class Type {
   final int indicatorCaunt;
   bool switched;
   Type({
+    this.padding,
     @required this.onTap,
     this.type,
     this.alignment,
@@ -572,8 +583,8 @@ class Type {
     );
   }
 
-
   static Type _button(
+    ValueChanged<bool> onTap,
     TypeAlignment alignment,
     bool switched,
     IconData arrowUp,
@@ -583,6 +594,7 @@ class Type {
     Variable type,
   ) =>
       Type(
+        onTap: onTap,
         alignment: alignment,
         switched: switched,
         arrowUp: arrowUp,
@@ -593,6 +605,7 @@ class Type {
       );
 
   static Type button({
+    ValueChanged<bool> onTap,
     TypeAlignment alignment,
     bool switched,
     IconData arrowUp,
@@ -602,6 +615,7 @@ class Type {
     Variable type,
   }) {
     return _button(
+      onTap,
       alignment,
       switched,
       arrowUp,
@@ -614,6 +628,7 @@ class Type {
 
   static Type _toogle(
     TypeAlignment alignment,
+    double padding,
     bool switched,
     Color toggleColor,
     Color toggleActiveColor,
@@ -627,6 +642,7 @@ class Type {
   ) =>
       Type(
         alignment: alignment,
+        padding: padding,
         switched: switched,
         toggleColor: toggleColor,
         toggleActiveColor: toggleActiveColor,
@@ -641,6 +657,7 @@ class Type {
 
   static Type toogle({
     TypeAlignment alignment,
+    double padding,
     bool switched,
     Color toggleColor,
     Color toggleActiveColor,
@@ -654,6 +671,7 @@ class Type {
   }) {
     return _toogle(
       alignment,
+      padding,
       switched,
       toggleColor,
       toggleActiveColor,
@@ -670,6 +688,7 @@ class Type {
   static Type _checkbox(
     Function(bool) onTap,
     TypeAlignment alignment,
+    double padding,
     bool switched,
     double checkboxHeight,
     double checkboxWidth,
@@ -686,6 +705,7 @@ class Type {
       Type(
         onTap: onTap,
         alignment: alignment,
+        padding: padding,
         switched: switched,
         checkboxHeight: checkboxHeight,
         checkboxWidth: checkboxWidth,
@@ -703,6 +723,7 @@ class Type {
   static Type checkbox({
     Function(bool) onTap,
     TypeAlignment alignment,
+    double padding,
     bool switched,
     double checkboxHeight,
     double checkboxWidth,
@@ -719,6 +740,7 @@ class Type {
     return _checkbox(
       onTap,
       alignment,
+      padding,
       switched,
       checkboxHeight,
       checkboxWidth,
@@ -736,6 +758,7 @@ class Type {
 
   static Type _indicator(
     TypeAlignment alignment,
+    double padding,
     double indicatorHeight,
     double indicatorWidth,
     Color indicatorBackground,
@@ -747,6 +770,7 @@ class Type {
   ) =>
       Type(
         alignment: alignment,
+        padding: padding,
         indicatorHeight: indicatorHeight,
         indicatorWidth: indicatorWidth,
         indicatorBackground: indicatorBackground,
@@ -759,6 +783,7 @@ class Type {
 
   static Type indicator({
     TypeAlignment alignment,
+    double padding,
     double indicatorHeight,
     double indicatorWidth,
     Color indicatorBackground,
@@ -770,6 +795,7 @@ class Type {
   }) {
     return _indicator(
       alignment,
+      padding,
       indicatorHeight,
       indicatorWidth,
       indicatorBackground,

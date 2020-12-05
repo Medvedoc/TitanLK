@@ -29,7 +29,6 @@ class _M30State extends State<M27> {
       TitanBox(
         
         type: Type.container(),
-        onPressed: () {},
         style: Decorations(
           height: 65,
             borderRadius: 6.0,

@@ -1,5 +1,4 @@
 import 'dart:async';
-//import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_image/elements/TitanBoxStyle.dart';
@@ -13,7 +12,7 @@ import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
 class TitanBox extends StatefulWidget {
-  final Function(bool, String, String) onTap;
+  final ValueChanged<bool> onTap;
   final int value;
   final int groupValue;
   final ValueChanged<int> onChanged;
@@ -211,17 +210,214 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                     : 0.0),
             alignment: Alignment.center,
             child: Container(
-              /*padding: widget.style != null && widget.style.padding != null
+              padding: widget.style != null && widget.style.padding != null
                   ? widget.style.padding
-                  : EdgeInsets.symmetric(horizontal: 10.0),*/
-
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  : EdgeInsets.symmetric(horizontal: 10.0),
+              child: Stack(
                 children: [
-                  _leftBlock(),
-                  _textBlock(),
-                  _rightBlock(),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      widget.type != null &&
+                              widget.type.alignment != null &&
+                              widget.type.alignment.number == 1
+                          ? _indicatorBox()
+                          : SizedBox(),
+                      widget.type != null &&
+                              widget.type.alignment != null &&
+                              widget.type.alignment.number == 1
+                          ? _checkBox()
+                          : SizedBox(),
+                      widget.type != null &&
+                              widget.type.alignment != null &&
+                              widget.type.alignment.number == 1
+                          ? _toogleBox()
+                          : SizedBox(),
+                      widget.type != null &&
+                              widget.type.alignment != null &&
+                              widget.type.alignment.number == 1
+                          ? _typeBox()
+                          : SizedBox(),
+                      widget.counter != null &&
+                              widget.counter.alignment != null &&
+                              widget.counter.alignment.number == 1
+                          ? _counterBox()
+                          : SizedBox(),
+                      widget.dialog != null &&
+                              widget.dialog.alignment != null &&
+                              widget.dialog.alignment.number == 1
+                          ? _dialogBox()
+                          : SizedBox(),
+                      widget.icon != null &&
+                              widget.icon.alignment != null &&
+                              widget.icon.alignment.number == 1
+                          ? _icon()
+                          : SizedBox(),
+                    ],
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                      left: widget.type != null &&
+                              widget.type.alignment != null &&
+                              widget.type.alignment.number == 1
+                          ? sizeBox +
+                              (widget.icon != null &&
+                                      widget.icon.alignment != null
+                                  ? _iconSize
+                                  : 0.0)
+                          : 0.0 +
+                              (widget.icon != null &&
+                                      widget.icon.alignment != null
+                                  ? _iconSize
+                                  : 0.0),
+                      right: widget.type != null &&
+                                  widget.type.alignment != null &&
+                                  widget.type.alignment.number == 2 ||
+                              widget.type != null &&
+                                  widget.type.alignment == null
+                          ? sizeBox +
+                              (widget.icon != null &&
+                                          widget.icon.alignment != null ||
+                                      widget.icon != null &&
+                                          widget.icon.alignment == null
+                                  ? _iconSize
+                                  : 0.0) +
+                              (widget.timer != null
+                                  ? widget.timer.textStyle != null
+                                      ? widget.timer.textStyle.fontSize
+                                      : _timerSize
+                                  : 0.0)
+                          : 0.0 +
+                              (widget.icon != null &&
+                                          widget.icon.alignment != null ||
+                                      widget.icon != null &&
+                                          widget.icon.alignment == null
+                                  ? _iconSize
+                                  : 0.0) +
+                              (widget.timer != null
+                                  ? widget.timer.textStyle != null
+                                      ? widget.timer.textStyle.fontSize
+                                      : _timerSize
+                                  : 0.0),
+                      /*  left: widget.icon != null && widget.icon.alignment != null
+                          ? _iconSize
+                          : 0.0,*/
+                      /*right:
+                          widget.icon != null && widget.icon.alignment != null
+                              ? widget.icon.alignment.number == 1 ||
+                                      widget.icon.alignment.number == 2 ||
+                                      widget.icon.alignment.number == 3 ||
+                                      widget.icon.alignment.number == 4
+                                  ? _iconSize
+                                  : 0.0
+                              : 0.0,*/
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          child: Expanded(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment:
+                                  widget.style.textAlignment != null
+                                      ? widget.style.textAlignment
+                                      : MainAxisAlignment.center,
+                              children: [
+                                widget.counter != null &&
+                                        widget.counter.alignment != null &&
+                                        widget.counter.alignment.number == 2
+                                    ? _counterBox()
+                                    : SizedBox(),
+                                widget.dialog != null &&
+                                        widget.dialog.alignment != null &&
+                                        widget.dialog.alignment.number == 2
+                                    ? _dialogBox()
+                                    : SizedBox(),
+                                widget.icon != null &&
+                                        widget.icon.alignment != null &&
+                                        widget.icon.alignment.number == 2
+                                    ? _icon()
+                                    : SizedBox(),
+                                _textBox(),
+                                widget.icon != null &&
+                                        widget.icon.alignment != null &&
+                                        widget.icon.alignment.number == 3
+                                    ? _icon()
+                                    : SizedBox(),
+                                widget.dialog != null &&
+                                        widget.dialog.alignment != null &&
+                                        widget.dialog.alignment.number == 3
+                                    ? _dialogBox()
+                                    : SizedBox(),
+                                widget.counter != null &&
+                                        widget.counter.alignment != null &&
+                                        widget.counter.alignment.number == 3
+                                    ? _counterBox()
+                                    : SizedBox(),
+                              ],
+                            ),
+                          ),
+                        ),
+                        _pickerBox(),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      widget.icon != null &&
+                                  widget.icon.alignment != null &&
+                                  widget.icon.alignment.number == 4 ||
+                              widget.icon != null &&
+                                  widget.icon.alignment == null
+                          ? _icon()
+                          : SizedBox(),
+                      widget.counter != null &&
+                                  widget.counter.alignment != null &&
+                                  widget.counter.alignment.number == 4 ||
+                              widget.counter != null &&
+                                  widget.counter.alignment == null
+                          ? _counterBox()
+                          : SizedBox(),
+                      widget.dialog != null &&
+                                  widget.dialog.alignment != null &&
+                                  widget.dialog.alignment.number == 4 ||
+                              widget.dialog != null &&
+                                  widget.dialog.alignment == null
+                          ? _dialogBox()
+                          : SizedBox(),
+                      widget.type != null &&
+                                  widget.type.alignment != null &&
+                                  widget.type.alignment.number == 2 ||
+                              widget.type != null &&
+                                  widget.type.alignment == null
+                          ? _typeBox()
+                          : SizedBox(),
+                      widget.type != null &&
+                                  widget.type.alignment != null &&
+                                  widget.type.alignment.number == 2 ||
+                              widget.type != null &&
+                                  widget.type.alignment == null
+                          ? _checkBox()
+                          : SizedBox(),
+                      widget.type != null &&
+                                  widget.type.alignment != null &&
+                                  widget.type.alignment.number == 2 ||
+                              widget.type != null &&
+                                  widget.type.alignment == null
+                          ? _toogleBox()
+                          : SizedBox(),
+                      widget.type != null &&
+                                  widget.type.alignment != null &&
+                                  widget.type.alignment.number == 2 ||
+                              widget.type != null &&
+                                  widget.type.alignment == null
+                          ? _indicatorBox()
+                          : SizedBox(),
+                      widget.timer != null ? _timerBox() : SizedBox(),
+                    ],
+                  )
                 ],
               ),
             ),
@@ -231,296 +427,17 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
     );
   }
 
-  Widget _leftBlock() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        widget.type != null &&
-                widget.type.alignment != null &&
-                widget.type.alignment.number == 1
-            ? _indicatorBox()
-            : SizedBox(),
-        widget.type != null &&
-                widget.type.alignment != null &&
-                widget.type.alignment.number == 1
-            ? _checkBox()
-            : SizedBox(),
-        widget.type != null &&
-                widget.type.alignment != null &&
-                widget.type.alignment.number == 1
-            ? _toogleBox()
-            : SizedBox(),
-        widget.type != null &&
-                widget.type.alignment != null &&
-                widget.type.alignment.number == 1
-            ? _typeBox()
-            : SizedBox(),
-        widget.counter != null &&
-                widget.counter.alignment != null &&
-                widget.counter.alignment.number == 1
-            ? _counterBox()
-            : SizedBox(),
-        widget.dialog != null &&
-                widget.dialog.alignment != null &&
-                widget.dialog.alignment.number == 1
-            ? _dialogBox()
-            : SizedBox(),
-        widget.icon != null &&
-                widget.icon.alignment != null &&
-                widget.icon.alignment.number == 1
-            ? _icon()
-            : SizedBox(),
-      ],
-    );
-  }
-
-  Widget _rightBlock() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        widget.icon != null &&
-                    widget.icon.alignment != null &&
-                    widget.icon.alignment.number == 4 ||
-                widget.icon != null && widget.icon.alignment == null
-            ? _icon()
-            : SizedBox(),
-        widget.counter != null &&
-                    widget.counter.alignment != null &&
-                    widget.counter.alignment.number == 4 ||
-                widget.counter != null && widget.counter.alignment == null
-            ? _counterBox()
-            : SizedBox(),
-        widget.dialog != null &&
-                    widget.dialog.alignment != null &&
-                    widget.dialog.alignment.number == 4 ||
-                widget.dialog != null && widget.dialog.alignment == null
-            ? _dialogBox()
-            : SizedBox(),
-        widget.type != null &&
-                    widget.type.alignment != null &&
-                    widget.type.alignment.number == 2 ||
-                widget.type != null && widget.type.alignment == null
-            ? _typeBox()
-            : SizedBox(),
-        widget.type != null &&
-                    widget.type.alignment != null &&
-                    widget.type.alignment.number == 2 ||
-                widget.type != null && widget.type.alignment == null
-            ? _checkBox()
-            : SizedBox(),
-        widget.type != null &&
-                    widget.type.alignment != null &&
-                    widget.type.alignment.number == 2 ||
-                widget.type != null && widget.type.alignment == null
-            ? _toogleBox()
-            : SizedBox(),
-        widget.type != null &&
-                    widget.type.alignment != null &&
-                    widget.type.alignment.number == 2 ||
-                widget.type != null && widget.type.alignment == null
-            ? _indicatorBox()
-            : SizedBox(),
-        widget.timer != null ? _timerBox() : SizedBox(),
-      ],
-    );
-  }
-
-  Widget _textBlock() {
-    return Expanded(
-      child: Container(
-        padding: widget.style.padding != null
-            ? widget.style.padding
-            : EdgeInsets.symmetric(
-                horizontal: widget.title != null || widget.subtitle != null
-                    ? 10.0
-                    : 0.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: widget.style.textAlignment != null
-              ? widget.style.textAlignment
-              : MainAxisAlignment.center,
-          children: [
-            _leftTextBlock(),
-            Flexible(
-              fit: FlexFit.loose,
-              child: Container(
-                //padding: EdgeInsets.symmetric(horizontal:10.0),
+  Widget _pickerBox() {
+    return
+        //widget.picker!=null?
+        widget.picker != null
+            ? Align(
+                alignment: Alignment.center,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        widget.title != null
-                            ? Text(
-                                widget.title.upperCase != null &&
-                                        widget.title.upperCase == true
-                                    ? widget.title.title.toUpperCase()
-                                    : widget.title.title,
-                                textAlign: TextAlign.left,
-                                softWrap: false,
-                                overflow: TextOverflow.fade,
-                                style: widget.title.textStyle != null
-                                    ? widget.title.textStyle
-                                    : widget.type !=
-                                            null /*&& widget.type.number == 1*/
-                                        ? Theme.of(context)
-                                            .textTheme
-                                            .button
-                                            .merge(TextStyle(
-                                                color: widget.style.background
-                                                    .textColor))
-                                        : Theme.of(context)
-                                            .textTheme
-                                            .headline3
-                                            .merge(
-                                              TextStyle(
-                                                color: widget
-                                                    .style.background.textColor,
-                                              ),
-                                            ),
-                              )
-                            : SizedBox(),
-                        widget.type != null
-                            ? widget.subtitle != null
-                                ? Text(
-                                    widget.subtitle.upperCase != null &&
-                                            widget.subtitle.upperCase == true
-                                        ? widget.subtitle.subtitle.toUpperCase()
-                                        : widget.subtitle.subtitle,
-                                    overflow: TextOverflow.fade,
-                                    softWrap: false,
-                                    style: widget.subtitle.textStyle != null
-                                        ? widget.subtitle.textStyle
-                                        : Theme.of(context)
-                                            .textTheme
-                                            .headline4
-                                            .merge(
-                                              TextStyle(
-                                                color: Color.fromRGBO(
-                                                    110, 110, 110, 1),
-                                              ),
-                                            ),
-                                  )
-                                : SizedBox()
-                            : SizedBox(),
-                      ],
-                    ),
-                    _pickerBox(),
-                  ],
-                ),
-              ),
-            ),
-            _rightTextBlock(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _leftTextBlock() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: widget.style.textAlignment != null
-          ? widget.style.textAlignment
-          : MainAxisAlignment.center,
-      children: [
-        widget.counter != null &&
-                widget.counter.alignment != null &&
-                widget.counter.alignment.number == 2
-            ? _counterBox()
-            : SizedBox(),
-        widget.dialog != null &&
-                widget.dialog.alignment != null &&
-                widget.dialog.alignment.number == 2
-            ? _dialogBox()
-            : SizedBox(),
-        widget.icon != null &&
-                widget.icon.alignment != null &&
-                widget.icon.alignment.number == 2
-            ? _icon()
-            : SizedBox()
-      ],
-    );
-  }
-
-  Widget _rightTextBlock() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: widget.style.textAlignment != null
-          ? widget.style.textAlignment
-          : MainAxisAlignment.center,
-      children: [
-        widget.icon != null &&
-                widget.icon.alignment != null &&
-                widget.icon.alignment.number == 3
-            ? _icon()
-            : SizedBox(),
-        widget.dialog != null &&
-                widget.dialog.alignment != null &&
-                widget.dialog.alignment.number == 3
-            ? _dialogBox()
-            : SizedBox(),
-        widget.counter != null &&
-                widget.counter.alignment != null &&
-                widget.counter.alignment.number == 3
-            ? _counterBox()
-            : SizedBox()
-      ],
-    );
-  }
-
-  Widget _pickerBox() {
-    return widget.picker != null
-        ? Align(
-            alignment: Alignment.center,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Text('до ',
-                    style:
-                        Theme.of(context).textTheme.headline3.merge(TextStyle(
-                              color: Color.fromRGBO(
-                                  0,
-                                  0,
-                                  0,
-                                  widget.children != null &&
-                                              showAccordion != true ||
-                                          widget.children == null &&
-                                              showAccordion == true
-                                      ? 1
-                                      : 0.2),
-                            ))),
-                SizedBox(width: 5.0),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      showPickerNumberFormatValue(context, 1);
-                    });
-                  },
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: 70.0,
-                    height: 30.0,
-                    decoration: new BoxDecoration(
-                      border: new Border.all(
-                          color: Color.fromRGBO(
-                              0,
-                              0,
-                              0,
-                              widget.children != null &&
-                                          showAccordion != true ||
-                                      widget.children == null &&
-                                          showAccordion == true
-                                  ? 1
-                                  : 0.2),
-                          width: 1.0,
-                          style: BorderStyle.solid),
-                    ),
-                    child: Text('$toTime',
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Text('до ',
                         style: Theme.of(context)
                             .textTheme
                             .headline3
@@ -536,53 +453,19 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                                       ? 1
                                       : 0.2),
                             ))),
-                  ),
-                ),
-                SizedBox(width: 10.0),
-                Text(
-                  'после ',
-                  style: Theme.of(context).textTheme.headline3.merge(TextStyle(
-                        color: Color.fromRGBO(
-                            0,
-                            0,
-                            0,
-                            widget.children != null && showAccordion != true ||
-                                    widget.children == null &&
-                                        showAccordion == true
-                                ? 1
-                                : 0.2),
-                      )),
-                ),
-                SizedBox(width: 5.0),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      showPickerNumberFormatValue(context, 2);
-                    });
-                  },
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: 70.0,
-                    height: 30.0,
-                    decoration: new BoxDecoration(
-                      border: new Border.all(
-                          color: Color.fromRGBO(
-                              0,
-                              0,
-                              0,
-                              widget.children != null &&
-                                          showAccordion != true ||
-                                      widget.children == null &&
-                                          showAccordion == true
-                                  ? 1
-                                  : 0.2),
-                          width: 1.0,
-                          style: BorderStyle.solid),
-                    ),
-                    child: Text(
-                      '$fromTime',
-                      style: Theme.of(context).textTheme.bodyText1.merge(
-                            TextStyle(
+                    SizedBox(width: 5.0),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          showPickerNumberFormatValue(context, 1);
+                        });
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 70.0,
+                        height: 30.0,
+                        decoration: new BoxDecoration(
+                          border: new Border.all(
                               color: Color.fromRGBO(
                                   0,
                                   0,
@@ -593,15 +476,94 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                                               showAccordion == true
                                       ? 1
                                       : 0.2),
-                            ),
-                          ),
+                              width: 1.0,
+                              style: BorderStyle.solid),
+                        ),
+                        child: Text('$toTime',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline3
+                                .merge(TextStyle(
+                                  color: Color.fromRGBO(
+                                      0,
+                                      0,
+                                      0,
+                                      widget.children != null &&
+                                                  showAccordion != true ||
+                                              widget.children == null &&
+                                                  showAccordion == true
+                                          ? 1
+                                          : 0.2),
+                                ))),
+                      ),
                     ),
-                  ),
+                    SizedBox(width: 10.0),
+                    Text(
+                      'после ',
+                      style:
+                          Theme.of(context).textTheme.headline3.merge(TextStyle(
+                                color: Color.fromRGBO(
+                                    0,
+                                    0,
+                                    0,
+                                    widget.children != null &&
+                                                showAccordion != true ||
+                                            widget.children == null &&
+                                                showAccordion == true
+                                        ? 1
+                                        : 0.2),
+                              )),
+                    ),
+                    SizedBox(width: 5.0),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          showPickerNumberFormatValue(context, 2);
+                        });
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 70.0,
+                        height: 30.0,
+                        decoration: new BoxDecoration(
+                          border: new Border.all(
+                              color: Color.fromRGBO(
+                                  0,
+                                  0,
+                                  0,
+                                  widget.children != null &&
+                                              showAccordion != true ||
+                                          widget.children == null &&
+                                              showAccordion == true
+                                      ? 1
+                                      : 0.2),
+                              width: 1.0,
+                              style: BorderStyle.solid),
+                        ),
+                        child: Text(
+                          '$fromTime',
+                          style: Theme.of(context).textTheme.bodyText1.merge(
+                                TextStyle(
+                                  color: Color.fromRGBO(
+                                      0,
+                                      0,
+                                      0,
+                                      widget.children != null &&
+                                                  showAccordion != true ||
+                                              widget.children == null &&
+                                                  showAccordion == true
+                                          ? 1
+                                          : 0.2),
+                                ),
+                              ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          )
-        : SizedBox();
+              )
+            : SizedBox();
+    // ):SizedBox();
   }
 
   Widget _timerBox() {
@@ -625,26 +587,17 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
     return widget.type != null &&
             widget.type.type != null &&
             widget.type.type.number == 4
-        ? Container(
-            padding: widget.type.alignment.number == 1
-                ? EdgeInsets.only(
-                    left: widget.type.type.number == 4 &&
-                            widget.type.padding != null
-                        ? widget.type.padding
-                        : 10.0)
-                : EdgeInsets.only(
-                    right: widget.type.type.number == 4 &&
-                            widget.type.padding != null
-                        ? widget.type.padding
-                        : 10.0),
+        ? Align(
             alignment: Alignment.center,
             child: Row(
               children: [
                 TitanBoxIndicator(
                   indication: [false, true, false, false, false, false],
+
                   indicatorCaunt: widget.type.indicatorCaunt != null
                       ? widget.type.indicatorCaunt
                       : 2,
+                  //alignment,
                   indicatorHeight: widget.type.indicatorHeight != null
                       ? widget.type.indicatorHeight
                       : 20.0,
@@ -676,20 +629,16 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
     return widget.type != null &&
             widget.type.type != null &&
             widget.type.type.number == 3
-        ? Container(
-            padding: widget.type.alignment.number == 1
-                ? EdgeInsets.only(
-                    left: widget.type.type.number == 3 &&
-                            widget.type.padding != null
-                        ? widget.type.padding
-                        : 10.0)
-                : EdgeInsets.only(
-                    right: widget.type.type.number == 3 &&
-                            widget.type.padding != null
-                        ? widget.type.padding
-                        : 10.0),
+        ? Align(
             alignment: Alignment.center,
             child: TitanBoxCheck(
+              /*checkedWidget, 
+        Widget uncheckedWidget, 
+        Color checkedColor, 
+        Color uncheckedColor, 
+        Color borderColor, 
+        double size,*/
+
               checkboxIcon: widget.type.checkboxIcon != null
                   ? widget.type.checkboxIcon
                   : Icons.check,
@@ -731,7 +680,7 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                 _toggleCollapsed();
 
                 if (widget.onTap != null) {
-                  widget.onTap(selected, fromTime, toTime);
+                  widget.onTap(selected);
                 }
                 //}
               },
@@ -740,62 +689,64 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
         : SizedBox();
   }
 
-  double paddingToogle;
-  double totalpaddingToogle;
   Widget _toogleBox() {
-    paddingToogle = widget.type.type.number == 2 && widget.type.padding != null
-        ? widget.type.padding
-        : 10.0;
-    totalpaddingToogle =
-        widget.type.toggleWidth != null ? widget.type.toggleWidth : 40.0;
-    totalpaddingToogle = totalpaddingToogle + paddingToogle;
     return widget.type != null &&
             widget.type.type != null &&
             widget.type.type.number == 2
-        ? Container(
+        ? Align(
             alignment: Alignment.center,
-            padding: widget.type.alignment.number == 1
-                ? EdgeInsets.only(left: paddingToogle)
-                : EdgeInsets.only(right: paddingToogle),
-            child: TitanBoxToogle(
-              value: widget.type.switched != null
-                  ? isSwitched != widget.type.switched
-                  : isSwitched,
-              onToggle: (val) {
-                setState(() {
-                  _toggleCollapsed();
+            child: Container(
+              child: TitanBoxToogle(
+                /*value: widget.isSwitched != null
+                    ? isSwitched != widget.isSwitched
+                    : isSwitched,
+                onToggle: (val) {
+                  setState(() {
+                    if (widget.isSwitched == null) {
+                      _toggleCollapsed();
+                    }
+                    isSwitched = !isSwitched;
+                  });
+                },*/
+                value: widget.type.switched != null
+                    ? isSwitched != widget.type.switched
+                    : isSwitched,
+                onToggle: (val) {
+                  setState(() {
+                    _toggleCollapsed();
 
-                  isSwitched = !isSwitched;
+                    isSwitched = !isSwitched;
 
-                  if (widget.onTap != null) {
-                    widget.onTap(isSwitched, fromTime, toTime);
-                  }
-                });
-              },
-              toggleColor: widget.type.toggleColor != null
-                  ? widget.type.toggleColor
-                  : Colors.white,
-              activeColor: widget.type.toggleActiveColor != null
-                  ? widget.type.toggleActiveColor
-                  : Colors.black,
-              inactiveColor: widget.type.toggleInactiveColor != null
-                  ? widget.type.toggleInactiveColor
-                  : Color.fromRGBO(101, 91, 0, 0.4),
-              width: widget.type.toggleWidth != null
-                  ? widget.type.toggleWidth
-                  : 40.0,
-              height: widget.type.toggleHeight != null
-                  ? widget.type.toggleHeight
-                  : 20.0,
-              toggleSize: widget.type.toggleSize != null
-                  ? widget.type.toggleSize
-                  : 18.0,
-              borderRadius: widget.type.toggleBorderRadius != null
-                  ? widget.type.toggleBorderRadius
-                  : 20.0,
-              padding: widget.type.togglePadding != null
-                  ? widget.type.togglePadding
-                  : 2.0,
+                    if (widget.onTap != null) {
+                      widget.onTap(isSwitched);
+                    }
+                  });
+                },
+                toggleColor: widget.type.toggleColor != null
+                    ? widget.type.toggleColor
+                    : Colors.white,
+                activeColor: widget.type.toggleActiveColor != null
+                    ? widget.type.toggleActiveColor
+                    : Colors.black,
+                inactiveColor: widget.type.toggleInactiveColor != null
+                    ? widget.type.toggleInactiveColor
+                    : Color.fromRGBO(101, 91, 0, 0.4),
+                width: widget.type.toggleWidth != null
+                    ? widget.type.toggleWidth
+                    : 40.0,
+                height: widget.type.toggleHeight != null
+                    ? widget.type.toggleHeight
+                    : 20.0,
+                toggleSize: widget.type.toggleSize != null
+                    ? widget.type.toggleSize
+                    : 18.0,
+                borderRadius: widget.type.toggleBorderRadius != null
+                    ? widget.type.toggleBorderRadius
+                    : 20.0,
+                padding: widget.type.togglePadding != null
+                    ? widget.type.togglePadding
+                    : 2.0,
+              ),
             ),
           )
         : SizedBox();
@@ -805,17 +756,64 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
     return Align(
       alignment: Alignment.center,
       child: Container(
-        /*padding: widget.type.alignment.number == 1
-            ? EdgeInsets.only(left: 10)
-            : EdgeInsets.only(right: 10),*/
-        /*padding: widget.icon != null && widget.icon.padding != null
+        padding: widget.icon != null && widget.icon.padding != null
             ? widget.icon.padding
-            : EdgeInsets.symmetric(horizontal: 5.0),*/
+            : EdgeInsets.symmetric(horizontal: 5.0),
         child: Icon(
           widget.icon.icons,
           color: widget.style.background.textColor,
           size: _iconSize,
         ),
+      ),
+    );
+  }
+
+  Widget _textBox() {
+    return Flexible(
+      fit: FlexFit.loose,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          widget.title != null
+              ? Text(
+                  widget.title.upperCase != null &&
+                          widget.title.upperCase == true
+                      ? widget.title.title.toUpperCase()
+                      : widget.title.title,
+                  maxLines: 1,
+                  overflow: TextOverflow.fade,
+                  softWrap: false,
+                  style: widget.title.textStyle != null
+                      ? widget.title.textStyle
+                      : widget.type != null /*&& widget.type.number == 1*/
+                          ? Theme.of(context).textTheme.button.merge(TextStyle(
+                              color: widget.style.background.textColor))
+                          : Theme.of(context).textTheme.headline3.merge(
+                              TextStyle(
+                                  color: widget.style.background.textColor)))
+              : SizedBox(),
+          widget.type != null /*&& widget.type.number != 1*/
+              ? widget.subtitle != null
+                  ? Text(
+                      widget.subtitle.upperCase != null &&
+                              widget.subtitle.upperCase == true
+                          ? widget.subtitle.subtitle.toUpperCase()
+                          : widget.subtitle.subtitle,
+                      maxLines: 1,
+                      overflow: TextOverflow.fade,
+                      softWrap: false,
+                      style: widget.subtitle.textStyle != null
+                          ? widget.subtitle.textStyle
+                          : Theme.of(context).textTheme.headline4.merge(
+                                TextStyle(
+                                  color: Color.fromRGBO(110, 110, 110, 1),
+                                ),
+                              ),
+                    )
+                  : SizedBox()
+              : SizedBox(),
+        ],
       ),
     );
   }
@@ -944,14 +942,13 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
   Widget _typeBox() {
     return widget.type != null &&
             widget.type.type != null &&
-            widget.type.type.number == 1 &&
-            widget.children != null
+            widget.type.type.number == 1&& widget.children!=null
         ? Container(
-            padding: widget.type.alignment.number == 1
-                ? EdgeInsets.only(left: 5)
-                : EdgeInsets.only(right: 5),
-            alignment: Alignment.center,
-            child: showAccordion
+            padding: widget.icon != null && widget.icon.padding != null
+                ? widget.icon.padding
+                : EdgeInsets.all(0.0),
+            alignment: Alignment.centerRight,
+            child:  showAccordion
                 ? Icon(
                     Icons.keyboard_arrow_up,
                     color: widget.style.background.textColor,
@@ -964,6 +961,9 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
         : SizedBox();
   }
 
+/*Widget _pickerBox(){
+  return ;
+}*/
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -1041,7 +1041,7 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                 });
               }
               if (widget.onTap != null) {
-                widget.onTap(isTapped, fromTime, toTime);
+                widget.onTap(isTapped);
               }
             }
           : () {},
@@ -1050,6 +1050,8 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
               widget.type.type.number == 1
           ? (TapDownDetails event) {
               setState(() {
+                // widget.callbackswitches(isTapped);
+                //widget.type.switched==true? isTapped = true:   isTapped = false;
                 isTapped = true;
 
                 _linerGradient = LinearGradient(
@@ -1077,8 +1079,14 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                       : [0.0, 0.2, 0.8, 1.0],
                 );
               });
+              //_toggleCollapsed();
             }
           : (TapDownDetails event) {},
+      /*onTapCancel: () {
+        setState(() {
+          isTapped = false;
+        });
+      },*/
       onTapUp: widget.type != null &&
               widget.type.type != null &&
               widget.type.type.number == 1
@@ -1112,6 +1120,7 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                         : [0.0, 0.5, 0.5, 1.0],
                   );
                 });
+                //widget.onPressed();
                 _toggleCollapsed();
               } else {
                 Timer(Duration(milliseconds: 1), () {
@@ -1198,7 +1207,6 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
           ? widget.style.background.stops
           : [0.0, 0.5, 0.5, 1.0],
     );
-
     switch (widget.type.type.number) {
       case 1:
         //print('buttons');
@@ -1227,7 +1235,6 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
             : 54.0;
         break;
     }
-
     widget.type != null &&
             widget.type.switched != null &&
             widget.type.type.number != null
@@ -1235,6 +1242,9 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
             ? false
             : widget.type.switched
         : showAccordion = false;
+    /*checkboxSize = widget.type.checkboxWidth != null
+        ? widget.type.checkboxWidth + 10.0
+        : 32.0;*/
   }
 
   @override

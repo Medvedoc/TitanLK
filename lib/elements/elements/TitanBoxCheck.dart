@@ -100,7 +100,6 @@ class _TitanBoxCheckState extends State<TitanBoxCheck> {
         setState(() {
           isChecked = !isChecked;
           widget.callbackCheckbox(isChecked);
-          print(widget.isSelected ? "true" : "false");
         });
         widget?.onTap(isChecked);
       },
