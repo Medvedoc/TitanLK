@@ -5,6 +5,9 @@ import 'package:flutter_image/control/TitanButton.dart';
 import 'package:flutter_image/control/TitanCard/awesome_card.dart';
 import 'package:flutter_image/control/TitanControlStyle.dart';
 import 'package:flutter_image/control/TitanToogleAccordion.dart';
+import 'package:flutter_image/elements/TitanBox.dart';
+import 'package:flutter_image/elements/TitanBoxStyle.dart';
+import 'package:flutter_image/page/mainPage.dart';
 import 'package:get/get.dart';
 
 class M31_2 extends StatefulWidget {
@@ -30,6 +33,7 @@ class _TitanSettingsProfileState extends State<M31_2> {
   final _expirationDateText = TextEditingController();
   final _firstLastNameText = TextEditingController();
   final _cvvText = TextEditingController();
+  bool pay;
 
   String _creditCards;
   String _expirationDate;
@@ -59,14 +63,21 @@ class _TitanSettingsProfileState extends State<M31_2> {
             itemBuilder: (BuildContext context, int index) {
               return Column(
                 children: [
-                  TitanToogleAccordion(
-                    background: card[index][1] == true
-                        ? Color.fromRGBO(254, 229, 0, 1)
-                        : Colors.grey.shade200,
-                    border: Borderic.zero(),
-                    textHeading: card[index][0].toUpperCase(),
-                    types: Toogle.zero,
-                  ),
+                  TitanBox(
+                      type: Type.container(
+                          alignment: TypeAlignment.rightblock, switched: true),
+                      style: Decorations(
+                          background: ColorTheme.coloris(
+                              color: card[index][1] == true
+                                  ? Color.fromRGBO(254, 229, 0, 1)
+                                  : Colors.grey.shade200),
+                          border: BorderTheme.zero,
+                          textAlignment: MainAxisAlignment.start),
+                      title: TitleString(
+                        title: card[index][0],
+                        upperCase: true,
+                        textStyle: Theme.of(context).textTheme.headline2,
+                      )),
                   SizedBox(height: 5.0)
                 ],
               );
@@ -90,24 +101,52 @@ class _TitanSettingsProfileState extends State<M31_2> {
                   SizedBox(height: 40.0),
                   _buildCVV(),
                   SizedBox(height: 30.0),
-                  TitanToogleAccordion(
-                    background: Colors.grey.shade200,
-                    border: Borderic.zero(),
-                    textHeading: 'card_link'.tr.toUpperCase(),
-                    types: Toogle.checkbox,
-                  ),
+                  TitanBox(
+                      onTap: (value1, value2, value3) {
+                        pay = value1;
+                        print(pay);
+                      },
+                      type: Type.checkbox(
+                          alignment: TypeAlignment.rightblock, switched: true),
+                      style: Decorations(
+                          background:
+                              ColorTheme.coloris(color: Colors.grey.shade200),
+                          border: BorderTheme.zero,
+                          textAlignment: MainAxisAlignment.start),
+                      title: TitleString(
+                        title: 'pay'.tr,
+                        upperCase: true,
+                        textStyle: Theme.of(context).textTheme.headline2,
+                      )),
                   SizedBox(height: 30.0),
-                  TitanButton(
-                    pressTap: () => pressSave(),
-                    headButton: 'pay'.tr,
-                    controlStyle: TitanControlStyle(),
-                  ),
-                  SizedBox(height: 20.0),
-                  TitanButton(
-                    headButton: 'cancal'.tr,
-                    controlStyle: TitanControlStyle(),
-                    types: Types.grey,
-                  ),
+                  TitanBox(
+                      onTap: (value1, value2, value3) {
+                        pressSave();
+                        print(pay);
+                        //print('$_creditCards\n$_expirationDate\n$_firstLastName\n$_cvvCVC');
+                      },
+                      type: Type.button(alignment: TypeAlignment.leftblock),
+                      style: Decorations(
+                          background: ColorTheme.yellow,
+                          border: BorderTheme.button),
+                      title: TitleString(
+                        title: 'pay'.tr,
+                        upperCase: true,
+                        textStyle: Theme.of(context).textTheme.button,
+                      )),
+                  SizedBox(height: 10.0),
+                  TitanBox(
+                      onTap: (value1, value2, value3) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MainPage()));
+                      },
+                      type: Type.button(alignment: TypeAlignment.leftblock),
+                      style: Decorations(
+                          background: ColorTheme.grey,
+                          border: BorderTheme.button),
+                      title: TitleString(title: 'cancal'.tr, upperCase: true)),
                 ],
               ),
             ),

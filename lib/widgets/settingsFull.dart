@@ -1,8 +1,8 @@
-import 'package:flutter_image/control/TitanButton.dart';
 import 'package:flutter_image/elements/TitanBox.dart';
-import 'package:flutter_image/control/TitanControlStyle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image/elements/TitanBoxStyle.dart';
+import 'package:get/get.dart';
 
 class TitanSettingsFull extends StatefulWidget {
   @override
@@ -15,35 +15,35 @@ class _TitanSettingsFullState extends State<TitanSettingsFull> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        TitanButton(
-            headButton: "НАСТРОЙКА ПРОФИЛЯ",
-            //pressTap: () => pressSave(),
-            controlStyle: TitanControlStyle(),
-            types: Types.red),
+        TitanBox(
+            type: Type.button(),
+            style: Decorations(
+                background: ColorTheme.yellow, border: BorderTheme.button),
+            title: TitleString(title: 'profile_setting'.tr, upperCase: true)),
         SizedBox(height: 10.0),
-        TitanButton(
-            headButton: "НАСТРОЙКА УВЕДОМЛЕНИЙ",
-            //pressTap: () => pressSave(),
-            controlStyle: TitanControlStyle(),
-            types: Types.grey),
+        TitanBox(
+            type: Type.button(),
+            style: Decorations(
+                background: ColorTheme.yellow, border: BorderTheme.button),
+            title: TitleString(title: 'notices_setting'.tr, upperCase: true)),
         SizedBox(height: 10.0),
-        TitanButton(
-          headButton: "УПРАВЛЕНИЕ ПОЛЬЗОВАТЕЛЯМИ",
-          //pressTap: () => pressSave(),
-          controlStyle: TitanControlStyle(),
-        ),
+        TitanBox(
+            type: Type.button(),
+            style: Decorations(
+                background: ColorTheme.yellow, border: BorderTheme.button),
+            title: TitleString(title: 'user_management'.tr, upperCase: true)),
         SizedBox(height: 10.0),
-        TitanButton(
-          headButton: "ТЕХНИЧЕСКАЯ ПОДДЕРЖКА",
-          //pressTap: () => pressSave(),
-          controlStyle: TitanControlStyle(),
-        ),
+        TitanBox(
+            type: Type.button(),
+            style: Decorations(
+                background: ColorTheme.yellow, border: BorderTheme.button),
+            title: TitleString(title: 'technical_support'.tr, upperCase: true)),
         SizedBox(height: 10.0),
-        TitanButton(
-          headButton: "КОНТАКТЫ",
-          //pressTap: () => pressSave(),
-          controlStyle: TitanControlStyle(),
-        ),
+        TitanBox(
+            type: Type.button(),
+            style: Decorations(
+                background: ColorTheme.yellow, border: BorderTheme.button),
+            title: TitleString(title: 'contacts'.tr, upperCase: true)),
       ],
     );
   }

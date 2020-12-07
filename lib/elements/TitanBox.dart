@@ -1,5 +1,4 @@
 import 'dart:async';
-//import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_image/elements/TitanBoxStyle.dart';
@@ -13,7 +12,11 @@ import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
 class TitanBox extends StatefulWidget {
-  final Function(bool, String, String) onTap;
+  final Function(
+    bool,
+    String,
+    String,
+  ) onTap;
   final int value;
   final int groupValue;
   final ValueChanged<int> onChanged;
@@ -35,7 +38,7 @@ class TitanBox extends StatefulWidget {
   bool switched;
   //final bool isSwitched;
   bool switches;
-  Function(bool) callbackswitches;
+  //Function(bool) callbackswitches;
 
   TitanBox({
     this.onTap,
@@ -59,7 +62,7 @@ class TitanBox extends StatefulWidget {
     this.switched = false,
     //this.isSwitched,
     this.switches,
-    this.callbackswitches,
+    //this.callbackswitches,
   });
 
   @override
@@ -67,8 +70,17 @@ class TitanBox extends StatefulWidget {
 }
 
 class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
-  String toTime = DateFormat.Hm().format(new DateTime.now());
-  String fromTime = DateFormat.Hm().format(new DateTime.now());
+  int selectedRadio;
+
+  setSelectedRadio(int val) {
+    setState(() {
+      selectedRadio = val;
+    });
+  }
+
+  List<String> time;
+  String toTime;
+  String fromTime;
 
   String toTimeHour;
   String toTimeMinute;
@@ -138,7 +150,9 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                 Radius.circular(_borderRadius + _borderRadius / 3)),
             boxShadow: [
               BoxShadow(
-                  color: widget.style.background != null
+                  color: widget.style != null &&
+                          widget.style.background != null &&
+                          widget.style.background.shadowColor != null
                       ? widget.style.background.shadowColor
                       : _shadowColor)
             ]),
@@ -246,6 +260,11 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                 widget.type.alignment.number == 1
             ? _checkBox()
             : SizedBox(),
+        /*widget.type != null &&
+                widget.type.alignment != null &&
+                widget.type.alignment.number == 1
+            ? _radioBox()
+            : SizedBox(),*/
         widget.type != null &&
                 widget.type.alignment != null &&
                 widget.type.alignment.number == 1
@@ -260,11 +279,6 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                 widget.counter.alignment != null &&
                 widget.counter.alignment.number == 1
             ? _counterBox()
-            : SizedBox(),
-        widget.dialog != null &&
-                widget.dialog.alignment != null &&
-                widget.dialog.alignment.number == 1
-            ? _dialogBox()
             : SizedBox(),
         widget.icon != null &&
                 widget.icon.alignment != null &&
@@ -291,12 +305,6 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                 widget.counter != null && widget.counter.alignment == null
             ? _counterBox()
             : SizedBox(),
-        widget.dialog != null &&
-                    widget.dialog.alignment != null &&
-                    widget.dialog.alignment.number == 4 ||
-                widget.dialog != null && widget.dialog.alignment == null
-            ? _dialogBox()
-            : SizedBox(),
         widget.type != null &&
                     widget.type.alignment != null &&
                     widget.type.alignment.number == 2 ||
@@ -309,6 +317,12 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                 widget.type != null && widget.type.alignment == null
             ? _checkBox()
             : SizedBox(),
+        /*widget.type != null &&
+                    widget.type.alignment != null &&
+                    widget.type.alignment.number == 2 ||
+                widget.type != null && widget.type.alignment == null
+            ? _radioBox()
+            : SizedBox(),*/
         widget.type != null &&
                     widget.type.alignment != null &&
                     widget.type.alignment.number == 2 ||
@@ -327,7 +341,7 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
   }
 
   Widget _textBlock() {
-    return Expanded(
+    return Flexible(
       child: Container(
         padding: widget.style.padding != null
             ? widget.style.padding
@@ -346,74 +360,82 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
               fit: FlexFit.loose,
               child: Container(
                 //padding: EdgeInsets.symmetric(horizontal:10.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //child: Row(
+                //  crossAxisAlignment: CrossAxisAlignment.center,
+                //  mainAxisAlignment: widget.style.textAlignment != null
+                //      ? widget.style.textAlignment
+                //      : MainAxisAlignment.center,
+                //  children: [
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        widget.title != null
+                    widget.title != null
+                        ? Text(
+                            widget.title.upperCase != null &&
+                                    widget.title.upperCase == true
+                                ? widget.title.title.toUpperCase()
+                                : widget.title.title,
+                            softWrap: false,
+                            overflow: TextOverflow.fade,
+                            style: widget.title.textStyle != null
+                                ? widget.title.textStyle
+                                : widget.type !=
+                                        null /*&& widget.type.number == 1*/
+                                    ? Theme.of(context).textTheme.button.merge(
+                                        TextStyle(
+                                            color: widget
+                                                .style.background.textColor))
+                                    : Theme.of(context)
+                                        .textTheme
+                                        .headline3
+                                        .merge(
+                                          TextStyle(
+                                            color: widget
+                                                .style.background.textColor,
+                                          ),
+                                        ),
+                          )
+                        : SizedBox(),
+                    widget.type != null
+                        ? widget.subtitle != null
                             ? Text(
-                                widget.title.upperCase != null &&
-                                        widget.title.upperCase == true
-                                    ? widget.title.title.toUpperCase()
-                                    : widget.title.title,
-                                textAlign: TextAlign.left,
-                                softWrap: false,
+                                widget.subtitle.upperCase != null &&
+                                        widget.subtitle.upperCase == true
+                                    ? widget.subtitle.subtitle.toUpperCase()
+                                    : widget.subtitle.subtitle,
                                 overflow: TextOverflow.fade,
-                                style: widget.title.textStyle != null
-                                    ? widget.title.textStyle
-                                    : widget.type !=
-                                            null /*&& widget.type.number == 1*/
-                                        ? Theme.of(context)
-                                            .textTheme
-                                            .button
-                                            .merge(TextStyle(
-                                                color: widget.style.background
-                                                    .textColor))
-                                        : Theme.of(context)
-                                            .textTheme
-                                            .headline3
-                                            .merge(
-                                              TextStyle(
-                                                color: widget
-                                                    .style.background.textColor,
-                                              ),
-                                            ),
+                                softWrap: false,
+                                textAlign: TextAlign.left,
+                                style: widget.subtitle.textStyle != null
+                                    ? widget.subtitle.textStyle
+                                    : Theme.of(context)
+                                        .textTheme
+                                        .headline4
+                                        .merge(
+                                          TextStyle(
+                                            color: Color.fromRGBO(
+                                                110, 110, 110, 1),
+                                          ),
+                                        ),
                               )
-                            : SizedBox(),
-                        widget.type != null
-                            ? widget.subtitle != null
-                                ? Text(
-                                    widget.subtitle.upperCase != null &&
-                                            widget.subtitle.upperCase == true
-                                        ? widget.subtitle.subtitle.toUpperCase()
-                                        : widget.subtitle.subtitle,
-                                    overflow: TextOverflow.fade,
-                                    softWrap: false,
-                                    style: widget.subtitle.textStyle != null
-                                        ? widget.subtitle.textStyle
-                                        : Theme.of(context)
-                                            .textTheme
-                                            .headline4
-                                            .merge(
-                                              TextStyle(
-                                                color: Color.fromRGBO(
-                                                    110, 110, 110, 1),
-                                              ),
-                                            ),
-                                  )
-                                : SizedBox()
-                            : SizedBox(),
-                      ],
-                    ),
-                    _pickerBox(),
+                            : SizedBox()
+                        : SizedBox(),
+                    //  ],
+                    // ),
+                    //_pickerBox(),
                   ],
                 ),
               ),
             ),
+            _pickerBox(),
             _rightTextBlock(),
+            widget.dialog != null &&
+                        widget.dialog.alignment != null &&
+                        widget.dialog.alignment.number == 4 ||
+                    widget.dialog != null && widget.dialog.alignment == null
+                ? _dialogBox()
+                : SizedBox(),
           ],
         ),
       ),
@@ -476,13 +498,28 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
     return widget.picker != null
         ? Align(
             alignment: Alignment.center,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Text('до ',
-                    style:
-                        Theme.of(context).textTheme.headline3.merge(TextStyle(
+            child: Opacity(
+              opacity: widget.children != null && showAccordion != true ||
+                      widget.children == null && showAccordion == true
+                  ? 1
+                  : 0.2,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Text('до ',
+                      style: widget.title.textStyle != null
+                          ? widget.title.textStyle
+                          : widget.type != null
+                              ? Theme.of(context).textTheme.button.merge(
+                                  TextStyle(
+                                      color: widget.style.background.textColor))
+                              : Theme.of(context).textTheme.headline3.merge(
+                                    TextStyle(
+                                      color: widget.style.background.textColor,
+                                    ),
+
+                                    /*  Theme.of(context).textTheme.headline3.merge(TextStyle(
                               color: Color.fromRGBO(
                                   0,
                                   0,
@@ -493,112 +530,130 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                                               showAccordion == true
                                       ? 1
                                       : 0.2),
-                            ))),
-                SizedBox(width: 5.0),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      showPickerNumberFormatValue(context, 1);
-                    });
-                  },
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: 70.0,
-                    height: 30.0,
-                    decoration: new BoxDecoration(
-                      border: new Border.all(
-                          color: Color.fromRGBO(
-                              0,
-                              0,
-                              0,
-                              widget.children != null &&
-                                          showAccordion != true ||
-                                      widget.children == null &&
-                                          showAccordion == true
-                                  ? 1
-                                  : 0.2),
-                          width: 1.0,
-                          style: BorderStyle.solid),
-                    ),
-                    child: Text('$toTime',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline3
-                            .merge(TextStyle(
-                              color: Color.fromRGBO(
-                                  0,
-                                  0,
-                                  0,
-                                  widget.children != null &&
-                                              showAccordion != true ||
-                                          widget.children == null &&
-                                              showAccordion == true
-                                      ? 1
-                                      : 0.2),
-                            ))),
-                  ),
-                ),
-                SizedBox(width: 10.0),
-                Text(
-                  'после ',
-                  style: Theme.of(context).textTheme.headline3.merge(TextStyle(
-                        color: Color.fromRGBO(
-                            0,
-                            0,
-                            0,
-                            widget.children != null && showAccordion != true ||
-                                    widget.children == null &&
-                                        showAccordion == true
-                                ? 1
-                                : 0.2),
-                      )),
-                ),
-                SizedBox(width: 5.0),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      showPickerNumberFormatValue(context, 2);
-                    });
-                  },
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: 70.0,
-                    height: 30.0,
-                    decoration: new BoxDecoration(
-                      border: new Border.all(
-                          color: Color.fromRGBO(
-                              0,
-                              0,
-                              0,
-                              widget.children != null &&
-                                          showAccordion != true ||
-                                      widget.children == null &&
-                                          showAccordion == true
-                                  ? 1
-                                  : 0.2),
-                          width: 1.0,
-                          style: BorderStyle.solid),
-                    ),
-                    child: Text(
-                      '$fromTime',
-                      style: Theme.of(context).textTheme.bodyText1.merge(
-                            TextStyle(
-                              color: Color.fromRGBO(
-                                  0,
-                                  0,
-                                  0,
-                                  widget.children != null &&
-                                              showAccordion != true ||
-                                          widget.children == null &&
-                                              showAccordion == true
-                                      ? 1
-                                      : 0.2),
-                            ),
-                          ),
+                            )*/
+                                  )),
+                  SizedBox(width: 5.0),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        showPickerNumberFormatValue(context, 1);
+                      });
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: 70.0,
+                      height: 30.0,
+                      decoration: new BoxDecoration(
+                        border: new Border.all(
+                            width: 1.0, style: BorderStyle.solid),
+                      ),
+                      child: Text('$toTime',
+                          style: widget.title.textStyle != null
+                              ? widget.title.textStyle
+                              : widget.type != null
+                                  ? Theme.of(context).textTheme.button.merge(
+                                      TextStyle(
+                                          color: widget
+                                              .style.background.textColor))
+                                  : Theme.of(context).textTheme.headline3.merge(
+                                        TextStyle(
+                                          color:
+                                              widget.style.background.textColor,
+                                        ),
+
+                                        /*Theme.of(context)
+                              .textTheme
+                              .headline3
+                              .merge(TextStyle(
+                                color: Color.fromRGBO(
+                                    0,
+                                    0,
+                                    0,
+                                    widget.children != null &&
+                                                showAccordion != true ||
+                                            widget.children == null &&
+                                                showAccordion == true
+                                        ? 1
+                                        : 0.2),
+                              )*/
+                                      )),
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(width: 10.0),
+                  Text(
+                    'после ',
+                    style: widget.title.textStyle != null
+                        ? widget.title.textStyle
+                        : widget.type != null
+                            ? Theme.of(context).textTheme.button.merge(
+                                TextStyle(
+                                    color: widget.style.background.textColor))
+                            : Theme.of(context).textTheme.headline3.merge(
+                                  TextStyle(
+                                    color: widget.style.background.textColor,
+                                  ),
+                                  /*Theme.of(context).textTheme.headline3.merge(TextStyle(
+                              color: Color.fromRGBO(
+                                  0,
+                                  0,
+                                  0,
+                                  widget.children != null &&
+                                              showAccordion != true ||
+                                          widget.children == null &&
+                                              showAccordion == true
+                                      ? 1
+                                      : 0.2),
+                            )*/
+                                ),
+                  ),
+                  SizedBox(width: 5.0),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        showPickerNumberFormatValue(context, 2);
+                      });
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: 70.0,
+                      height: 30.0,
+                      decoration: new BoxDecoration(
+                        border: new Border.all(
+                            width: 1.0, style: BorderStyle.solid),
+                      ),
+                      child: Text(
+                        '$fromTime',
+                        style: widget.title.textStyle != null
+                            ? widget.title.textStyle
+                            : widget.type != null
+                                ? Theme.of(context).textTheme.button.merge(
+                                    TextStyle(
+                                        color:
+                                            widget.style.background.textColor))
+                                : Theme.of(context).textTheme.headline3.merge(
+                                      TextStyle(
+                                        color:
+                                            widget.style.background.textColor,
+                                      ),
+                                      /*Theme.of(context).textTheme.bodyText1.merge(
+                              TextStyle(
+                                color: Color.fromRGBO(
+                                    0,
+                                    0,
+                                    0,
+                                    widget.children != null &&
+                                                showAccordion != true ||
+                                            widget.children == null &&
+                                                showAccordion == true
+                                        ? 1
+                                        : 0.2),
+                              ),*/
+                                    ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           )
         : SizedBox();
@@ -641,7 +696,9 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
             child: Row(
               children: [
                 TitanBoxIndicator(
-                  indication: [false, true, false, false, false, false],
+                  indication: widget.type.indications != null
+                      ? widget.type.indications
+                      : [false, false, false, false, false, false],
                   indicatorCaunt: widget.type.indicatorCaunt != null
                       ? widget.type.indicatorCaunt
                       : 2,
@@ -728,11 +785,11 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                       ? widget.type.switched
                       : true,
               onTap: (selected) {
-                _toggleCollapsed();
-
                 if (widget.onTap != null) {
                   widget.onTap(selected, fromTime, toTime);
                 }
+                _toggleCollapsed();
+                widget.callback(renderKeyHeight);
                 //}
               },
             ),
@@ -765,6 +822,7 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                 setState(() {
                   _toggleCollapsed();
 
+                widget.callback(renderKeyHeight);
                   isSwitched = !isSwitched;
 
                   if (widget.onTap != null) {
@@ -1151,6 +1209,15 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
 
   @override
   void initState() {
+    time = widget.picker != null && widget.picker.time != null
+        ? widget.picker.time
+        : [
+            DateFormat.Hm().format(new DateTime.now()),
+            DateFormat.Hm().format(new DateTime.now())
+          ];
+    toTime = time[0];
+    fromTime = time[1];
+    selectedRadio = 0;
     isTapped = widget.type != null && widget.type.switched == true
         ? widget.type.switched
         : false;
@@ -1232,7 +1299,9 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
             widget.type.switched != null &&
             widget.type.type.number != null
         ? showAccordion = widget.picker != null && widget.children != null
-            ? false
+            ? widget.picker != null && widget.type.switched == false
+                ? true
+                : false
             : widget.type.switched
         : showAccordion = false;
   }
@@ -1261,15 +1330,17 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
       }
     });
     WidgetsBinding.instance.addPostFrameCallback((_) => getRenderKeySize());
-    accordion == true ? widget.callback(renderKeyHeight) : widget.callback(0.0);
+    if (widget.children != null&&accordion == true)
+      
+           widget.callback(renderKeyHeight);
   }
 
   getRenderKeySize() {
     RenderBox _renderBox = _renderKey.currentContext.findRenderObject();
     renderKeyHeight = _renderBox.size.height;
     renderKeyPosition = _renderBox.localToGlobal(Offset.zero).dy;
-    screenSize = MediaQuery.of(context).size.height;
-    widget.callback(renderKeyHeight);
+    screenSize = MediaQuery.of(context).size.height-150.0;
+    if (widget.children != null) widget.callback(renderKeyHeight);
 
     (screenSize - renderKeyPosition) > renderKeyHeight
         ? SizedBox()
@@ -1282,6 +1353,7 @@ class TitanBoxState extends State<TitanBox> with TickerProviderStateMixin {
                 ? ScrollPositionAlignmentPolicy.explicit
                 : ScrollPositionAlignmentPolicy.keepVisibleAtEnd,
           );
+          widget.callback(renderKeyHeight);
   }
 
   showPickerNumberFormatValue(BuildContext context, int number) {

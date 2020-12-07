@@ -1,8 +1,8 @@
-import 'package:flutter_image/control/TitanControlStyle.dart';
-import 'package:flutter_image/control/TitanTimeAccordion.dart';
-import 'package:flutter_image/control/TitanToogleAccordion.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image/elements/TitanBox.dart';
+import 'package:flutter_image/elements/TitanBoxStyle.dart';
+import 'package:get/get.dart';
 
 class TitanSettingsObjectNoGroup extends StatefulWidget {
   @override
@@ -12,50 +12,42 @@ class TitanSettingsObjectNoGroup extends StatefulWidget {
 
 class _TitanSettingsObjectNoGroupState
     extends State<TitanSettingsObjectNoGroup> {
-  List<String> heading = [
-    'ОБЪЕКТЫ БЕЗ ГРУППЫ',
-    'Основные настройки',
-    'Дополнительные настройки',
+  List<List<dynamic>> text = [
+    ['full_arming'.tr, true],
+    ['arming_section'.tr, true],
+    ['removal_object_protection_sections'.tr, true],
+    ['alarm'.tr, true],
+    ['absence_220'.tr, false],
+    ['recovery_220'.tr, false],
+    ['battery_discharge'.tr, true],
+    ['fire_alarm'.tr, true],
+    ['removing_fire_alarm'.tr, true],
   ];
-  List<String> text = [
-    'Получать уведомления',
-    'Полная постановка под охрану',
-    'Постановка под охрану по разделам',
-    'Первое снятие объекта с охраны',
-    'Снятие объекта с охраны по разделам',
-    'Тревога',
-    'Отсутствие 220',
-    'Восстановление 220',
-    'Разряд АКБ',
-    'Пожарная тревога',
-    'Снятие пожарной тревоги',
-    'Услуга Тревога Расписания',
-    'Снятие объекта с охраны',
-    'Постановка объекта под охрану',
+  List<dynamic> time = ['Пн-Вс', true, '15:20', '20:00'];
+  List<dynamic> time2 = ['Пн-Вс', false, '17:20', '22:00'];
+  List<List<dynamic>> timetable = [
+    ['Пн', true, '15:21', '20:01'],
+    ['Вт', true, '15:22', '20:02'],
+    ['Ср', true, '15:23', '20:03'],
+    ['Чт', true, '15:24', '20:04'],
+    ['Пт', true, '15:25', '20:05'],
+    ['Сб', true, '15:26', '20:06'],
+    ['Вс', true, '15:27', '20:07'],
   ];
-  List<String> timetable = ['Пн-Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+  List<List<dynamic>> timetable2 = [
+    ['Пн', true, '17:21', '22:01'],
+    ['Вт', true, '17:22', '22:02'],
+    ['Ср', true, '17:23', '22:03'],
+    ['Чт', true, '17:24', '22:04'],
+    ['Пт', true, '17:25', '22:05'],
+    ['Сб', true, '17:26', '22:06'],
+    ['Вс', true, '17:27', '22:07'],
+  ];
 
   callback(heightBlock) {
     setState(() {});
   }
 
-  callback11(heightBlock11) {
-    setState(() {});
-  }
-
-  callback1(heightBlock1) {
-    setState(() {});
-  }
-
-  Alignment alignment; //Начало раскрывания контенера
-  double _height = 0.0; //Высота раскрывающегося контейнера
-  bool _visible = false; //Раскрывающийся контейнер по умолчанию скрыт
-  double _paddingVertical =
-      0.0; //Начльное значение отступа раскрывающегося контейнера в Dropbox
-  int _counter = 0; //Переключатель срабатывания Dropbox
-  bool isSwitched = false;
-  bool isSwitched2 = false;
-  List<bool> _sumPadding = [false, false, false, false, false, false];
 
   @override
   Widget build(BuildContext context) {
@@ -63,233 +55,223 @@ class _TitanSettingsObjectNoGroupState
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          heading[0].toUpperCase(),
-          style: Theme.of(context).textTheme.headline1,
+          'objects_without_group'.tr.toUpperCase(),
+          style: Theme.of(context).textTheme.headline2,
         ),
         SizedBox(height: 20.0),
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            heading[1],
-            style: Theme.of(context).textTheme.headline2,
+            'basic_settings'.tr,
+            style: Theme.of(context).textTheme.headline3,
           ),
         ),
         SizedBox(height: 10.0),
-        TitanToogleAccordion(
-          
-          types: Toogle.toogle,
-          background: Color.fromRGBO(233, 200, 45, 1),
-          border: Borderic.all(),
-          textHeading: text[0],
-          multiAccordion: true,
-          callback: callback,
-          controlStyle: TitanControlStyle(),
-          children: [
-            TitanToogleAccordion(
-              types: Toogle.toogle,
-              border: Borderic.rbl(),
-              textHeading: text[1],
-              isSwitched: true,
-              controlStyle: TitanControlStyle(),
-            ),
-            TitanToogleAccordion(
-              types: Toogle.toogle,
-              textHeading: text[2],
-              isSwitched: true,
-              border: Borderic.rbl(),
-              controlStyle: TitanControlStyle(),
-            ),
-            TitanToogleAccordion(
-              types: Toogle.toogle,
-              textHeading: text[3],
-              isSwitched: true,
-              border: Borderic.rbl(),
-              controlStyle: TitanControlStyle(),
-            ),
-            TitanToogleAccordion(
-              types: Toogle.toogle,
-              textHeading: text[4],
-              isSwitched: true,
-              border: Borderic.rbl(),
-              controlStyle: TitanControlStyle(),
-            ),
-            TitanToogleAccordion(
-              types: Toogle.toogle,
-              textHeading: text[5],
-              border: Borderic.rbl(),
-              isSwitched: true,
-              controlStyle: TitanControlStyle(),
-            ),
-            TitanToogleAccordion(
-              types: Toogle.toogle,
-              textHeading: text[6],
-              isSwitched: false,
-              border: Borderic.rbl(),
-              controlStyle: TitanControlStyle(),
-            ),
-            TitanToogleAccordion(
-              types: Toogle.toogle,
-              textHeading: text[7],
-              isSwitched: false,
-              border: Borderic.rbl(),
-              controlStyle: TitanControlStyle(),
-            ),
-            TitanToogleAccordion(
-              types: Toogle.toogle,
-              textHeading: text[8],
-              isSwitched: true,
-              border: Borderic.rbl(),
-              controlStyle: TitanControlStyle(),
-            ),
-            TitanToogleAccordion(
-              types: Toogle.toogle,
-              textHeading: text[9],
-              isSwitched: true,
-              border: Borderic.rbl(),
-              controlStyle: TitanControlStyle(),
-            ),
-            TitanToogleAccordion(
-              types: Toogle.toogle,
-              textHeading: text[10],
-              isSwitched: true,
-              border: Borderic.rbl(),
-              controlStyle: TitanControlStyle(),
-            ),
-          ],
-        ),
+        _basicsettings(),
         SizedBox(height: 20.0),
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            heading[2],
-            style: Theme.of(context).textTheme.headline2,
+            'additional_settings'.tr,
+            style: Theme.of(context).textTheme.headline3,
           ),
         ),
         SizedBox(height: 10.0),
+        _additionalsettings(),
+      ],
+    );
+  }
 
-        //Text('$abc'),
-        // Text('$abc11'),
-        TitanToogleAccordion(
-          types: Toogle.toogle,
-          background: Color.fromRGBO(233, 200, 45, 1),
-          border: Borderic.all(),
-          textHeading: text[11],
-          multiAccordion: true,
-          callback: callback,
-          controlStyle: TitanControlStyle(),
+  Widget _basicsettings() {
+    return TitanBox(
+      callback: callback,
+      type: Type.toogle(
+          alignment: TypeAlignment.rightblock,
+          toggleColor: Color.fromRGBO(233, 200, 45, 1)),
+      style: Decorations(
+          background:
+              ColorTheme.coloris(color: Color.fromRGBO(233, 200, 45, 1)),
+          border: BorderTheme.squareAll,
+          textAlignment: MainAxisAlignment.start),
+      title: TitleString(
+          title: 'receive_notifications'.tr,
+          textStyle: Theme.of(context).textTheme.headline4),
+      dialog: DialogShow(title: 'message'),
+      children: [_basicsettingsBuild()],
+    );
+  }
+
+  Widget _basicsettingsBuild() {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: ScrollPhysics(),
+      itemCount: text.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Column(
           children: [
-            TitanToogleAccordion(
-              types: Toogle.toogle,
-              margin: EdgeInsets.only(top: 10.0),
-              border: Borderic.all(),
+            TitanBox(
               callback: callback,
-              textHeading: text[12],
-              multiAccordion: true,
-              controlStyle: TitanControlStyle(),
-              children: [
-                TitanTimeAccordion(
-                  border: Borderic.rbl(),
-                  callback11: callback11,
-                  textHeading: timetable[0],
-                  isChecked: true,
-                  multiAccordion: true,
-                  children: [
-                    TitanTimeAccordion(
-                      border: Borderic.rbl(),
-                      textHeading: timetable[1],
-                      isChecked: false,
-                    ),
-                    TitanTimeAccordion(
-                      border: Borderic.rbl(),
-                      textHeading: timetable[2],
-                      isChecked: true,
-                    ),
-                    TitanTimeAccordion(
-                      border: Borderic.rbl(),
-                      textHeading: timetable[3],
-                      isChecked: true,
-                    ),
-                    TitanTimeAccordion(
-                      border: Borderic.rbl(),
-                      textHeading: timetable[4],
-                      isChecked: true,
-                    ),
-                    TitanTimeAccordion(
-                      border: Borderic.rbl(),
-                      textHeading: timetable[5],
-                      isChecked: true,
-                    ),
-                    TitanTimeAccordion(
-                      border: Borderic.rbl(),
-                      textHeading: timetable[6],
-                      isChecked: true,
-                    ),
-                    TitanTimeAccordion(
-                      border: Borderic.rbl(),
-                      textHeading: timetable[7],
-                      isChecked: false,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            TitanToogleAccordion(
-              types: Toogle.toogle,
-              margin: EdgeInsets.only(top: 10.0),
-              border: Borderic.all(),
-              callback: callback,
-              textHeading: text[13],
-              multiAccordion: true,
-              children: [
-                TitanTimeAccordion(
-                  border: Borderic.rbl(),
-                  callback11: callback11,
-                  textHeading: timetable[0],
-                  isChecked: false,
-                  multiAccordion: true,
-                  children: [
-                    TitanTimeAccordion(
-                      border: Borderic.rbl(),
-                      textHeading: timetable[1],
-                      isChecked: false,
-                    ),
-                    TitanTimeAccordion(
-                      border: Borderic.rbl(),
-                      textHeading: timetable[2],
-                      isChecked: true,
-                    ),
-                    TitanTimeAccordion(
-                      border: Borderic.rbl(),
-                      textHeading: timetable[3],
-                      isChecked: true,
-                    ),
-                    TitanTimeAccordion(
-                      border: Borderic.rbl(),
-                      textHeading: timetable[4],
-                      isChecked: true,
-                    ),
-                    TitanTimeAccordion(
-                      border: Borderic.rbl(),
-                      textHeading: timetable[5],
-                      isChecked: true,
-                    ),
-                    TitanTimeAccordion(
-                      border: Borderic.rbl(),
-                      textHeading: timetable[6],
-                      isChecked: true,
-                    ),
-                    TitanTimeAccordion(
-                      border: Borderic.rbl(),
-                      textHeading: timetable[7],
-                      isChecked: false,
-                    ),
-                  ],
-                ),
-              ],
-            ),
+              type: Type.toogle(
+                  alignment: TypeAlignment.rightblock,
+                  toggleColor: Colors.white,
+                  switched: text[index][1]),
+              style: Decorations(
+                  background: ColorTheme.coloris(color: Colors.white),
+                  border: BorderTheme.zrbl,
+                  textAlignment: MainAxisAlignment.start),
+              title: TitleString(
+                  title: text[index][0],
+                  textStyle: Theme.of(context).textTheme.headline4),
+            )
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _additionalsettings() {
+    return TitanBox(
+        callback: callback,
+        type: Type.toogle(
+            alignment: TypeAlignment.rightblock,
+            toggleColor: Color.fromRGBO(233, 200, 45, 1)),
+        style: Decorations(
+            background:
+                ColorTheme.coloris(color: Color.fromRGBO(233, 200, 45, 1)),
+            border: BorderTheme.squareAll,
+            textAlignment: MainAxisAlignment.start),
+        title: TitleString(
+            title: 'schedule_alert_service'.tr,
+            textStyle: Theme.of(context).textTheme.headline4),
+        dialog: DialogShow(title: 'message'),
+        children: [
+          SizedBox(height: 10.0),
+          _additionalsettingsRemoval(),
+          SizedBox(height: 10.0),
+          _additionalsettingsPutting(),
+        ]);
+  }
+
+  Widget _additionalsettingsRemoval() {
+    return TitanBox(
+      callback: callback,
+      type: Type.toogle(
+          alignment: TypeAlignment.rightblock,
+          toggleColor: Colors.white,
+          switched: false),
+      style: Decorations(
+          background: ColorTheme.coloris(color: Colors.white),
+          border: BorderTheme.squareAll,
+          textAlignment: MainAxisAlignment.start),
+      title: TitleString(
+          title: 'removal_object_from_protection'.tr,
+          textStyle: Theme.of(context).textTheme.headline4),
+      children: [
+        TitanBox(
+          picker: PickerShow(time: [time[2], time[3]]),
+          callback: callback,
+          type: Type.checkbox(
+              alignment: TypeAlignment.leftblock, switched: time[1]),
+          style: Decorations(
+              background: ColorTheme.coloris(color: Colors.grey.shade200),
+              border: BorderTheme.zrbl,
+              textAlignment: MainAxisAlignment.spaceBetween),
+          title: TitleString(
+              title: time[0],
+              upperCase: true,
+              textStyle: Theme.of(context).textTheme.headline3),
+          children: [
+            ListView.builder(
+                shrinkWrap: true,
+                physics: ScrollPhysics(),
+                itemCount: timetable.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      TitanBox(
+                          picker: PickerShow(
+                              time: [timetable[index][2], timetable[index][3]]),
+                          callback: callback,
+                          type: Type.checkbox(
+                              alignment: TypeAlignment.leftblock,
+                              switched: timetable[index][1]),
+                          style: Decorations(
+                              background:
+                                  ColorTheme.coloris(color: Colors.white),
+                              border: BorderTheme.zrbl,
+                              textAlignment: MainAxisAlignment.start),
+                          title: TitleString(
+                              title: timetable[index][0],
+                              upperCase: true,
+                              textStyle: Theme.of(context).textTheme.headline3))
+                    ],
+                  );
+                }),
           ],
         ),
-        SizedBox(height: 30.0),
+      ],
+    );
+  }
+
+  Widget _additionalsettingsPutting() {
+    return TitanBox(
+      callback: callback,
+      type: Type.toogle(
+          alignment: TypeAlignment.rightblock,
+          toggleColor: Colors.white,
+          switched: false),
+      style: Decorations(
+          background: ColorTheme.coloris(color: Colors.white),
+          border: BorderTheme.squareAll,
+          textAlignment: MainAxisAlignment.start),
+      title: TitleString(
+          title: 'putting_object_under_protectio'.tr,
+          textStyle: Theme.of(context).textTheme.headline4),
+      children: [
+        TitanBox(
+          picker: PickerShow(time: [time2[2], time2[3]]),
+          callback: callback,
+          type: Type.checkbox(
+              alignment: TypeAlignment.leftblock, switched: time2[1]),
+          style: Decorations(
+              background: ColorTheme.coloris(color: Colors.grey.shade200),
+              border: BorderTheme.zrbl,
+              textAlignment: MainAxisAlignment.start),
+          title: TitleString(
+              title: time2[0],
+              upperCase: true,
+              textStyle: Theme.of(context).textTheme.headline3),
+          children: [
+            ListView.builder(
+                shrinkWrap: true,
+                physics: ScrollPhysics(),
+                itemCount: timetable.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      TitanBox(
+                          picker: PickerShow(time: [
+                            timetable2[index][2],
+                            timetable2[index][3]
+                          ]),
+                          callback: callback,
+                          type: Type.checkbox(
+                              alignment: TypeAlignment.leftblock,
+                              switched: timetable2[index][1]),
+                          style: Decorations(
+                              background:
+                                  ColorTheme.coloris(color: Colors.white),
+                              border: BorderTheme.zrbl,
+                              textAlignment: MainAxisAlignment.start),
+                          title: TitleString(
+                              title: timetable2[index][0],
+                              upperCase: true,
+                              textStyle: Theme.of(context).textTheme.headline3))
+                    ],
+                  );
+                }),
+          ],
+        ),
       ],
     );
   }

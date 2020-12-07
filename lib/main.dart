@@ -73,6 +73,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Roboto',
             fontWeight: FontWeight.normal,
             height: 1.40,
+            letterSpacing: 1.0,
           ),
           caption: TextStyle(
             fontSize: 18.0,
@@ -576,3 +577,4 @@ class HomePageState extends State<HomePage> {
     );
   }
 }*/
+

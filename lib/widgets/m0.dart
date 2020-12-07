@@ -1,7 +1,9 @@
 import 'package:flutter_image/elements/TitanBox.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image/elements/TitanBoxGroup.dart';
 import 'package:flutter_image/elements/TitanBoxStyle.dart';
+import 'package:flutter_image/page/mainPage.dart';
 
 class M00 extends StatefulWidget {
   @override
@@ -19,9 +21,223 @@ class _M00State extends State<M00> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        /*TitanBoxGroup(
+          children: [
+            TitanBox(
+              index: 1,
+              isSelected: true,
+              callback: callback,
+              type: Type.checkbox(alignment: TypeAlignment.leftblock),
+              style: Decorations(
+                  background: ColorTheme.yellow, border: BorderTheme.button),
+              title: TitleString(title: 'Кнопка 1', upperCase: true),
+              icon: IconsTheme(
+                  icons: Icons.ac_unit, alignment: AlignmentBox.lefttext),
+              children: [
+                SizedBox(height: 10.0),
+                ListView.builder(
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                    padding: const EdgeInsets.all(8),
+                    itemCount: 5,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        children: [
+                          Text('строка №$index'),
+                        ],
+                      );
+                    }),
+              ],
+            ),
+            TitanBox(
+              index: 2,
+              callback: callback,
+              type: Type.checkbox(alignment: TypeAlignment.leftblock),
+              style: Decorations(
+                  background: ColorTheme.yellow, border: BorderTheme.button),
+              title: TitleString(title: 'Кнопка 2', upperCase: true),
+              icon: IconsTheme(
+                  icons: Icons.ac_unit, alignment: AlignmentBox.lefttext),
+              children: [
+                SizedBox(height: 10.0),
+                ListView.builder(
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                    padding: const EdgeInsets.all(8),
+                    itemCount: 5,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        children: [
+                          Text('строка №$index'),
+                        ],
+                      );
+                    }),
+              ],
+            ),
+            TitanBox(
+              index: 3,
+              callback: callback,
+              type: Type.checkbox(alignment: TypeAlignment.leftblock),
+              style: Decorations(
+                  background: ColorTheme.yellow, border: BorderTheme.button),
+              title: TitleString(title: 'Кнопка 3', upperCase: true),
+              icon: IconsTheme(
+                  icons: Icons.ac_unit, alignment: AlignmentBox.lefttext),
+              children: [
+                SizedBox(height: 10.0),
+                ListView.builder(
+                    physics: ScrollPhysics(),
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.all(8),
+                    itemCount: 5,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        children: [
+                          Text('строка №$index'),
+                        ],
+                      );
+                    }),
+              ],
+            ),
+          ],
+        ),
+        SizedBox(height: 30.0),
+        TitanBox(
+          isSelected: true,
+          callback: callback,
+          type: Type.checkbox(alignment: TypeAlignment.leftblock),
+          style: Decorations(
+              background: ColorTheme.yellow, border: BorderTheme.button),
+          title: TitleString(title: 'Кнопка 3', upperCase: true),
+          icon: IconsTheme(
+              icons: Icons.ac_unit, alignment: AlignmentBox.lefttext),
+          children: [
+            SizedBox(height: 10.0),
+            ListView.builder(
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(8),
+                itemCount: 5,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      Text('строка №$index'),
+                    ],
+                  );
+                }),
+          ],
+        ),
+        TitanBoxGroup(
+          children: [
+            TitanBox(
+              index: 1,
+              isSelected: true,
+              callback: callback,
+              type: Type.button(alignment: TypeAlignment.leftblock),
+              style: Decorations(
+                  background: ColorTheme.yellow, border: BorderTheme.button),
+              title: TitleString(title: 'Кнопка 1', upperCase: true),
+              icon: IconsTheme(
+                  icons: Icons.ac_unit, alignment: AlignmentBox.lefttext),
+              children: [
+                SizedBox(height: 10.0),
+                ListView.builder(
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                    padding: const EdgeInsets.all(8),
+                    itemCount: 5,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        children: [
+                          Text('строка №$index'),
+                        ],
+                      );
+                    }),
+              ],
+            ),
+            TitanBox(
+              index: 2,
+              callback: callback,
+              type: Type.button(alignment: TypeAlignment.leftblock),
+              style: Decorations(
+                  background: ColorTheme.yellow, border: BorderTheme.button),
+              title: TitleString(title: 'Кнопка 2', upperCase: true),
+              icon: IconsTheme(
+                  icons: Icons.ac_unit, alignment: AlignmentBox.lefttext),
+              children: [
+                SizedBox(height: 10.0),
+                ListView.builder(
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                    padding: const EdgeInsets.all(8),
+                    itemCount: 5,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        children: [
+                          Text('строка №$index'),
+                        ],
+                      );
+                    }),
+              ],
+            ),
+            TitanBox(
+              index: 3,
+              callback: callback,
+              type: Type.button(alignment: TypeAlignment.leftblock),
+              style: Decorations(
+                  background: ColorTheme.yellow, border: BorderTheme.button),
+              title: TitleString(title: 'Кнопка 3', upperCase: true),
+              icon: IconsTheme(
+                  icons: Icons.ac_unit, alignment: AlignmentBox.lefttext),
+              children: [
+                SizedBox(height: 10.0),
+                ListView.builder(
+                    physics: ScrollPhysics(),
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.all(8),
+                    itemCount: 5,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        children: [
+                          Text('строка №$index'),
+                        ],
+                      );
+                    }),
+              ],
+            ),
+          ],
+        ),
+        SizedBox(height: 30.0),
+        TitanBox(
+          isSelected: true,
+          callback: callback,
+          type: Type.button(alignment: TypeAlignment.leftblock),
+          style: Decorations(
+              background: ColorTheme.yellow, border: BorderTheme.button),
+          title: TitleString(title: 'Кнопка 3', upperCase: true),
+          icon: IconsTheme(
+              icons: Icons.ac_unit, alignment: AlignmentBox.lefttext),
+          children: [
+            SizedBox(height: 10.0),
+            ListView.builder(
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(8),
+                itemCount: 5,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      Text('строка №$index'),
+                    ],
+                  );
+                }),
+          ],
+        ),*/
         TitanBox(
             onTap: (value, fromTime, toTime) {
               print(value);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MainPage()),
+              );
             },
             callback: callback,
             type: Type.button(alignment: TypeAlignment.leftblock),
@@ -147,7 +363,7 @@ class _M00State extends State<M00> {
           picker: PickerShow(time: ['15:00', '23:00']),
           callback: callback,
           type:
-              Type.checkbox(alignment: TypeAlignment.leftblock, switched: true),
+              Type.checkbox(alignment: TypeAlignment.leftblock, switched: false),
           style: Decorations(
               background: ColorTheme.yellow,
               border: BorderTheme.all,

@@ -200,6 +200,7 @@ class ColorTheme {
     shadowColor: Color.fromRGBO(143, 0, 0, 1),
     textColor: Colors.white,
   );
+
   static ColorTheme grey = ColorTheme(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
@@ -313,23 +314,30 @@ class BorderTheme {
   static BorderTheme container = BorderTheme(
     borderColor: Colors.black,
     top: 1.5,
-    right: 1.0,
-    bottom: 1.0,
-    left: 1.0,
-    borderRadius: 10.0,
+    right: 1.5,
+    bottom: 1.5,
+    left: 1.5,
+    borderRadius: 6.0,
   );
-
+  static BorderTheme squareAll = BorderTheme(
+    borderColor: Colors.black,
+    top: 1,
+    right: 1,
+    bottom: 1,
+    left: 1,
+    borderRadius: 0.0,
+  );
   static BorderTheme all = BorderTheme(
     borderColor: Colors.black,
     top: 1.0,
     right: 1.0,
     bottom: 1.0,
     left: 1.0,
-    borderRadius: 0.0,
+    borderRadius: 6.0,
   );
 
   static BorderTheme zero = BorderTheme(
-    borderColor: Colors.black,
+    borderColor: Colors.transparent,
     top: 0.0,
     right: 0.0,
     bottom: 0.0,
@@ -468,6 +476,7 @@ class Variable {
   static Variable checkboxs = Variable(number: 3);
   static Variable indicators = Variable(number: 4);
   static Variable container = Variable(number: 5);
+  static Variable radio = Variable(number: 6);
 }
 
 class Type {
@@ -505,7 +514,12 @@ class Type {
   final Color indicatorBorderColorDisabled;
   final double indicatorWeight;
   final int indicatorCaunt;
+  final List<bool> indications;
   bool switched;
+  final int value;
+  final int group;
+  final Function(int) onChanged;
+  final Color activeColor;
   Type({
     this.padding,
     @required this.onTap,
@@ -541,7 +555,12 @@ class Type {
     this.indicatorBorderColorDisabled,
     this.indicatorWeight,
     this.indicatorCaunt,
+    this.indications,
     this.switched,
+    this.value,
+    this.group,
+    this.onChanged,
+    this.activeColor,
   });
 
   static Type _container(
@@ -756,6 +775,93 @@ class Type {
     );
   }
 
+  static Type _radiobox(
+    Function(bool) onTap,
+    TypeAlignment alignment,
+    double padding,
+    bool switched,
+    double checkboxHeight,
+    double checkboxWidth,
+    Color checkboxCheckedColor,
+    Color checkboxUncheckedColor,
+    Color checkboxBorderColor,
+    double checkboxBorederWidth,
+    double checkboxBorderRadius,
+    IconData checkboxIcon,
+    Color checkboxIconColor,
+    double checkboxIconSize,
+    Variable type,
+    int value,
+    int group,
+    Function(int) onChanged,
+    Color activeColor,
+  ) =>
+      Type(
+        onTap: onTap,
+        alignment: alignment,
+        padding: padding,
+        switched: switched,
+        checkboxHeight: checkboxHeight,
+        checkboxWidth: checkboxWidth,
+        checkboxCheckedColor: checkboxCheckedColor,
+        checkboxUncheckedColor: checkboxUncheckedColor,
+        checkboxBorderColor: checkboxBorderColor,
+        checkboxBorederWidth: checkboxBorederWidth,
+        checkboxBorderRadius: checkboxBorderRadius,
+        checkboxIcon: checkboxIcon,
+        checkboxIconColor: checkboxIconColor,
+        checkboxIconSize: checkboxIconSize,
+        type: type = Variable.checkboxs,
+        value: value,
+        group: group,
+        onChanged: onChanged,
+        activeColor: activeColor,
+      );
+
+  static Type radiobox({
+    Function(bool) onTap,
+    TypeAlignment alignment,
+    double padding,
+    bool switched,
+    double checkboxHeight,
+    double checkboxWidth,
+    Color checkboxCheckedColor,
+    Color checkboxUncheckedColor,
+    Color checkboxBorderColor,
+    double checkboxBorederWidth,
+    double checkboxBorderRadius,
+    IconData checkboxIcon,
+    Color checkboxIconColor,
+    double checkboxIconSize,
+    Variable type,
+    int value,
+    int group,
+    Function(int) onChanged,
+    Color activeColor,
+  }) {
+    return _radiobox(
+      onTap,
+      alignment,
+      padding,
+      switched,
+      checkboxHeight,
+      checkboxWidth,
+      checkboxCheckedColor,
+      checkboxUncheckedColor,
+      checkboxBorderColor,
+      checkboxBorederWidth,
+      checkboxBorderRadius,
+      checkboxIcon,
+      checkboxIconColor,
+      checkboxIconSize,
+      type = Variable.checkboxs,
+      value,
+      group,
+      onChanged,
+      activeColor,
+    );
+  }
+
   static Type _indicator(
     TypeAlignment alignment,
     double padding,
@@ -767,6 +873,7 @@ class Type {
     int indicatorCaunt,
     double indicatorWeight,
     Variable type,
+    List<bool> indications,
   ) =>
       Type(
         alignment: alignment,
@@ -779,6 +886,7 @@ class Type {
         indicatorCaunt: indicatorCaunt,
         indicatorWeight: indicatorWeight,
         type: type = Variable.indicators,
+        indications: indications,
       );
 
   static Type indicator({
@@ -792,6 +900,7 @@ class Type {
     int indicatorCaunt,
     double indicatorWeight,
     Variable type,
+    List<bool> indications,
   }) {
     return _indicator(
       alignment,
@@ -804,6 +913,7 @@ class Type {
       indicatorCaunt,
       indicatorWeight,
       type = Variable.indicators,
+      indications,
     );
   }
 }

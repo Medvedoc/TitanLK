@@ -36,7 +36,7 @@ AppBar getAppBar(BuildContext context, MainState state) {
     case MainState.m27:
       return null;
       break;
-    case MainState.m27 - 2:
+    case MainState.m27_2:
       return null;
       break;
     case MainState.stubPage1:

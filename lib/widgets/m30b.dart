@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_image/control/TitanButton%20copy.dart';
 import 'package:flutter_image/control/TitanControlStyle.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_image/elements/TitanBox.dart';
+import 'package:flutter_image/elements/TitanBoxStyle.dart';
+import 'package:flutter_image/page/mainPage.dart';
 import 'package:get/get.dart';
 
 class M30b extends StatefulWidget {
@@ -58,86 +59,112 @@ class _M30bState extends State<M30b> {
       ),
       SizedBox(height: 20.0),
       Text('current_tariff_plan'.tr + ' ' + _current,
-          style: Theme.of(context).textTheme.bodyText2.merge(TextStyle(color: Colors.red))),
+          style: Theme.of(context)
+              .textTheme
+              .bodyText2
+              .merge(TextStyle(color: Colors.red))),
       SizedBox(height: 10.0),
-      TitanButton2(
-        headButton: "БИЗНЕС",
-        textStyle: Theme.of(context).textTheme.button.merge(
-              TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-            ),
-        pressTap: () {},
-        controlStyle: TitanControlStyle(),
-        types: Types.grey,
-      ),
+      TitanBox(
+          type: Type.button(alignment: TypeAlignment.leftblock),
+          style: Decorations(
+              background: ColorTheme.grey, border: BorderTheme.button),
+          title: TitleString(
+            title: 'buisness'.tr,
+            upperCase: true,
+            textStyle: Theme.of(context)
+                .textTheme
+                .button
+                .merge(TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+          )),
       SizedBox(height: 10.0),
       Text('current balance'.tr, style: Theme.of(context).textTheme.bodyText2),
       SizedBox(height: 10.0),
-      TitanButton2(
-        iconTextRight: FontAwesomeIcons.rubleSign,
-        iconSize: 18.0,
-        textStyle: Theme.of(context).textTheme.button.merge(
-              TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-            ),
-        headButton: _balance,
-        pressTap: () {},
-        controlStyle: TitanControlStyle(),
-        types: Types.red,
-      ),
+      TitanBox(
+          type: Type.button(alignment: TypeAlignment.leftblock),
+          style: Decorations(
+              background: ColorTheme.red, border: BorderTheme.button),
+          title: TitleString(
+            title: _balance + ' Р',
+            upperCase: true,
+            textStyle: Theme.of(context).textTheme.button.merge(TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white)),
+          )),
       SizedBox(height: 15.0),
       Text('method_payment_subscription'.tr,
           style: Theme.of(context).textTheme.bodyText2),
       SizedBox(height: 5.0),
       Text('expense_company'.tr,
-          style: Theme.of(context)
-              .textTheme
-              .bodyText2
-              .merge(TextStyle(fontWeight: FontWeight.bold, color: Colors.red))),
+          style: Theme.of(context).textTheme.bodyText2.merge(
+              TextStyle(fontWeight: FontWeight.bold, color: Colors.red))),
       SizedBox(height: 10.0),
       Text('method_payment_calling'.tr,
           style: Theme.of(context).textTheme.bodyText2),
       SizedBox(height: 5.0),
       Text('expense_company'.tr,
-          style: Theme.of(context)
-              .textTheme
-              .bodyText2
-              .merge(TextStyle(fontWeight: FontWeight.bold, color: Colors.red))),
+          style: Theme.of(context).textTheme.bodyText2.merge(
+              TextStyle(fontWeight: FontWeight.bold, color: Colors.red))),
       SizedBox(height: 15.0),
-      TitanButton2(
-        headButton: 'up_balance'.tr,
-        pressTap: () {},
-        controlStyle: TitanControlStyle(),
-      ),
+      TitanBox(
+          type: Type.button(alignment: TypeAlignment.leftblock),
+          style: Decorations(
+              background: ColorTheme.yellow, border: BorderTheme.button),
+          title: TitleString(
+            title: 'up_balance'.tr,
+            upperCase: true,
+            textStyle: Theme.of(context).textTheme.button,
+          )),
       SizedBox(height: 10.0),
-      TitanButton2(
-        headButton: 'change_personal_information'.tr,
-        pressTap: () {},
-        controlStyle: TitanControlStyle(),
-      ),
+      TitanBox(
+          type: Type.button(alignment: TypeAlignment.leftblock),
+          style: Decorations(
+              background: ColorTheme.yellow, border: BorderTheme.button),
+          title: TitleString(
+            title: 'change_personal_information'.tr,
+            upperCase: true,
+            textStyle: Theme.of(context).textTheme.button,
+          )),
       SizedBox(height: 10.0),
-      TitanButton2(
-        headButton: 'contact_information'.tr,
-        pressTap: () {},
-        controlStyle: TitanControlStyle(),
-      ),
+      TitanBox(
+          type: Type.button(alignment: TypeAlignment.leftblock),
+          style: Decorations(
+              background: ColorTheme.yellow, border: BorderTheme.button),
+          title: TitleString(
+            title: 'contact_information'.tr,
+            upperCase: true,
+            textStyle: Theme.of(context).textTheme.button,
+          )),
       SizedBox(height: 10.0),
-      TitanButton2(
-        headButton: 'pin_code'.tr,
-        pressTap: () {},
-        controlStyle: TitanControlStyle(),
-      ),
+      TitanBox(
+          type: Type.button(alignment: TypeAlignment.leftblock),
+          style: Decorations(
+              background: ColorTheme.yellow, border: BorderTheme.button),
+          title: TitleString(
+            title: 'pin_code'.tr,
+            upperCase: true,
+            textStyle: Theme.of(context).textTheme.button,
+          )),
       SizedBox(height: 10.0),
-      TitanButton2(
-        headButton: 'contactus'.tr,
-        pressTap: () {},
-        controlStyle: TitanControlStyle(),
-      ),
+      TitanBox(
+          type: Type.button(alignment: TypeAlignment.leftblock),
+          style: Decorations(
+              background: ColorTheme.yellow, border: BorderTheme.button),
+          title: TitleString(
+            title: 'contactus'.tr,
+            upperCase: true,
+            textStyle: Theme.of(context).textTheme.button,
+          )),
       SizedBox(height: 10.0),
-      TitanButton2(
-        headButton: 'close'.tr,
-        pressTap: () {},
-        controlStyle: TitanControlStyle(),
-        types: Types.grey,
-      ),
+      TitanBox(
+          onTap: (value1, value2, value3) {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => MainPage()));
+          },
+          type: Type.button(alignment: TypeAlignment.leftblock),
+          style: Decorations(
+              background: ColorTheme.grey, border: BorderTheme.button),
+          title: TitleString(title: 'close'.tr, upperCase: true)),
     ]);
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_image/control/TitanButton%20copy.dart';
-import 'package:flutter_image/control/TitanControlStyle.dart';
-import 'package:flutter_image/control/TitanToogleAccordion.dart';
+import 'package:flutter_image/elements/TitanBox.dart';
+import 'package:flutter_image/elements/TitanBoxStyle.dart';
 import 'package:flutter_image/page/mainPage.dart';
 import 'package:get/get.dart';
 
@@ -24,14 +23,16 @@ class _M27_2State extends State<M27_2> {
         textAlign: TextAlign.center,
       ),
       SizedBox(height: 15.0),
-      TitanToogleAccordion(
-        borderRadius: 6.0,
-        textAlign: AlignmentDirectional.center,
-        background: Colors.grey.shade200,
-        border: Borderic.all(),
-        textHeading: _balance.toUpperCase() + ' Р',
-        types: Toogle.zero,
-        textStyle: Theme.of(context).textTheme.headline1,
+      TitanBox(
+        type: Type.container(),
+        style: Decorations(
+            height: 60,
+            background: ColorTheme.coloris(color: Colors.grey.shade200),
+            border: BorderTheme.container),
+        title: TitleString(
+            title: _balance + ' Р',
+            upperCase: true,
+            textStyle: Theme.of(context).textTheme.headline1),
       ),
       SizedBox(height: 40.0),
       Row(
@@ -47,15 +48,19 @@ class _M27_2State extends State<M27_2> {
                     style: Theme.of(context).textTheme.bodyText1,
                     textAlign: TextAlign.center),
                 SizedBox(height: 15.0),
-                TitanToogleAccordion(
-                    padding: EdgeInsets.zero,
-                    borderRadius: 6.0,
-                    textAlign: AlignmentDirectional.center,
-                    background: Colors.grey.shade200,
-                    border: Borderic.all(),
-                    textHeading: _date.toUpperCase(),
-                    types: Toogle.zero,
-                    textStyle: Theme.of(context).textTheme.headline1),
+                TitanBox(
+                  type: Type.container(),
+                  style: Decorations(
+                      height: 45,
+                      borderRadius: 6.0,
+                      background:
+                          ColorTheme.coloris(color: Colors.grey.shade200),
+                      border: BorderTheme.container),
+                  title: TitleString(
+                      title: _date.toUpperCase(),
+                      upperCase: true,
+                      textStyle: Theme.of(context).textTheme.headline1),
+                ),
               ],
             ),
           ),
@@ -69,15 +74,18 @@ class _M27_2State extends State<M27_2> {
                     style: Theme.of(context).textTheme.bodyText1,
                     textAlign: TextAlign.center),
                 SizedBox(height: 15.0),
-                TitanToogleAccordion(
-                  padding: EdgeInsets.zero,
-                  borderRadius: 6.0,
-                  textAlign: AlignmentDirectional.center,
-                  background: Colors.grey.shade200,
-                  border: Borderic.all(),
-                  textHeading: _counter.toUpperCase(),
-                  types: Toogle.zero,
-                  textStyle: Theme.of(context).textTheme.headline1,
+                TitanBox(
+                  type: Type.container(),
+                  style: Decorations(
+                      height: 45,
+                      borderRadius: 6.0,
+                      background:
+                          ColorTheme.coloris(color: Colors.grey.shade200),
+                      border: BorderTheme.container),
+                  title: TitleString(
+                      title: _counter.toUpperCase(),
+                      upperCase: true,
+                      textStyle: Theme.of(context).textTheme.headline1),
                 ),
               ],
             ),
@@ -85,20 +93,21 @@ class _M27_2State extends State<M27_2> {
         ],
       ),
       SizedBox(height: 50.0),
-      TitanButton2(
-        headButton: 'up_balance'.tr,
-        controlStyle: TitanControlStyle(),
-      ),
+      TitanBox(
+          type: Type.button(alignment: TypeAlignment.leftblock),
+          style: Decorations(
+              background: ColorTheme.yellow, border: BorderTheme.button),
+          title: TitleString(title: 'up_balance'.tr, upperCase: true)),
       SizedBox(height: 10.0),
-      TitanButton2(
-        pressTapDown: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => MainPage()),
-        ),
-        headButton: 'close'.tr,
-        controlStyle: TitanControlStyle(),
-        types: Types.grey,
-      ),
+      TitanBox(
+          onTap: (value1, value2, value3) {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => MainPage()));
+          },
+          type: Type.button(alignment: TypeAlignment.leftblock),
+          style: Decorations(
+              background: ColorTheme.grey, border: BorderTheme.button),
+          title: TitleString(title: 'close'.tr, upperCase: true)),
     ]);
   }
 }

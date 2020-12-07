@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_image/control/TitanButton.dart';
-import 'package:flutter_image/control/TitanControlStyle.dart';
-import 'package:flutter_image/control/TitanToogleAccordion.dart';
+import 'package:flutter_image/elements/TitanBox.dart';
+import 'package:flutter_image/elements/TitanBoxStyle.dart';
+import 'package:flutter_image/page/mainPage.dart';
 import 'package:get/get.dart';
 
 class M33 extends StatefulWidget {
@@ -77,28 +77,36 @@ class _M33State extends State<M33> {
           SizedBox(height: 30.0),
           ListView.builder(
               shrinkWrap: true,
+              physics: ScrollPhysics(),
               itemCount: card.length,
               itemBuilder: (BuildContext context, int index) {
-                return TitanToogleAccordion(
-                  background: Colors.grey.shade200,
-                  border: Borderic.zero(),
-                  textHeading: card[index][0],
-                  textsubHeading: card[index][1],
-                  types: Toogle.indicator,
-                  indication: [card[index][2], card[index][3]],
+                return TitanBox(
+                  type: Type.indicator(alignment: TypeAlignment.rightblock, indications: [card[index][2], card[index][3]]),
+                  style: Decorations(
+                      background:
+                          ColorTheme.coloris(color: Colors.grey.shade200),
+                      border: BorderTheme.zero,
+                      textAlignment: MainAxisAlignment.start),
+                  title: TitleString(title: card[index][0], textStyle: Theme.of(context).textTheme.headline3),
+                  subtitle: SubTitleString(subtitle: card[index][1]),
                 );
               }),
           SizedBox(height: 30.0),
-          TitanButton(
-            controlStyle: TitanControlStyle(),
-            headButton: 'add_member'.tr,
-          ),
+          TitanBox(
+              type: Type.button(),
+              style: Decorations(
+                  background: ColorTheme.yellow, border: BorderTheme.button),
+              title: TitleString(title: 'add_member'.tr, upperCase: true)),
           SizedBox(height: 15.0),
-          TitanButton(
-              controlStyle: TitanControlStyle(),
-              headButton: 'cancal'.tr,
-              types: Types.grey),
-          SizedBox(height: 15.0),
+          TitanBox(
+              onTap: (value1, value2, value3) {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MainPage()));
+              },
+              type: Type.button(),
+              style: Decorations(
+                  background: ColorTheme.grey, border: BorderTheme.button),
+              title: TitleString(title: 'cancal'.tr, upperCase: true)),
         ],
       ),
     );

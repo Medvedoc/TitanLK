@@ -97,6 +97,7 @@ class _TitanBoxCheckState extends State<TitanBoxCheck> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        
         setState(() {
           isChecked = !isChecked;
           widget.callbackCheckbox(isChecked);

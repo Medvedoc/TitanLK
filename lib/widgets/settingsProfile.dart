@@ -1,15 +1,16 @@
 import 'dart:io';
 import 'package:flutter_image/control/TitanButton.dart';
 import 'package:flutter_image/control/TitanControlStyle.dart';
+import 'package:flutter_image/elements/TitanBox.dart';
+import 'package:flutter_image/elements/TitanBoxStyle.dart';
 import 'package:flutter_image/theme/themeStyle.dart';
-import 'package:flutter_switch/flutter_switch.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_cropper/image_cropper.dart'
     show AndroidUiSettings, CropAspectRatio, ImageCompressFormat, ImageCropper;
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
+import 'package:get/get.dart';
 
 class TitanSettingsProfile extends StatefulWidget {
   @override
@@ -129,7 +130,7 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    'Настройка профиля'.toUpperCase(),
+                    'profile_setting'.tr.toUpperCase(),
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Color.fromRGBO(0, 0, 0, 1),
@@ -154,14 +155,18 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
                   _pushToogle(),
                   _pinToogle(),
                   SizedBox(height: 30.0),
-                  TitanButton(
-                    pressTap: () => pressSave(),
-                    headButton: "Сохранить",
-                    controlStyle: TitanControlStyle(),
-                  ),
+                  TitanBox(
+                      onTap: (value1, value2, value3) {
+                        pressSave();
+                      },
+                      type: Type.button(),
+                      style: Decorations(
+                          background: ColorTheme.yellow,
+                          border: BorderTheme.button),
+                      title: TitleString(title: 'save'.tr, upperCase: true)),
                   SizedBox(height: 50.0),
                   Text(
-                    'Фотография'.toUpperCase(),
+                   'photo2'.tr.toUpperCase(),
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Color.fromRGBO(0, 0, 0, 1),
@@ -179,26 +184,36 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Expanded(
-                        flex: 1,
-                        child: TitanButton(
-                          pressTap: () => getImage(ImageSource.camera),
-                          icon: Icons.camera_alt_outlined,
-                          headButton: "Фото",
-                          controlStyle: TitanControlStyle(),
-                          types: Types.yellow,
-                        ),
-                      ),
+                          flex: 1,
+                          child: TitanBox(
+                              onTap: (value1, value2, value3) {
+                                getImage(ImageSource.camera);
+                              },
+                              type: Type.button(),
+                              style: Decorations(
+                                  background: ColorTheme.yellow,
+                                  border: BorderTheme.button),
+                              title: TitleString(
+                                  title: 'photo'.tr, upperCase: true),
+                              icon: IconsTheme(
+                                  icons: Icons.camera_alt_outlined,
+                                  alignment: AlignmentBox.lefttext))),
                       SizedBox(width: 15.0),
                       Expanded(
-                        flex: 1,
-                        child: TitanButton(
-                          pressTap: () => getImage(ImageSource.gallery),
-                          icon: Icons.image_outlined,
-                          headButton: "Галерея",
-                          controlStyle: TitanControlStyle(),
-                          types: Types.yellow,
-                        ),
-                      ),
+                          flex: 1,
+                          child: TitanBox(
+                              onTap: (value1, value2, value3) {
+                                getImage(ImageSource.gallery);
+                              },
+                              type: Type.button(),
+                              style: Decorations(
+                                  background: ColorTheme.yellow,
+                                  border: BorderTheme.button),
+                              title: TitleString(
+                                  title: 'gallery'.tr, upperCase: true),
+                              icon: IconsTheme(
+                                  icons: Icons.image_outlined,
+                                  alignment: AlignmentBox.lefttext))),
                     ],
                   ),
                   (_inProcess)
@@ -236,15 +251,16 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
       controller: _phoneText,
       decoration: InputDecoration(
         isDense: true,
-        hintText: _phoneFocus.hasFocus ? null : 'Номер телефона',
+        hintText: _phoneFocus.hasFocus ? null : 'number_phone'.tr,
         hintStyle: TextStyle(
           fontSize: 18.0,
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w500,
           color: Color.fromRGBO(110, 110, 110, 1),
         ),
-        labelText:
-            _validate ? (_phoneFocus.hasFocus ? 'Номер телефона' : null) : null,
+        labelText: _validate
+            ? (_phoneFocus.hasFocus ? 'number_phone'.tr : null)
+            : null,
         labelStyle: TextStyle(
           color: Colors.red,
           fontSize: _phoneFocus.hasFocus ? 18.0 : 13.0,
@@ -282,13 +298,13 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
       ],
       validator: (value) {
         if (value.isEmpty) {
-          return 'Номер телефона не введен';
+          return 'number_phone'.tr + 'not_entered'.tr;
         }
         /*if (!RegExp(r"(^(?:[+0]9)?[0-9]{10,20}$)").hasMatch(value)) {
           return 'Неправильно введен номер телефона';
         }*/
         if (!isPhoneValid(value)) {
-          return 'Неправильно введен номер телефона';
+          return 'incorrectly_entered'.tr + 'number_phone'.tr;
         }
         return null;
       },
@@ -315,7 +331,7 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
       controller: _familyText,
       decoration: InputDecoration(
         isDense: true,
-        hintText: _familyFocus.hasFocus ? null : 'Фамилия',
+        hintText: _familyFocus.hasFocus ? null : 'family'.tr,
         hintStyle: TextStyle(
           fontSize: 18.0,
           fontFamily: 'Roboto',
@@ -323,7 +339,7 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
           color: Color.fromRGBO(110, 110, 110, 1),
         ),
         labelText:
-            _validate ? (_familyFocus.hasFocus ? 'Фамилия' : null) : null,
+            _validate ? (_familyFocus.hasFocus ? 'family'.tr : null) : null,
         labelStyle: TextStyle(
           color: Colors.red,
           fontSize: _familyFocus.hasFocus ? 18.0 : 13.0,
@@ -358,11 +374,11 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
       ),
       validator: (value) {
         if (value.isEmpty) {
-          return 'Фамилия не введена';
+          return 'family'.tr + 'not_entered'.tr;
         }
         if (!RegExp(r"(^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$)")
             .hasMatch(value)) {
-          return 'Неправильно введена фамилия';
+          return 'incorrectly_entered'.tr + 'family'.tr;
         }
         return null;
       },
@@ -389,14 +405,14 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
       controller: _nameText,
       decoration: InputDecoration(
         isDense: true,
-        hintText: _nameFocus.hasFocus ? null : 'Имя',
+        hintText: _nameFocus.hasFocus ? null : 'name'.tr,
         hintStyle: TextStyle(
           fontSize: 18.0,
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w500,
           color: Color.fromRGBO(110, 110, 110, 1),
         ),
-        labelText: _validate ? (_nameFocus.hasFocus ? 'Имя' : null) : null,
+        labelText: _validate ? (_nameFocus.hasFocus ? 'name'.tr : null) : null,
         labelStyle: TextStyle(
           color: Colors.red,
           fontSize: _nameFocus.hasFocus ? 18.0 : 13.0,
@@ -431,11 +447,11 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
       ),
       validator: (value) {
         if (value.isEmpty) {
-          return 'Имя не введено';
+          return 'name'.tr + 'not_entered'.tr;
         }
         if (!RegExp(r"(^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$)")
             .hasMatch(value)) {
-          return 'Неправильно введено имя';
+          return 'incorrectly_entered'.tr + 'name'.tr;
         }
         return null;
       },
@@ -462,7 +478,7 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
       controller: _companyText,
       decoration: InputDecoration(
         isDense: true,
-        hintText: _companyFocus.hasFocus ? null : 'Наименование организации',
+        hintText: _companyFocus.hasFocus ? null : 'name_company'.tr,
         hintStyle: TextStyle(
           fontSize: 18.0,
           fontFamily: 'Roboto',
@@ -470,7 +486,7 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
           color: Color.fromRGBO(110, 110, 110, 1),
         ),
         labelText: _validate
-            ? (_companyFocus.hasFocus ? 'Наименование организации' : null)
+            ? (_companyFocus.hasFocus ? 'name_company'.tr : null)
             : null,
         labelStyle: TextStyle(
           color: Colors.red,
@@ -506,11 +522,11 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
       ),
       validator: (value) {
         if (value.isEmpty) {
-          return 'Наименование организации не введено';
+          return 'name_company'.tr + 'not_entered'.tr;
         }
         if (!RegExp(r"(^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$)")
             .hasMatch(value)) {
-          return 'Неправильно введено наименование организации';
+          return 'incorrectly_entered'.tr + 'name_company'.tr;
         }
         return null;
       },
@@ -537,7 +553,7 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
       controller: _positionText,
       decoration: InputDecoration(
         isDense: true,
-        hintText: _positionFocus.hasFocus ? null : 'Должность',
+        hintText: _positionFocus.hasFocus ? null : 'position'.tr,
         hintStyle: TextStyle(
           fontSize: 18.0,
           fontFamily: 'Roboto',
@@ -545,7 +561,7 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
           color: Color.fromRGBO(110, 110, 110, 1),
         ),
         labelText:
-            _validate ? (_positionFocus.hasFocus ? 'Должность' : null) : null,
+            _validate ? (_positionFocus.hasFocus ? 'position'.tr : null) : null,
         labelStyle: TextStyle(
           color: Colors.red,
           fontSize: _positionFocus.hasFocus ? 18.0 : 13.0,
@@ -580,11 +596,11 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
       ),
       validator: (value) {
         if (value.isEmpty) {
-          return 'Должность не введена';
+          return 'position'.tr + 'not_entered'.tr;
         }
         if (!RegExp(r"(^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$)")
             .hasMatch(value)) {
-          return 'Неправильно введена должность';
+          return 'incorrectly_entered'.tr + 'position'.tr;
         }
         return null;
       },
@@ -611,14 +627,14 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
       controller: _emailText,
       decoration: InputDecoration(
         isDense: true,
-        hintText: _emailFocus.hasFocus ? null : 'E-mail',
+        hintText: _emailFocus.hasFocus ? null : 'e_mail'.tr,
         hintStyle: TextStyle(
           fontSize: 18.0,
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w500,
           color: Color.fromRGBO(110, 110, 110, 1),
         ),
-        labelText: _validate ? (_emailFocus.hasFocus ? 'E-mail' : null) : null,
+        labelText: _validate ? (_emailFocus.hasFocus ? 'e_mail'.tr : null) : null,
         labelStyle: TextStyle(
           color: Colors.red,
           fontSize: _emailFocus.hasFocus ? 18.0 : 13.0,
@@ -653,12 +669,12 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
       ),
       validator: (value) {
         if (value.isEmpty) {
-          return 'Email не введен';
+          return 'e_mail'.tr +'not_entered'.tr;
         }
         if (!RegExp(
                 r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
             .hasMatch(value)) {
-          return 'Неправильно введен Email';
+          return 'incorrectly_entered'.tr +  'e_mail'.tr;
         }
         return null;
       },
@@ -756,287 +772,44 @@ class _TitanSettingsProfileState extends State<TitanSettingsProfile> {
   }
 
   Widget _pushToogle() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-      decoration: new BoxDecoration(
-        color: Colors.white,
-        border: new Border(
-          left: BorderSide(
-            color: Color.fromRGBO(0, 0, 0, 1),
-            width: 1.0,
-          ),
-          right: BorderSide(
-            color: Color.fromRGBO(0, 0, 0, 1),
-            width: 1.0,
-          ),
-          top: BorderSide(
-            color: Color.fromRGBO(0, 0, 0, 1),
-            width: 1.0,
-          ),
-        ),
-      ),
-      child: Stack(
-        alignment: AlignmentDirectional.centerStart,
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Text(
-                'Показывать Пуш-уведомления',
-                style: TextStyle(
-                  fontSize: 13.0,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              GestureDetector(
-                child: Container(
-                  margin: EdgeInsets.only(left: 10.0),
-                  padding: const EdgeInsets.all(5.0),
-                  decoration: new BoxDecoration(
-                    border: new Border.all(
-                        color: Color.fromRGBO(101, 91, 0, 0.5),
-                        width: 2.0,
-                        style: BorderStyle.solid),
-                    shape: BoxShape.circle,
-                    color: Color.fromRGBO(254, 229, 0, 1),
-                  ),
-                  child: Icon(
-                    FontAwesomeIcons.question,
-                    color: Color.fromRGBO(101, 91, 0, 0.5),
-                    size: 20.0,
-                  ),
-                ),
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return Dialog(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        elevation: 8,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 10.0, vertical: 16.0),
-                          width: double.infinity,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Padding(
-                                  padding: EdgeInsets.all(10),
-                                  child: Text(
-                                      "TextTextTextTextTextTextTextTextTextTextTextTextText")),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
-            ],
-          ),
-          Container(
-            alignment: Alignment.centerRight,
-            child: FlutterSwitch(
-              value: isSwitched,
-              onToggle: (val) {
-                setState(() {
-                  isSwitched = val;
-                  print(isSwitched);
-                });
-              },
-              activeColor: Colors.black,
-              inactiveColor: Colors.grey,
-              toggleColor: Colors.white,
-              width: 40.0,
-              height: 20.0,
-              toggleSize: 18.0,
-              valueFontSize: 16.0,
-              borderRadius: 20.0,
-              padding: 2.0,
-            ),
-          ),
-        ],
-      ),
-    );
+    return TitanBox(
+        switched: true,
+        type: Type.toogle(alignment: TypeAlignment.rightblock),
+        style: Decorations(
+            background: ColorTheme.coloris(color: Colors.white),
+            border: BorderTheme.trzl,
+            textAlignment: MainAxisAlignment.start),
+        title: TitleString(
+            title: 'show_push_notifications'.tr,
+            textStyle: Theme.of(context).textTheme.headline4),
+        dialog: DialogShow(title: 'message'));
   }
 
   Widget _pinToogle() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
-      decoration: new BoxDecoration(
-        color: Colors.white,
-        border: new Border(
-          left: BorderSide(
-            color: Color.fromRGBO(0, 0, 0, 1),
-            width: 1.0,
-          ),
-          right: BorderSide(
-            color: Color.fromRGBO(0, 0, 0, 1),
-            width: 1.0,
-          ),
-          top: BorderSide(
-            color: Color.fromRGBO(0, 0, 0, 1),
-            width: 1.0,
-          ),
-          bottom: BorderSide(
-            color: Color.fromRGBO(0, 0, 0, 1),
-            width: 1.0,
-          ),
-        ),
-      ),
-      child: Stack(
-        alignment: AlignmentDirectional.centerStart,
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Text(
-                'Запрашивать Пин-код',
-                style: TextStyle(
-                  fontSize: 13.0,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ],
-          ),
-          Container(
-            alignment: Alignment.centerRight,
-            child: FlutterSwitch(
-              value: isSwitched2,
-              onToggle: (val) {
-                setState(() {
-                  isSwitched2 = val;
-                  print(isSwitched2);
-                });
-              },
-              activeColor: Colors.black,
-              inactiveColor: Colors.grey,
-              toggleColor: Colors.white,
-              width: 40.0,
-              height: 20.0,
-              toggleSize: 18.0,
-              valueFontSize: 16.0,
-              borderRadius: 20.0,
-              padding: 2.0,
-            ),
-          ),
-        ],
-      ),
-    );
+    return TitanBox(
+        switched: true,
+        type: Type.toogle(alignment: TypeAlignment.rightblock),
+        style: Decorations(
+            background: ColorTheme.coloris(color: Colors.white),
+            border: BorderTheme.squareAll,
+            textAlignment: MainAxisAlignment.start),
+        title: TitleString(
+            title: 'request_pin_code'.tr,
+            textStyle: Theme.of(context).textTheme.headline4));
   }
 
   Widget _logToogle() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-      decoration: new BoxDecoration(
-        color: Colors.white,
-        border: new Border(
-          left: BorderSide(
-            color: Color.fromRGBO(0, 0, 0, 1),
-            width: 1.0,
-          ),
-          right: BorderSide(
-            color: Color.fromRGBO(0, 0, 0, 1),
-            width: 1.0,
-          ),
-          top: BorderSide(
-            color: Color.fromRGBO(0, 0, 0, 1),
-            width: 1.0,
-          ),
-          bottom: BorderSide(
-            color: Color.fromRGBO(0, 0, 0, 1),
-            width: 1.0,
-          ),
-        ),
-      ),
-      child: Stack(
-        alignment: AlignmentDirectional.centerStart,
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Text(
-                'Логирование (интерфейс ошибок)',
-                style: TextStyle(
-                  fontSize: 13.0,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              GestureDetector(
-                child: Container(
-                  margin: EdgeInsets.only(left: 10.0),
-                  padding: const EdgeInsets.all(5.0),
-                  decoration: new BoxDecoration(
-                    border: new Border.all(
-                        color: Color.fromRGBO(101, 91, 0, 0.5),
-                        width: 2.0,
-                        style: BorderStyle.solid),
-                    shape: BoxShape.circle,
-                    color: Color.fromRGBO(254, 229, 0, 1),
-                  ),
-                  child: Icon(
-                    FontAwesomeIcons.question,
-                    color: Color.fromRGBO(101, 91, 0, 0.5),
-                    size: 20.0,
-                  ),
-                ),
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return Dialog(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        elevation: 8,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 10.0, vertical: 16.0),
-                          width: double.infinity,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Padding(
-                                  padding: EdgeInsets.all(10),
-                                  child: Text(
-                                      "TextTextTextTextTextTextTextTextTextTextTextTextText")),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
-            ],
-          ),
-          Container(
-            alignment: Alignment.centerRight,
-            child: FlutterSwitch(
-              value: isSwitched3,
-              onToggle: (val) {
-                setState(() {
-                  isSwitched3 = val;
-                  print(isSwitched3);
-                });
-              },
-              activeColor: Colors.black,
-              inactiveColor: Colors.grey,
-              toggleColor: Colors.white,
-              width: 40.0,
-              height: 20.0,
-              toggleSize: 18.0,
-              valueFontSize: 16.0,
-              borderRadius: 20.0,
-              padding: 2.0,
-            ),
-          ),
-        ],
-      ),
-    );
+    return TitanBox(
+        switched: true,
+        type: Type.toogle(alignment: TypeAlignment.rightblock),
+        style: Decorations(
+            background: ColorTheme.coloris(color: Colors.white),
+            border: BorderTheme.squareAll,
+            textAlignment: MainAxisAlignment.start),
+        title: TitleString(
+            title: 'logging_error_interface'.tr,
+            textStyle: Theme.of(context).textTheme.headline4),
+        dialog: DialogShow(title: 'message'));
   }
 
   void pressTap() {

@@ -1,8 +1,8 @@
-import 'package:flutter_image/control/TitanButton.dart';
-import 'package:flutter_image/control/TitanControlStyle.dart';
-import 'package:flutter_image/control/TitanToogleAccordion.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image/elements/TitanBox.dart';
+import 'package:flutter_image/elements/TitanBoxStyle.dart';
+import 'package:flutter_image/page/mainPage.dart';
 import 'package:get/get.dart';
 
 class M32 extends StatefulWidget {
@@ -22,7 +22,7 @@ class _M32State extends State<M32> {
   @override
   void initState() {
     super.initState();
-    selectedRadio = 0;
+    selectedRadio = 1;
   }
 
   List<List> card = [
@@ -54,15 +54,18 @@ class _M32State extends State<M32> {
               Container(
                 alignment: Alignment.centerRight,
                 margin: EdgeInsets.symmetric(vertical: 8.0),
-                child: Radio(
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  value: 1,
-                  groupValue: selectedRadio,
-                  activeColor: Colors.black,
-                  onChanged: (val) {
-                    print("Radio $val");
-                    setSelectedRadio(val);
-                  },
+                child: Transform.scale(
+                  scale: 1.1,
+                  child: Radio(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    value: 1,
+                    groupValue: selectedRadio,
+                    activeColor: Colors.black,
+                    onChanged: (val) {
+                      print("Radio $val");
+                      setSelectedRadio(val);
+                    },
+                  ),
                 ),
               ),
             ],
@@ -77,15 +80,22 @@ class _M32State extends State<M32> {
             itemBuilder: (BuildContext context, int index) {
               return Column(
                 children: [
-                  TitanToogleAccordion(
-                    isChecked: card[index][1],
-                    background: card[index][1] == true
-                        ? Color.fromRGBO(254, 229, 0, 1)
-                        : Colors.grey.shade200,
-                    border: Borderic.zero(),
-                    textHeading: card[index][0].toUpperCase(),
-                    types: Toogle.checkbox,
-                  ),
+                  TitanBox(
+                      type: Type.checkbox(
+                          alignment: TypeAlignment.rightblock,
+                          switched: card[index][1]),
+                      style: Decorations(
+                          background: ColorTheme.coloris(
+                              color: card[index][1] == true
+                                  ? Color.fromRGBO(254, 229, 0, 1)
+                                  : Colors.grey.shade200),
+                          border: BorderTheme.zero,
+                          textAlignment: MainAxisAlignment.start),
+                      title: TitleString(
+                        title: card[index][0],
+                        upperCase: true,
+                        textStyle: Theme.of(context).textTheme.headline2,
+                      )),
                   SizedBox(height: 5.0)
                 ],
               );
@@ -111,15 +121,18 @@ class _M32State extends State<M32> {
               Container(
                 alignment: Alignment.centerRight,
                 margin: EdgeInsets.symmetric(vertical: 8.0),
-                child: Radio(
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  value: 2,
-                  groupValue: selectedRadio,
-                  activeColor: Colors.black,
-                  onChanged: (val) {
-                    print("Radio $val");
-                    setSelectedRadio(val);
-                  },
+                child: Transform.scale(
+                  scale: 1.1,
+                  child: Radio(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    value: 2,
+                    groupValue: selectedRadio,
+                    activeColor: Colors.black,
+                    onChanged: (val) {
+                      print("Radio $val");
+                      setSelectedRadio(val);
+                    },
+                  ),
                 ),
               ),
             ],
@@ -134,15 +147,22 @@ class _M32State extends State<M32> {
             itemBuilder: (BuildContext context, int index) {
               return Column(
                 children: [
-                  TitanToogleAccordion(
-                    isChecked: card[index][1],
-                    background: card[index][1] == true
-                        ? Color.fromRGBO(254, 229, 0, 1)
-                        : Colors.grey.shade200,
-                    border: Borderic.zero(),
-                    textHeading: card[index][0].toUpperCase(),
-                    types: Toogle.checkbox,
-                  ),
+                  TitanBox(
+                      type: Type.checkbox(
+                          alignment: TypeAlignment.rightblock,
+                          switched: card[index][1]),
+                      style: Decorations(
+                          background: ColorTheme.coloris(
+                              color: card[index][1] == true
+                                  ? Color.fromRGBO(254, 229, 0, 1)
+                                  : Colors.grey.shade200),
+                          border: BorderTheme.zero,
+                          textAlignment: MainAxisAlignment.start),
+                      title: TitleString(
+                        title: card[index][0],
+                        upperCase: true,
+                        textStyle: Theme.of(context).textTheme.headline2,
+                      )),
                   SizedBox(height: 5.0)
                 ],
               );
@@ -150,29 +170,33 @@ class _M32State extends State<M32> {
           ),
         ),
         SizedBox(height: 30.0),
-        TitanButton(
-          pressTap: () {},
-          headButton: 'link_card'.tr,
-          controlStyle: TitanControlStyle(),
-        ),
+        TitanBox(
+            type: Type.button(),
+            style: Decorations(
+                background: ColorTheme.yellow, border: BorderTheme.button),
+            title: TitleString(title: 'link_card'.tr, upperCase: true)),
         SizedBox(height: 15.0),
-        TitanButton(
-          pressTap: () {},
-          headButton: 'family_account'.tr,
-          controlStyle: TitanControlStyle(),
-        ),
+        TitanBox(
+            type: Type.button(),
+            style: Decorations(
+                background: ColorTheme.yellow, border: BorderTheme.button),
+            title: TitleString(title: 'family_account'.tr, upperCase: true)),
         SizedBox(height: 15.0),
-        TitanButton(
-          pressTap: () {},
-          headButton: 'buisness_accaunt'.tr,
-          controlStyle: TitanControlStyle(),
-        ),
+        TitanBox(
+            type: Type.button(),
+            style: Decorations(
+                background: ColorTheme.yellow, border: BorderTheme.button),
+            title: TitleString(title: 'buisness_accaunt'.tr, upperCase: true)),
         SizedBox(height: 15.0),
-        TitanButton(
-          headButton: 'cancal'.tr,
-          controlStyle: TitanControlStyle(),
-          types: Types.grey,
-        ),
+        TitanBox(
+            onTap: (value1, value2, value3) {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => MainPage()));
+            },
+            type: Type.button(),
+            style: Decorations(
+                background: ColorTheme.grey, border: BorderTheme.button),
+            title: TitleString(title: 'cancal'.tr, upperCase: true)),
       ],
     );
   }

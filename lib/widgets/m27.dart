@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_image/control/TitanButton%20copy.dart';
-import 'package:flutter_image/control/TitanControlStyle.dart';
-import 'package:flutter_image/control/TitanToogleAccordion.dart';
 import 'package:flutter_image/elements/TitanBox.dart';
 import 'package:flutter_image/elements/TitanBoxStyle.dart';
 import 'package:flutter_image/page/mainPage.dart';
@@ -27,34 +24,18 @@ class _M30State extends State<M27> {
       ),
       SizedBox(height: 15.0),
       TitanBox(
-        
         type: Type.container(),
         style: Decorations(
-          height: 65,
-            borderRadius: 6.0,
-            background: ColorTheme.coloris(color: Color.fromRGBO(245, 0, 0, 1), textColor: Colors.white, shadowColor: Colors.grey.shade200),
-            border: BorderTheme(borderRadius: 6.0, borderColor: Colors.black, left:1.5, right: 1.5,bottom: 1.5,top: 1.5)),
+            height: 60,
+            background: ColorTheme.coloris(color: Color.fromRGBO(245, 0, 0, 1)),
+            border: BorderTheme.container),
         title: TitleString(
-          title: '50.00 Р',
-          upperCase: true,
-          textStyle: Theme.of(context)
-              .textTheme
-              .headline1
-              .merge(TextStyle(color: Colors.white)),
-        ),
-      ),
-      SizedBox(height: 15.0),
-      TitanToogleAccordion(
-        borderRadius: 6.0,
-        textAlign: AlignmentDirectional.center,
-        background: Color.fromRGBO(245, 0, 0, 1),
-        border: Borderic.all(),
-        textHeading: _balance.toUpperCase() + ' Р',
-        types: Toogle.zero,
-        textStyle: Theme.of(context)
-            .textTheme
-            .headline1
-            .merge(TextStyle(color: Colors.white)),
+            title: _balance + ' Р',
+            upperCase: true,
+            textStyle: Theme.of(context)
+                .textTheme
+                .headline1
+                .merge(TextStyle(color: Colors.white))),
       ),
       SizedBox(height: 40.0),
       Row(
@@ -70,34 +51,19 @@ class _M30State extends State<M27> {
                     style: Theme.of(context).textTheme.bodyText1,
                     textAlign: TextAlign.center),
                 SizedBox(height: 15.0),
-                TitanToogleAccordion(
-                    padding: EdgeInsets.zero,
-                    borderRadius: 6.0,
-                    textAlign: AlignmentDirectional.center,
-                    background: Colors.grey.shade200,
-                    border: Borderic.all(),
-                    textHeading: _date.toUpperCase(),
-                    types: Toogle.zero,
-                    textStyle: Theme.of(context).textTheme.headline1),
-                    
-      TitanBox(
-        
-        type: Type.button(),
-        //onPressed: () {},
-        style: Decorations(
-          height: 45,
-            borderRadius: 6.0,
-            background: ColorTheme.coloris(color: Color.fromRGBO(245, 0, 0, 1), textColor: Colors.white, shadowColor: Colors.grey.shade200),
-            border: BorderTheme(borderRadius: 6.0, borderColor: Colors.black, left:1.5, right: 1.5,bottom: 1.5,top: 1.5)),
-        title: TitleString(
-          title: '50.00 Р',
-          upperCase: true,
-          textStyle: Theme.of(context)
-              .textTheme
-              .headline1
-              .merge(TextStyle(color: Colors.white)),
-        ),
-      ),
+                TitanBox(
+                  type: Type.container(),
+                  style: Decorations(
+                      height: 45,
+                      borderRadius: 6.0,
+                      background:
+                          ColorTheme.coloris(color: Colors.grey.shade200),
+                      border: BorderTheme.container),
+                  title: TitleString(
+                      title: _date.toUpperCase(),
+                      upperCase: true,
+                      textStyle: Theme.of(context).textTheme.headline1),
+                ),
               ],
             ),
           ),
@@ -111,18 +77,21 @@ class _M30State extends State<M27> {
                     style: Theme.of(context).textTheme.bodyText1,
                     textAlign: TextAlign.center),
                 SizedBox(height: 15.0),
-                TitanToogleAccordion(
-                  padding: EdgeInsets.zero,
-                  borderRadius: 6.0,
-                  textAlign: AlignmentDirectional.center,
-                  background: Color.fromRGBO(245, 0, 0, 1),
-                  border: Borderic.all(),
-                  textHeading: _counter.toUpperCase(),
-                  types: Toogle.zero,
-                  textStyle: Theme.of(context)
-                      .textTheme
-                      .headline1
-                      .merge(TextStyle(color: Colors.white)),
+                TitanBox(
+                  type: Type.container(),
+                  style: Decorations(
+                      height: 45,
+                      borderRadius: 6.0,
+                      background: ColorTheme.coloris(
+                          color: Color.fromRGBO(245, 0, 0, 1)),
+                      border: BorderTheme.container),
+                  title: TitleString(
+                      title: _counter.toUpperCase(),
+                      upperCase: true,
+                      textStyle: Theme.of(context)
+                          .textTheme
+                          .headline1
+                          .merge(TextStyle(color: Colors.white))),
                 ),
               ],
             ),
@@ -135,9 +104,9 @@ class _M30State extends State<M27> {
         margin: EdgeInsets.symmetric(horizontal: 5.0),
         decoration: BoxDecoration(
             boxShadow: [
-              new BoxShadow(
+              BoxShadow(
                 color: Colors.grey.shade400,
-                offset: new Offset(0.0, 2.0),
+                offset: Offset(0.0, 2.0),
                 blurRadius: 5.0,
               )
             ],
@@ -169,20 +138,21 @@ class _M30State extends State<M27> {
         ),
       ),
       SizedBox(height: 50.0),
-      TitanButton2(
-        headButton: 'up_balance'.tr,
-        controlStyle: TitanControlStyle(),
-      ),
+      TitanBox(
+          type: Type.button(alignment: TypeAlignment.leftblock),
+          style: Decorations(
+              background: ColorTheme.yellow, border: BorderTheme.button),
+          title: TitleString(title: 'up_balance'.tr, upperCase: true)),
       SizedBox(height: 10.0),
-      TitanButton2(
-        pressTapDown: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => MainPage()),
-        ),
-        headButton: 'close'.tr,
-        controlStyle: TitanControlStyle(),
-        types: Types.grey,
-      ),
+      TitanBox(
+          onTap: (value1, value2, value3) {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => MainPage()));
+          },
+          type: Type.button(alignment: TypeAlignment.leftblock),
+          style: Decorations(
+              background: ColorTheme.grey, border: BorderTheme.button),
+          title: TitleString(title: 'close'.tr, upperCase: true)),
     ]);
   }
 }

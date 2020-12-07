@@ -2,6 +2,9 @@ import 'package:flutter_image/control/TitanButton.dart';
 import 'package:flutter_image/control/TitanControlStyle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image/elements/TitanBox.dart';
+import 'package:flutter_image/elements/TitanBoxStyle.dart';
+import 'package:flutter_image/page/mainPage.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:get/get.dart';
 
@@ -71,7 +74,7 @@ class _M33_3State extends State<M33_3> {
   @override
   void initState() {
     super.initState();
-    selectedRadio = 0;
+    selectedRadio = 1;
     _phoneFocus = FocusNode();
     _phoneFocus.addListener(_focusNodeEvent);
     _familyFocus = FocusNode();
@@ -122,16 +125,26 @@ class _M33_3State extends State<M33_3> {
                 SizedBox(height: 30.0),
                 _groupRadio(),
                 SizedBox(height: 30.0),
-                TitanButton(
-                  pressTap: () => pressSave(),
-                  headButton: 'connect'.tr,
-                  controlStyle: TitanControlStyle(),
-                ),
+                TitanBox(
+                    onTap: (value1, value2, value3) {
+                      pressSave();
+                    },
+                    type: Type.button(),
+                    style: Decorations(
+                        background: ColorTheme.yellow,
+                        border: BorderTheme.button),
+                    title: TitleString(title: 'connect'.tr, upperCase: true)),
                 SizedBox(height: 15.0),
-                TitanButton(
-                    headButton: 'cancal'.tr,
-                    controlStyle: TitanControlStyle(),
-                    types: Types.grey),
+                TitanBox(
+                    onTap: (value1, value2, value3) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => MainPage()));
+                    },
+                    type: Type.button(),
+                    style: Decorations(
+                        background: ColorTheme.grey,
+                        border: BorderTheme.button),
+                    title: TitleString(title: 'cancal'.tr, upperCase: true)),
               ],
             ),
           ),
@@ -423,9 +436,11 @@ class _M33_3State extends State<M33_3> {
                 margin: EdgeInsets.symmetric(vertical: 8.0),
                 child: Radio(
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  value: 1,toggleable:true ,
+                  value: 1,
+                  toggleable: true,
                   groupValue: selectedRadio,
-                  activeColor: Colors.black,autofocus:true ,
+                  activeColor: Colors.black,
+                  autofocus: true,
                   onChanged: (val) {
                     print("Radio $val");
                     setSelectedRadio(val);

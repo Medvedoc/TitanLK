@@ -38,6 +38,9 @@ Widget getBody(BuildContext context, MainState state) {
     case MainState.m27:
       return getBodyClean(context, state);
       break;
+    case MainState.m27_2:
+      return getBodyClean(context, state);
+      break;
     default:
       return getBodyGeneral(context, state);
       break;
